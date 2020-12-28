@@ -24,12 +24,14 @@ class AddressGenerator {
     accountXpubKey = ""
     bip32XprivKey = ""
     bip32XpubKey = ""
+    hashAlgo = ""
     hashAlgos = {
         39:"",
         44:"p2pkh",
         49:"p2wpkhInP2sh",
         84:"p2wpkh",
     }
+
 
 
 	constructor(mnemonic=false,passphrase=false,seed=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false){
@@ -145,7 +147,18 @@ class AddressGenerator {
             let address = {}
             address.path = this.path(index)
             address.rawPair = this.root.derivePath(address.path)
-            address.rawAddress = bitcoin.payments.p2pkh({ pubkey: address.rawPair.publicKey, network: this.coin.network })
+      
+            if( this.bip == 49 ){
+                address.rawAddress = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({
+                    pubkey: address.rawPair.publicKey,
+                    network: this.coin.network,
+                }), 
+                network: this.coin.network 
+                })
+            } else {
+                address.rawAddress = bitcoin.payments[this.hashAlgo]({ pubkey: address.rawPair.publicKey, network: this.coin.network })
+            }
+
             address.address = address.rawAddress.address
             address.privKey = address.rawPair.toWIF()
             address.pubKey = address.rawPair.publicKey.toString('hex')
