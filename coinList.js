@@ -3,14 +3,16 @@ module.exports = {
        "shortName":"AC",
        "longName":"Asiacoin",
        "network":{
-          "messagePrefix":"\u0018AsiaCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":8,
-          "wif":151
+          "p2pkh":{
+             "messagePrefix":"\u0018AsiaCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":8,
+             "wif":151
+          }
        },
        "coinNumber":51
     },
@@ -18,14 +20,16 @@ module.exports = {
        "shortName":"ACC",
        "longName":"Adcoin",
        "network":{
-          "messagePrefix":"\u0018AdCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":5,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018AdCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":5,
+             "wif":176
+          }
        },
        "coinNumber":161
     },
@@ -33,14 +37,16 @@ module.exports = {
        "shortName":"AGM",
        "longName":"Argoneum",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":50,
-          "scriptHash":97,
-          "wif":191
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":97,
+             "wif":191
+          }
        },
        "coinNumber":421
     },
@@ -48,15 +54,17 @@ module.exports = {
        "shortName":"ARYA",
        "longName":"Aryacoin",
        "network":{
-          "messagePrefix":"\u0018Aryacoin Signed Message:\n",
-          "bech32":"arya",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":111,
-          "wif":151
+          "p2pkh":{
+             "messagePrefix":"\u0018Aryacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":111,
+             "wif":151,
+             "bech32":"arya"
+          }
        },
        "coinNumber":357
     },
@@ -64,14 +72,16 @@ module.exports = {
        "shortName":"AUR",
        "longName":"Auroracoin",
        "network":{
-          "messagePrefix":"\u0018AuroraCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":5,
-          "wif":151
+          "p2pkh":{
+             "messagePrefix":"\u0018AuroraCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":5,
+             "wif":151
+          }
        },
        "coinNumber":85
     },
@@ -79,14 +89,16 @@ module.exports = {
        "shortName":"AXE",
        "longName":"Axe",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":16,
-          "wif":204
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":16,
+             "wif":204
+          }
        },
        "coinNumber":4242
     },
@@ -94,14 +106,16 @@ module.exports = {
        "shortName":"ANON",
        "longName":"ANON",
        "network":{
-          "messagePrefix":"\u0018ANON Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":1410,
-          "scriptHash":21385,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018ANON Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":1410,
+             "scriptHash":21385,
+             "wif":128
+          }
        },
        "coinNumber":220
     },
@@ -109,14 +123,16 @@ module.exports = {
        "shortName":"BOLI",
        "longName":"Bolivarcoin",
        "network":{
-          "messagePrefix":"Bolivarcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":85,
-          "scriptHash":5,
-          "wif":213
+          "p2pkh":{
+             "messagePrefix":"Bolivarcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":85,
+             "scriptHash":5,
+             "wif":213
+          }
        },
        "coinNumber":278
     },
@@ -124,59 +140,123 @@ module.exports = {
        "shortName":"BCA",
        "longName":"Bitcoin Atom",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":10,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"atom",
-            "messagePrefix":"\\x18Bitcoin Atom Signed Message:\n",
-            "bech32":"atom",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x17,
-            "scriptHash":0x0a,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"atom",
-            "messagePrefix":"\\x18Bitcoin Atom Signed Message:\n",
-            "bech32":"atom",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x17,
-            "scriptHash":0x0a,
-            "wif":0x80
-         }
+             "baseNetwork":"atom",
+             "messagePrefix":"\\x18Bitcoin Atom Signed Message:\n",
+             "bech32":"atom",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":10,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"atom",
+             "messagePrefix":"\\x18Bitcoin Atom Signed Message:\n",
+             "bech32":"atom",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":10,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":10,
+             "wif":128
+          }
        },
        "coinNumber":185
     },
     "BCH":{
        "shortName":"BCH",
        "longName":"Bitcoin Cash",
-       "network":"dummyNetwork",
+       "network":{
+          "p2wpkh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wsh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":44728019,
+                "private":44726937
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wshInP2sh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":43365439,
+                "private":43364357
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
+       },
        "coinNumber":145
     },
     "BEET":{
        "shortName":"BEET",
        "longName":"Beetlecoin",
        "network":{
-          "messagePrefix":"\u0019Beetlecoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":26,
-          "scriptHash":85,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0019Beetlecoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":26,
+             "scriptHash":85,
+             "wif":153
+          }
        },
        "coinNumber":800
     },
@@ -184,14 +264,16 @@ module.exports = {
        "shortName":"BELA",
        "longName":"Belacoin",
        "network":{
-          "messagePrefix":"\u0018BelaCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":5,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018BelaCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":5,
+             "wif":153
+          }
        },
        "coinNumber":73
     },
@@ -199,14 +281,16 @@ module.exports = {
        "shortName":"BLK",
        "longName":"BlackCoin",
        "network":{
-          "messagePrefix":"\u0018BlackCoin Signed Message:\n",
-          "bip32":{
-             "public":47169246,
-             "private":47169376
-          },
-          "pubKeyHash":25,
-          "scriptHash":85,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018BlackCoin Signed Message:\n",
+             "bip32":{
+                "public":47169246,
+                "private":47169376
+             },
+             "pubKeyHash":25,
+             "scriptHash":85,
+             "wif":153
+          }
        },
        "coinNumber":10
     },
@@ -214,14 +298,16 @@ module.exports = {
        "shortName":"BND",
        "longName":"Blocknode",
        "network":{
-          "messagePrefix":"\u0018Blocknode Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":63,
-          "wif":75
+          "p2pkh":{
+             "messagePrefix":"\u0018Blocknode Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":63,
+             "wif":75
+          }
        },
        "coinNumber":2941
     },
@@ -229,14 +315,16 @@ module.exports = {
        "shortName":"tBND",
        "longName":"Blocknode Testnet",
        "network":{
-          "messagePrefix":"\u0018Blocknode Testnet Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":85,
-          "scriptHash":125,
-          "wif":137
+          "p2pkh":{
+             "messagePrefix":"\u0018Blocknode Testnet Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":85,
+             "scriptHash":125,
+             "wif":137
+          }
        },
        "coinNumber":1
     },
@@ -244,14 +332,16 @@ module.exports = {
        "shortName":"BRIT",
        "longName":"Britcoin",
        "network":{
-          "messagePrefix":"\u0018BritCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":85,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018BritCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":85,
+             "wif":153
+          }
        },
        "coinNumber":70
     },
@@ -259,14 +349,16 @@ module.exports = {
        "shortName":"BSD",
        "longName":"Bitsend",
        "network":{
-          "messagePrefix":"\u0018Bitsend Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":102,
-          "scriptHash":5,
-          "wif":204
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitsend Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":102,
+             "scriptHash":5,
+             "wif":204
+          }
        },
        "coinNumber":91
     },
@@ -274,38 +366,40 @@ module.exports = {
        "shortName":"BST",
        "longName":"BlockStamp",
        "network":{
-          "messagePrefix":"\u0018BlockStamp Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"blockstamp",
-            "messagePrefix":"\\x18BlockStamp Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"blockstamp",
-            "messagePrefix":"\\x18BlockStamp Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         }
+             "baseNetwork":"blockstamp",
+             "messagePrefix":"\\x18BlockStamp Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"blockstamp",
+             "messagePrefix":"\\x18BlockStamp Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018BlockStamp Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":254
     },
@@ -313,14 +407,16 @@ module.exports = {
        "shortName":"BTA",
        "longName":"Bata",
        "network":{
-          "messagePrefix":"\u0018Bata Signed Message:\n",
-          "bip32":{
-             "public":2752284410,
-             "private":2752221629
-          },
-          "pubKeyHash":25,
-          "scriptHash":5,
-          "wif":164
+          "p2pkh":{
+             "messagePrefix":"\u0018Bata Signed Message:\n",
+             "bip32":{
+                "public":2752284410,
+                "private":2752221629
+             },
+             "pubKeyHash":25,
+             "scriptHash":5,
+             "wif":164
+          }
        },
        "coinNumber":89
     },
@@ -328,206 +424,214 @@ module.exports = {
        "shortName":"BTC",
        "longName":"Bitcoin",
        "network":{
-        "messagePrefix": '\u0018Bitcoin Signed Message:\n',
-        "bech32": 'bc',
-        "bip32": { 
-            "public": 76067358, 
-            "private": 76066276 
-        },
-        "pubKeyHash": 0,
-        "scriptHash": 5,
-        "wif": 128,
-        "p2wpkh":{
-            "baseNetwork":"bitcoin",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-                  "public":0x04b24746,
-                  "private":0x04b2430c
-               },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"bitcoin",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         },
-         "p2wsh":{
-            "baseNetwork":"bitcoin",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-               "public":0x02aa7ed3,
-               "private":0x02aa7a99
-            },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         },
-         "p2wshInP2sh":{
-            "baseNetwork":"bitcoin",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"bc",
-            "bip32":{
-               "public":0x0295b43f,
-               "private":0x0295b005
-            },
-            "pubKeyHash":0x00,
-            "scriptHash":0x05,
-            "wif":0x80
-         }
-      },
-      "coinNumber":0
+          "p2wpkh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wsh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":44728019,
+                "private":44726937
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wshInP2sh":{
+             "baseNetwork":"bitcoin",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bc",
+             "bip32":{
+                "public":43365439,
+                "private":43364357
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
+       },
+       "coinNumber":0
     },
     "BTCt":{
-        "shortName":"BTCt",
-        "longName":"Bitcoin Testnet",
-        "network":{
-            "messagePrefix": '\u0018Bitcoin Signed Message:\n',
-            "bech32": 'tb',
-            "bip32": { 
-                "public": 70617039, 
-                "private": 70615956 
-            },
-            "pubKeyHash": 111,
-            "scriptHash": 196,
-            "wif": 239,
-            "p2wpkh":{
-               "baseNetwork":"testnet",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"tb",
-               "bip32":{
-                  "public":0x045f1cf6,
-                  "private":0x045f18bc
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wpkhInP2sh":{
-               "baseNetwork":"testnet",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               bech32:"tb",
-               bip32:{
-                  "public":0x044a5262,
-                  "private":0x044a4e28
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wsh":{
-               "baseNetwork":"testnet",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"tb",
-               "bip32":{
-                  "public":0x02575483,
-                  "private":0x02575048
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wshInP2sh":{
-               "baseNetwork":"testnet",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"tb",
-               "bip32":{
-                  "public":0x024289ef,
-                  "private":0x024285b5
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            }
+       "shortName":"BTCt",
+       "longName":"Bitcoin Testnet",
+       "network":{
+          "p2wpkh":{
+             "baseNetwork":"testnet",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"tb",
+             "bip32":{
+                "public":73342198,
+                "private":73341116
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
           },
-        "coinNumber":1
+          "p2wpkhInP2sh":{
+             "baseNetwork":"testnet",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"tb",
+             "bip32":{
+                "public":71979618,
+                "private":71978536
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wsh":{
+             "baseNetwork":"testnet",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"tb",
+             "bip32":{
+                "public":39277699,
+                "private":39276616
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wshInP2sh":{
+             "baseNetwork":"testnet",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"tb",
+             "bip32":{
+                "public":37915119,
+                "private":37914037
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239,
+             "bech32":"tb"
+          }
+       },
+       "coinNumber":1
     },
     "BTCrt":{
-        "shortName":"BTCrt",
-        "longName":"Bitcoin RegTest",
-        "network":{
-            "messagePrefix": '\u0018Bitcoin Signed Message:\n',
-            "bech32": 'bcrt',
-            "bip32": { 
-                "public": 70617039, 
-                "private": 70615956 
-            },
-            "pubKeyHash": 111,
-            "scriptHash": 196,
-            "wif": 239,
-            "p2wpkh":{
-               "baseNetwork":"regtest",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"bcrt",
-               "bip32":{
-                  "public":0x045f1cf6,
-                  "private":0x045f18bc
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wpkhInP2sh":{
-               "baseNetwork":"regtest",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"bcrt",
-               "bip32":{
-                  "public":0x044a5262,
-                  "private":0x044a4e28
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wsh":{
-               "baseNetwork":"regtest",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"bcrt",
-               "bip32":{
-                  "public":0x02575483,
-                  "private":0x02575048
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            },
-            "p2wshInP2sh":{
-               "baseNetwork":"regtest",
-               "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-               "bech32":"bcrt",
-               "bip32":{
-                  "public":0x024289ef,
-                  "private":0x024285b5
-               },
-               "pubKeyHash":0x6f,
-               "scriptHash":0xc4,
-               "wif":0xef
-            }
-        },
-        "coinNumber":1
+       "shortName":"BTCrt",
+       "longName":"Bitcoin RegTest",
+       "network":{
+          "p2wpkh":{
+             "baseNetwork":"regtest",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bcrt",
+             "bip32":{
+                "public":73342198,
+                "private":73341116
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"regtest",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bcrt",
+             "bip32":{
+                "public":71979618,
+                "private":71978536
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wsh":{
+             "baseNetwork":"regtest",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bcrt",
+             "bip32":{
+                "public":39277699,
+                "private":39276616
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wshInP2sh":{
+             "baseNetwork":"regtest",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"bcrt",
+             "bip32":{
+                "public":37915119,
+                "private":37914037
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239,
+             "bech32":"bcrt"
+          }
+       },
+       "coinNumber":1
     },
     "BITG":{
        "shortName":"BITG",
        "longName":"Bitcoin Green",
        "network":{
-          "messagePrefix":"\u0018BitcoinGreen Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":7357,
-          "wif":46
+          "p2pkh":{
+             "messagePrefix":"\u0018BitcoinGreen Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":7357,
+             "wif":46
+          }
        },
        "coinNumber":222
     },
@@ -535,14 +639,16 @@ module.exports = {
        "shortName":"BTCP",
        "longName":"Bitcoin Private",
        "network":{
-          "messagePrefix":"\u0018BitcoinPrivate Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":4901,
-          "scriptHash":5039,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018BitcoinPrivate Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":4901,
+             "scriptHash":5039,
+             "wif":128
+          }
        },
        "coinNumber":183
     },
@@ -550,15 +656,17 @@ module.exports = {
        "shortName":"BSC",
        "longName":"Binance Smart Chain",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":60
     },
@@ -566,14 +674,16 @@ module.exports = {
        "shortName":"BSV",
        "longName":"BitcoinSV",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":236
     },
@@ -581,14 +691,16 @@ module.exports = {
        "shortName":"BTCZ",
        "longName":"Bitcoinz",
        "network":{
-          "messagePrefix":"\u0018BitcoinZ Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":7352,
-          "scriptHash":7357,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018BitcoinZ Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":7352,
+             "scriptHash":7357,
+             "wif":128
+          }
        },
        "coinNumber":177
     },
@@ -596,14 +708,16 @@ module.exports = {
        "shortName":"BTDX",
        "longName":"BitCloud",
        "network":{
-          "messagePrefix":"\u0018BitCloud Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":5,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018BitCloud Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":5,
+             "wif":153
+          }
        },
        "coinNumber":218
     },
@@ -611,38 +725,40 @@ module.exports = {
        "shortName":"BTG",
        "longName":"Bitcoin Gold",
        "network":{
-          "messagePrefix":"\u001dBitcoin Gold Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":23,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"bgold",
-            "messagePrefix":"\\x1DBitcoin Gold Signed Message:\n",
-            "bech32":"btg",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x26,
-            "scriptHash":0x17,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"bgold",
-            "messagePrefix":"\\x1DBitcoin Gold Signed Message:\n",
-            "bech32":"btg",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x26,
-            "scriptHash":0x17,
-            "wif":0x80
-         }
+             "baseNetwork":"bgold",
+             "messagePrefix":"\\x1DBitcoin Gold Signed Message:\n",
+             "bech32":"btg",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":38,
+             "scriptHash":23,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"bgold",
+             "messagePrefix":"\\x1DBitcoin Gold Signed Message:\n",
+             "bech32":"btg",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":38,
+             "scriptHash":23,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u001dBitcoin Gold Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":23,
+             "wif":128
+          }
        },
        "coinNumber":156
     },
@@ -650,38 +766,40 @@ module.exports = {
        "shortName":"BTX",
        "longName":"Bitcore",
        "network":{
-          "messagePrefix":"\u0018BitCore Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":3,
-          "scriptHash":125,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"bitcore",
-            "messagePrefix":"\\x18BitCore Signed Message:\n",
-            "bech32":"bitcore",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x03,
-            "scriptHash":0x7D,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"bitcore",
-            "messagePrefix":"\\x18BitCore Signed Message:\n",
-            "bech32":"bitcore",
-            "bip32":{
-               "public":0x0488B21E,
-               "private":0x0488ADE4
-            },
-            "pubKeyHash":0x03,
-            "scriptHash":0x7D,
-            "wif":0x80
-         }
+             "baseNetwork":"bitcore",
+             "messagePrefix":"\\x18BitCore Signed Message:\n",
+             "bech32":"bitcore",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":3,
+             "scriptHash":125,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"bitcore",
+             "messagePrefix":"\\x18BitCore Signed Message:\n",
+             "bech32":"bitcore",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":3,
+             "scriptHash":125,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018BitCore Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":3,
+             "scriptHash":125,
+             "wif":128
+          }
        },
        "coinNumber":160
     },
@@ -689,14 +807,16 @@ module.exports = {
        "shortName":"CCN",
        "longName":"Cannacoin",
        "network":{
-          "messagePrefix":"\u0018Cannacoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":5,
-          "wif":156
+          "p2pkh":{
+             "messagePrefix":"\u0018Cannacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":5,
+             "wif":156
+          }
        },
        "coinNumber":19
     },
@@ -704,14 +824,16 @@ module.exports = {
        "shortName":"CESC",
        "longName":"Cryptoescudo",
        "network":{
-          "messagePrefix":"\u0018Cannacoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":5,
-          "wif":156
+          "p2pkh":{
+             "messagePrefix":"\u0018Cannacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":5,
+             "wif":156
+          }
        },
        "coinNumber":111
     },
@@ -719,14 +841,16 @@ module.exports = {
        "shortName":"CDN",
        "longName":"Canadaecoin",
        "network":{
-          "messagePrefix":"\u0018Canada eCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":5,
-          "wif":156
+          "p2pkh":{
+             "messagePrefix":"\u0018Canada eCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":5,
+             "wif":156
+          }
        },
        "coinNumber":34
     },
@@ -734,14 +858,16 @@ module.exports = {
        "shortName":"CLAM",
        "longName":"Clams",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":2831314276,
-             "private":2831251494
-          },
-          "pubKeyHash":137,
-          "scriptHash":13,
-          "wif":133
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":2831314276,
+                "private":2831251494
+             },
+             "pubKeyHash":137,
+             "scriptHash":13,
+             "wif":133
+          }
        },
        "coinNumber":23
     },
@@ -750,15 +876,17 @@ module.exports = {
        "longName":"Callisto",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":820
     },
@@ -766,14 +894,16 @@ module.exports = {
        "shortName":"CLUB",
        "longName":"Clubcoin",
        "network":{
-          "messagePrefix":"\u0018ClubCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":85,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018ClubCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":85,
+             "wif":153
+          }
        },
        "coinNumber":79
     },
@@ -781,14 +911,16 @@ module.exports = {
        "shortName":"CMP",
        "longName":"Compcoin",
        "network":{
-          "messagePrefix":"\u0018CompCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":85,
-          "wif":156
+          "p2pkh":{
+             "messagePrefix":"\u0018CompCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":85,
+             "wif":156
+          }
        },
        "coinNumber":71
     },
@@ -796,38 +928,40 @@ module.exports = {
        "shortName":"CPU",
        "longName":"CPUchain",
        "network":{
-          "messagePrefix":"x18CPUchain Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":30,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"cpuchain",
-            "messagePrefix":"\\x1DCPUchain Signed Message:\n",
-            "bech32":"cpu",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x1c,
-            "scriptHash":0x1e,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"cpuchain",
-            "messagePrefix":"\\x1DCPUchain Signed Message:\n",
-            "bech32":"cpu",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x1c,
-            "scriptHash":0x1e,
-            "wif":0x80
-         }
+             "baseNetwork":"cpuchain",
+             "messagePrefix":"\\x1DCPUchain Signed Message:\n",
+             "bech32":"cpu",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":28,
+             "scriptHash":30,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"cpuchain",
+             "messagePrefix":"\\x1DCPUchain Signed Message:\n",
+             "bech32":"cpu",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":28,
+             "scriptHash":30,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"x18CPUchain Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":30,
+             "wif":128
+          }
        },
        "coinNumber":363
     },
@@ -835,14 +969,16 @@ module.exports = {
        "shortName":"CRAVE",
        "longName":"Crave",
        "network":{
-          "messagePrefix":"\u0018DarkNet Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":70,
-          "scriptHash":85,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018DarkNet Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":70,
+             "scriptHash":85,
+             "wif":153
+          }
        },
        "coinNumber":186
     },
@@ -850,60 +986,94 @@ module.exports = {
        "shortName":"CRP",
        "longName":"CranePay",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":10,
-          "wif":123,
           "p2wpkhInP2sh":{
-            "baseNetwork":"cranepay",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"cp",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":28,
-            "scriptHash":10,
-            "wif":123
-         },
-         "p2wpk":{
-            "baseNetwork":"cranepay",
-            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
-            "bech32":"cp",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":28,
-            "scriptHash":10,
-            "wif":123
-         }
+             "baseNetwork":"cranepay",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"cp",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":28,
+             "scriptHash":10,
+             "wif":123
+          },
+          "p2wpk":{
+             "baseNetwork":"cranepay",
+             "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+             "bech32":"cp",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":28,
+             "scriptHash":10,
+             "wif":123
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":10,
+             "wif":123
+          }
        },
        "coinNumber":2304
     },
+    "CRWl":{
+      "shortName":"CRW",
+      "longName":"Crown legacy",
+      "network":{
+        "p2pkh":{
+           "messagePrefix": 'unused',
+           "bip32": {
+             "public": 0x0488b21e,
+             "private": 0x0488ade4
+           },
+           "pubKeyHash": 0x00,
+           "scriptHash": 0x05,
+           "wif": 0x80,
+        }
+      },
+      "coinNumber":72
+   },
     "CRW":{
        "shortName":"CRW",
        "longName":"Crown",
-       "network":"crown",
+       "addressStyle":"crown",
+       "network":{
+         "p2pkh":{
+            "messagePrefix": 'unused',
+            "bip32": {
+              "public": 0x0488b21e,
+              "private": 0x0488ade4
+            },
+            "pubKeyHash": 0x00,
+            "scriptHash": 0x05,
+            "wif": 0x80,
+         }
+       },
        "coinNumber":72
     },
     "CSC":{
        "shortName":"CSC",
        "longName":"CasinoCoin",
+       "addressStyle":"casinoCoin",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":359
     },
@@ -911,44 +1081,50 @@ module.exports = {
        "shortName":"DASH",
        "longName":"Dash",
        "network":{
-        "messagePrefix": 'unused',
-        "bip32": {
-          "public": 0x0488b21e,
-          "private": 0x0488ade4
-        },
-        "pubKeyHash": 0x4c,
-        "scriptHash": 0x10,
-        "wif": 0xcc
-      },
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":76,
+             "scriptHash":16,
+             "wif":204
+          }
+       },
        "coinNumber":5
     },
     "DASHt":{
-        "shortName":"DASHt",
-        "longName":"Dash Testnet",
-        "network":{
-           "messagePrefix":"unused",
-           "bip32":{
-              "public":70617039,
-              "private":70615956
-           },
-           "pubKeyHash":140,
-           "scriptHash":19,
-           "wif":239
-        },
-        "coinNumber":1
-     },
+       "shortName":"DASHt",
+       "longName":"Dash Testnet",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":140,
+             "scriptHash":19,
+             "wif":239
+          }
+       },
+       "coinNumber":1
+    },
     "DFC":{
        "shortName":"DFC",
        "longName":"Defcoin",
        "network":{
-          "messagePrefix":"\u0018defcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":30,
-          "scriptHash":5,
-          "wif":158
+          "p2pkh":{
+             "messagePrefix":"\u0018defcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":30,
+             "scriptHash":5,
+             "wif":158
+          }
        },
        "coinNumber":1337
     },
@@ -956,38 +1132,40 @@ module.exports = {
        "shortName":"DGB",
        "longName":"Digibyte",
        "network":{
-          "messagePrefix":"\u0019DigiByte Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":30,
-          "scriptHash":5,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"digibyte",
-            "messagePrefix":"x19DigiByte Signed Message:\n",
-            "bech32":"dgb",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x1e,
-            "scriptHash":0x3f,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"digibyte",
-            "messagePrefix":"\\x19DigiByte Signed Message:\n",
-            "bech32":"dgb",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x1e,
-            "scriptHash":0x3f,
-            "wif":0x80
-         }
+             "baseNetwork":"digibyte",
+             "messagePrefix":"x19DigiByte Signed Message:\n",
+             "bech32":"dgb",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":30,
+             "scriptHash":63,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"digibyte",
+             "messagePrefix":"\\x19DigiByte Signed Message:\n",
+             "bech32":"dgb",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":30,
+             "scriptHash":63,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0019DigiByte Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":30,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":20
     },
@@ -995,14 +1173,16 @@ module.exports = {
        "shortName":"DGC",
        "longName":"Digitalcoin",
        "network":{
-          "messagePrefix":"\u0018Digitalcoin Signed Message:\n",
-          "bip32":{
-             "public":2651097266,
-             "private":76066276
-          },
-          "pubKeyHash":30,
-          "scriptHash":5,
-          "wif":158
+          "p2pkh":{
+             "messagePrefix":"\u0018Digitalcoin Signed Message:\n",
+             "bip32":{
+                "public":2651097266,
+                "private":76066276
+             },
+             "pubKeyHash":30,
+             "scriptHash":5,
+             "wif":158
+          }
        },
        "coinNumber":18
     },
@@ -1010,14 +1190,16 @@ module.exports = {
        "shortName":"DMD",
        "longName":"Diamond",
        "network":{
-          "messagePrefix":"\u0018Diamond Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":90,
-          "scriptHash":8,
-          "wif":218
+          "p2pkh":{
+             "messagePrefix":"\u0018Diamond Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":90,
+             "scriptHash":8,
+             "wif":218
+          }
        },
        "coinNumber":152
     },
@@ -1025,14 +1207,16 @@ module.exports = {
        "shortName":"DNR",
        "longName":"Denarius",
        "network":{
-          "messagePrefix":"\u0019Denarius Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":30,
-          "scriptHash":90,
-          "wif":158
+          "p2pkh":{
+             "messagePrefix":"\u0019Denarius Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":30,
+             "scriptHash":90,
+             "wif":158
+          }
        },
        "coinNumber":116
     },
@@ -1040,14 +1224,16 @@ module.exports = {
        "shortName":"DOGE",
        "longName":"Dogecoin",
        "network":{
-          "messagePrefix":"\u0019Dogecoin Signed Message:\n",
-          "bip32":{
-             "public":49990397,
-             "private":49988504
-          },
-          "pubKeyHash":30,
-          "scriptHash":22,
-          "wif":158
+          "p2pkh":{
+             "messagePrefix":"\u0019Dogecoin Signed Message:\n",
+             "bip32":{
+                "public":49990397,
+                "private":49988504
+             },
+             "pubKeyHash":30,
+             "scriptHash":22,
+             "wif":158
+          }
        },
        "coinNumber":3
     },
@@ -1055,38 +1241,40 @@ module.exports = {
        "shortName":"DOGEt",
        "longName":"Dogecoin Testnet",
        "network":{
-          "messagePrefix":"\u0019Dogecoin Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":113,
-          "scriptHash":196,
-          "wif":241,
           "p2wpkh":{
-            "baseNetwork":"dogecointestnet",
-            "messagePrefix":"\\x19Dogecoin Signed Message:\n",
-            "bech32":"dogecointestnet",
-            "bip32":{
-               "public":0x043587cf,
-               "private":0x04358394
-            },
-            "pubKeyHash":0x71,
-            "scriptHash":0xc4,
-            "wif":0xf1
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"dogecointestnet",
-            "messagePrefix":"\\x19Dogecoin Signed Message:\n",
-            "bech32":"dogecointestnet",
-            "bip32":{
-               "public":0x043587cf,
-               "private":0x04358394
-            },
-            "pubKeyHash":0x71,
-            "scriptHash":0xc4,
-            "wif":0xf1
-         }
+             "baseNetwork":"dogecointestnet",
+             "messagePrefix":"\\x19Dogecoin Signed Message:\n",
+             "bech32":"dogecointestnet",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":113,
+             "scriptHash":196,
+             "wif":241
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"dogecointestnet",
+             "messagePrefix":"\\x19Dogecoin Signed Message:\n",
+             "bech32":"dogecointestnet",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":113,
+             "scriptHash":196,
+             "wif":241
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0019Dogecoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":113,
+             "scriptHash":196,
+             "wif":241
+          }
        },
        "coinNumber":1
     },
@@ -1094,15 +1282,17 @@ module.exports = {
        "shortName":"DXN",
        "longName":"DEXON",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":237
     },
@@ -1110,14 +1300,16 @@ module.exports = {
        "shortName":"ECN",
        "longName":"Ecoin",
        "network":{
-          "messagePrefix":"\u0018eCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":92,
-          "scriptHash":20,
-          "wif":220
+          "p2pkh":{
+             "messagePrefix":"\u0018eCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":92,
+             "scriptHash":20,
+             "wif":220
+          }
        },
        "coinNumber":115
     },
@@ -1125,14 +1317,16 @@ module.exports = {
        "shortName":"EDRC",
        "longName":"Edrcoin",
        "network":{
-          "messagePrefix":"\u0018EDRcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":93,
-          "scriptHash":28,
-          "wif":221
+          "p2pkh":{
+             "messagePrefix":"\u0018EDRcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":93,
+             "scriptHash":28,
+             "wif":221
+          }
        },
        "coinNumber":56
     },
@@ -1140,14 +1334,16 @@ module.exports = {
        "shortName":"EFL",
        "longName":"Egulden",
        "network":{
-          "messagePrefix":"\u0018Egulden Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":48,
-          "scriptHash":5,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018Egulden Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":48,
+             "scriptHash":5,
+             "wif":176
+          }
        },
        "coinNumber":78
     },
@@ -1155,14 +1351,16 @@ module.exports = {
        "shortName":"ELA",
        "longName":"Elastos",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":33,
-          "scriptHash":196,
-          "wif":239
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":33,
+             "scriptHash":196,
+             "wif":239
+          }
        },
        "coinNumber":2305
     },
@@ -1171,15 +1369,17 @@ module.exports = {
        "longName":"Ellaism",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":163
     },
@@ -1187,14 +1387,16 @@ module.exports = {
        "shortName":"EMC2",
        "longName":"Einsteinium",
        "network":{
-          "messagePrefix":"\u0018Einsteinium Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":33,
-          "scriptHash":5,
-          "wif":161
+          "p2pkh":{
+             "messagePrefix":"\u0018Einsteinium Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":33,
+             "scriptHash":5,
+             "wif":161
+          }
        },
        "coinNumber":41
     },
@@ -1202,30 +1404,35 @@ module.exports = {
        "shortName":"ERC",
        "longName":"Europecoin",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":33,
-          "scriptHash":5,
-          "wif":168
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":33,
+             "scriptHash":5,
+             "wif":168
+          }
        },
        "coinNumber":151
     },
     "EOS":{
        "shortName":"EOS",
        "longName":"EOSIO",
+       "addressStyle":"eosio",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":194
     },
@@ -1234,15 +1441,17 @@ module.exports = {
        "longName":"EtherCore",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":466
     },
@@ -1251,15 +1460,17 @@ module.exports = {
        "longName":"Ethersocial Network",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":31102
     },
@@ -1268,31 +1479,37 @@ module.exports = {
        "longName":"Ethereum Classic",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":61
     },
     "ETH":{
        "shortName":"ETH",
        "longName":"Ethereum",
+       "addressStyle":"ethereum",
+       "addressPrefix":"0x",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":60
     },
@@ -1300,15 +1517,17 @@ module.exports = {
        "shortName":"EWT",
        "longName":"EnergyWeb",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":246
     },
@@ -1316,14 +1535,16 @@ module.exports = {
        "shortName":"EXCL",
        "longName":"Exclusivecoin",
        "network":{
-          "messagePrefix":"\u0018ExclusiveCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":33,
-          "scriptHash":137,
-          "wif":161
+          "p2pkh":{
+             "messagePrefix":"\u0018ExclusiveCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":33,
+             "scriptHash":137,
+             "wif":161
+          }
        },
        "coinNumber":190
     },
@@ -1331,14 +1552,16 @@ module.exports = {
        "shortName":"EXCC",
        "longName":"ExchangeCoin",
        "network":{
-          "messagePrefix":"ExchangeCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":8633,
-          "scriptHash":13487,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"ExchangeCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":8633,
+             "scriptHash":13487,
+             "wif":128
+          }
        },
        "coinNumber":0
     },
@@ -1347,31 +1570,36 @@ module.exports = {
        "longName":"Expanse",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":40
     },
     "FIO":{
        "shortName":"FIO",
        "longName":"Foundation for Interwallet Operability",
+       "addressStyle":"fio",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":235
     },
@@ -1379,14 +1607,16 @@ module.exports = {
        "shortName":"FIRO",
        "longName":"Firo (Zcoin rebrand)",
        "network":{
-          "messagePrefix":"\u0018Firo Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":82,
-          "scriptHash":7,
-          "wif":210
+          "p2pkh":{
+             "messagePrefix":"\u0018Firo Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":82,
+             "scriptHash":7,
+             "wif":210
+          }
        },
        "coinNumber":136
     },
@@ -1394,68 +1624,74 @@ module.exports = {
        "shortName":"FIX",
        "longName":"FIX",
        "network":{
-            "messagePrefix": 'unused',
-            "bip32": {
-                "public": 0x022d2533,
-                "private": 0x0221312b
-            },
-            "pubKeyHash": 0x23,
-            "scriptHash": 0x5F,
-            "wif": 0x3C
-        },
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":35,
+             "scriptHash":95,
+             "wif":60
+          }
+       },
        "coinNumber":336
     },
     "FIXt":{
-        "shortName":"FIXt",
-        "longName":"FIX Testnet",
-        "network":{
-           "messagePrefix":"unused",
-           "bip32":{
-              "public":981492128,
-              "private":981489719
-           },
-           "pubKeyHash":76,
-           "scriptHash":137,
-           "wif":237
-        },
-        "coinNumber":1
-     },
+       "shortName":"FIXt",
+       "longName":"FIX Testnet",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":981492128,
+                "private":981489719
+             },
+             "pubKeyHash":76,
+             "scriptHash":137,
+             "wif":237
+          }
+       },
+       "coinNumber":1
+    },
     "FJC":{
        "shortName":"FJC",
        "longName":"Fujicoin",
        "network":{
-          "messagePrefix":"\u0019FujiCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":36,
-          "scriptHash":16,
-          "wif":164,
           "p2wpkh":{
-            "baseNetwork":"fujicoin",
-            "messagePrefix":"\\x19FujiCoin Signed Message:\n",
-            "bech32":"fc",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x24,
-            "scriptHash":0x10,
-            "wif":0xa4
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"fujicoin",
-            "messagePrefix":"\\x19FujiCoin Signed Message:\n",
-            "bech32":"fc",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x24,
-            "scriptHash":0x10,
-            "wif":0xa4
-         }
+             "baseNetwork":"fujicoin",
+             "messagePrefix":"\\x19FujiCoin Signed Message:\n",
+             "bech32":"fc",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":36,
+             "scriptHash":16,
+             "wif":164
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"fujicoin",
+             "messagePrefix":"\\x19FujiCoin Signed Message:\n",
+             "bech32":"fc",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":36,
+             "scriptHash":16,
+             "wif":164
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0019FujiCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":36,
+             "scriptHash":16,
+             "wif":164
+          }
        },
        "coinNumber":75
     },
@@ -1463,14 +1699,16 @@ module.exports = {
        "shortName":"FLASH",
        "longName":"Flashcoin",
        "network":{
-          "messagePrefix":"\u0018Flashcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":68,
-          "scriptHash":130,
-          "wif":196
+          "p2pkh":{
+             "messagePrefix":"\u0018Flashcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":68,
+             "scriptHash":130,
+             "wif":196
+          }
        },
        "coinNumber":120
     },
@@ -1478,14 +1716,16 @@ module.exports = {
        "shortName":"FRST",
        "longName":"Firstcoin",
        "network":{
-          "messagePrefix":"\u0018FirstCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":35,
-          "scriptHash":5,
-          "wif":163
+          "p2pkh":{
+             "messagePrefix":"\u0018FirstCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":35,
+             "scriptHash":5,
+             "wif":163
+          }
        },
        "coinNumber":167
     },
@@ -1493,14 +1733,16 @@ module.exports = {
        "shortName":"FTC",
        "longName":"Feathercoin",
        "network":{
-          "messagePrefix":"\u0018Feathercoin Signed Message:\n",
-          "bip32":{
-             "public":76069926,
-             "private":76077806
-          },
-          "pubKeyHash":14,
-          "scriptHash":5,
-          "wif":142
+          "p2pkh":{
+             "messagePrefix":"\u0018Feathercoin Signed Message:\n",
+             "bip32":{
+                "public":76069926,
+                "private":76077806
+             },
+             "pubKeyHash":14,
+             "scriptHash":5,
+             "wif":142
+          }
        },
        "coinNumber":8
     },
@@ -1508,14 +1750,16 @@ module.exports = {
        "shortName":"GAME",
        "longName":"GameCredits",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":5,
-          "wif":166
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":5,
+             "wif":166
+          }
        },
        "coinNumber":101
     },
@@ -1523,14 +1767,16 @@ module.exports = {
        "shortName":"GBX",
        "longName":"Gobyte",
        "network":{
-          "messagePrefix":"\u0018DarkCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":10,
-          "wif":198
+          "p2pkh":{
+             "messagePrefix":"\u0018DarkCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":10,
+             "wif":198
+          }
        },
        "coinNumber":176
     },
@@ -1538,14 +1784,16 @@ module.exports = {
        "shortName":"GCR",
        "longName":"GCRCoin",
        "network":{
-          "messagePrefix":"\u0018GCR Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":97,
-          "wif":154
+          "p2pkh":{
+             "messagePrefix":"\u0018GCR Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":97,
+             "wif":154
+          }
        },
        "coinNumber":79
     },
@@ -1553,95 +1801,104 @@ module.exports = {
        "shortName":"GRC",
        "longName":"Gridcoin",
        "network":{
-          "messagePrefix":"\u0018Gridcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":62,
-          "scriptHash":85,
-          "wif":190
+          "p2pkh":{
+             "messagePrefix":"\u0018Gridcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":62,
+             "scriptHash":85,
+             "wif":190
+          }
        },
        "coinNumber":84
     },
     "GRS":{
        "shortName":"GRS",
        "longName":"Groestlcoin",
+       "addressStyle":"groestlcoin",
+       "bech32":"grs",
        "network":{
-            "messagePrefix": '\x19GroestlCoin Signed Message:\n',
-            "bip32": {
-                "public": 0x0488b21e,
-                "private": 0x0488ade4
+          "p2wpkh":{
+            "baseNetwork":"groestlcoin",
+            "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
+            "bech32":"grs",
+            "bip32":{
+               "public":0x04b24746,
+               "private":0x04b2430c
             },
-            "pubKeyHash": 36,
-            "scriptHash": 5,
-            "wif": 128,
-            "p2wpkh":{
-               "baseNetwork":"groestlcoin",
-               "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
-               "bech32":"grs",
-               "bip32":{
-                  "public":0x04b24746,
-                  "private":0x04b2430c
-               },
-               "pubKeyHash":0x24,
-               "scriptHash":0x05,
-               "wif":0x80
-            },
-            "p2wpkhInP2sh":{
-               "baseNetwork":"groestlcoin",
-               "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
-               "bech32":"grs",
-               "bip32":{
-                  "public":0x049d7cb2,
-                  "private":0x049d7878
-               },
-               "pubKeyHash":0x24,
-               "scriptHash":0x05,
-               "wif":0x80
-            }
-        },
+            "pubKeyHash":0x24,
+            "scriptHash":0x05,
+            "wif":0x80
+         },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"groestlcoin",
+             "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
+             "bech32":"grs",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":36,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0019GroestlCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":36,
+             "scriptHash":5,
+             "wif":128
+          }
+       },
        "coinNumber":17
     },
     "GRSt":{
-        "shortName":"GRSt",
-        "longName":"Groestlcoin Testnet",
-        "network":{
-           "messagePrefix":"\u0019GroestlCoin Signed Message:\n",
-           "bip32":{
-              "public":70617039,
-              "private":70615956
-           },
-           "pubKeyHash":111,
-           "scriptHash":196,
-           "wif":239,
-         "p2wpkh":{
-            "baseNetwork":"groestlcointestnet",
-            "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
-            "bech32":"tgrs",
-            "bip32":{
-               "public":0x045f1cf6,
-               "private":0x045f18bc
-            },
-            "pubKeyHash":0x6f,
-            "scriptHash":0xc4,
-            "wif":0xef
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"groestlcointestnet",
-            "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
-            "bech32":"tgrs",
-            "bip32":{
-               "public":0x044a5262,
-               "private":0x044a4e28
-            },
-            "pubKeyHash":0x6f,
-            "scriptHash":0xc4,
-            "wif":0xef
-         }
-        },
-        "coinNumber":1
-     },
+       "shortName":"GRSt",
+       "longName":"Groestlcoin Testnet",
+       "addressStyle":"groestlcoin",
+       "network":{
+          "p2wpkh":{
+             "baseNetwork":"groestlcointestnet",
+             "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
+             "bech32":"tgrs",
+             "bip32":{
+                "public":73342198,
+                "private":73341116
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"groestlcointestnet",
+             "messagePrefix":"\\x19GroestlCoin Signed Message:\n",
+             "bech32":"tgrs",
+             "bip32":{
+                "public":71979618,
+                "private":71978536
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0019GroestlCoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          }
+       },
+       "coinNumber":1
+    },
     "HNS":{
        "shortName":"HNS",
        "longName":"Handshake",
@@ -1651,14 +1908,16 @@ module.exports = {
        "shortName":"HNC",
        "longName":"Helleniccoin",
        "network":{
-          "messagePrefix":"\u0018helleniccoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":48,
-          "scriptHash":5,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018helleniccoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":48,
+             "scriptHash":5,
+             "wif":176
+          }
        },
        "coinNumber":168
     },
@@ -1666,14 +1925,16 @@ module.exports = {
        "shortName":"HUSH",
        "longName":"Hush3",
        "network":{
-          "messagePrefix":"\u0018Hush Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":85,
-          "wif":188
+          "p2pkh":{
+             "messagePrefix":"\u0018Hush Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":85,
+             "wif":188
+          }
        },
        "coinNumber":197
     },
@@ -1681,14 +1942,16 @@ module.exports = {
        "shortName":"INSN",
        "longName":"Insane",
        "network":{
-          "messagePrefix":"\u0018INSaNe Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":102,
-          "scriptHash":57,
-          "wif":55
+          "p2pkh":{
+             "messagePrefix":"\u0018INSaNe Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":102,
+             "scriptHash":57,
+             "wif":55
+          }
        },
        "coinNumber":68
     },
@@ -1696,14 +1959,16 @@ module.exports = {
        "shortName":"IOP",
        "longName":"Iop",
        "network":{
-          "messagePrefix":"\u0018IoP Signed Message:\n",
-          "bip32":{
-             "public":662737247,
-             "private":2922649334
-          },
-          "pubKeyHash":117,
-          "scriptHash":174,
-          "wif":49
+          "p2pkh":{
+             "messagePrefix":"\u0018IoP Signed Message:\n",
+             "bip32":{
+                "public":662737247,
+                "private":2922649334
+             },
+             "pubKeyHash":117,
+             "scriptHash":174,
+             "wif":49
+          }
        },
        "coinNumber":66
     },
@@ -1711,14 +1976,16 @@ module.exports = {
        "shortName":"IXC",
        "longName":"Ixcoin",
        "network":{
-          "messagePrefix":"\u0018Ixcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":138,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Ixcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":138,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":86
     },
@@ -1726,14 +1993,16 @@ module.exports = {
        "shortName":"JBS",
        "longName":"Jumbucks",
        "network":{
-          "messagePrefix":"\u0019Jumbucks Signed Message:\n",
-          "bip32":{
-             "public":58353818,
-             "private":58352736
-          },
-          "pubKeyHash":43,
-          "scriptHash":5,
-          "wif":171
+          "p2pkh":{
+             "messagePrefix":"\u0019Jumbucks Signed Message:\n",
+             "bip32":{
+                "public":58353818,
+                "private":58352736
+             },
+             "pubKeyHash":43,
+             "scriptHash":5,
+             "wif":171
+          }
        },
        "coinNumber":26
     },
@@ -1742,14 +2011,16 @@ module.exports = {
        "longName":"Komodo",
        "bip49available":false,
        "network":{
-          "messagePrefix":"\u0018Komodo Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":85,
-          "wif":188
+          "p2pkh":{
+             "messagePrefix":"\u0018Komodo Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":85,
+             "wif":188
+          }
        },
        "coinNumber":141
     },
@@ -1758,14 +2029,16 @@ module.exports = {
        "longName":"Kobocoin",
        "bip49available":false,
        "network":{
-          "messagePrefix":"\u0018Kobocoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":35,
-          "scriptHash":28,
-          "wif":163
+          "p2pkh":{
+             "messagePrefix":"\u0018Kobocoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":35,
+             "scriptHash":28,
+             "wif":163
+          }
        },
        "coinNumber":196
     },
@@ -1773,14 +2046,16 @@ module.exports = {
        "shortName":"LBC",
        "longName":"Library Credits",
        "network":{
-          "messagePrefix":"\u0018LBRYcrd Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":85,
-          "scriptHash":122,
-          "wif":28
+          "p2pkh":{
+             "messagePrefix":"\u0018LBRYcrd Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":85,
+             "scriptHash":122,
+             "wif":28
+          }
        },
        "coinNumber":140
     },
@@ -1788,14 +2063,16 @@ module.exports = {
        "shortName":"LCC",
        "longName":"Litecoincash",
        "network":{
-          "messagePrefix":"\u0018Litecoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":28,
-          "scriptHash":5,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018Litecoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":28,
+             "scriptHash":5,
+             "wif":176
+          }
        },
        "coinNumber":192
     },
@@ -1803,14 +2080,16 @@ module.exports = {
        "shortName":"LDCN",
        "longName":"Landcoin",
        "network":{
-          "messagePrefix":"\u0018Landcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":48,
-          "scriptHash":122,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018Landcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":48,
+             "scriptHash":122,
+             "wif":176
+          }
        },
        "coinNumber":63
     },
@@ -1818,14 +2097,16 @@ module.exports = {
        "shortName":"LINX",
        "longName":"Linx",
        "network":{
-          "messagePrefix":"\u0018LinX Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":75,
-          "scriptHash":5,
-          "wif":203
+          "p2pkh":{
+             "messagePrefix":"\u0018LinX Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":75,
+             "scriptHash":5,
+             "wif":203
+          }
        },
        "coinNumber":114
     },
@@ -1834,14 +2115,16 @@ module.exports = {
        "longName":"Lkrcoin",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018LKRcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":48,
-          "scriptHash":85,
-          "wif":176
+          "p2pkh":{
+             "messagePrefix":"\u0018LKRcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":48,
+             "scriptHash":85,
+             "wif":176
+          }
        },
        "coinNumber":557
     },
@@ -1849,30 +2132,41 @@ module.exports = {
        "shortName":"LTC",
        "longName":"Litecoin",
        "network":{
-         "p2wpkh":{
-            "baseNetwork":"litecoin",
-            "messagePrefix":"\\x19Litecoin Signed Message:\n",
-            "bech32":"ltc",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x30,
-            "scriptHash":0x32,
-            "wif":0xb0
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"litecoin",
-            "messagePrefix":"\\x19Litecoin Signed Message:\n",
-            "bech32":"ltc",
-            "bip32":{
-               "public":0x01b26ef6,
-               "private":0x01b26792
-            },
-            "pubKeyHash":0x30,
-            "scriptHash":0x32,
-            "wif":0xb0
-         }
+          "p2wpkh":{
+             "baseNetwork":"litecoin",
+             "messagePrefix":"\\x19Litecoin Signed Message:\n",
+             "bech32":"ltc",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":48,
+             "scriptHash":50,
+             "wif":176
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"litecoin",
+             "messagePrefix":"\\x19Litecoin Signed Message:\n",
+             "bech32":"ltc",
+             "bip32":{
+                "public":28471030,
+                "private":28469138
+             },
+             "pubKeyHash":48,
+             "scriptHash":50,
+             "wif":176
+          },
+          "p2pkh":{
+             "messagePrefix":"\\x19Litecoin Signed Message:\n",
+             "bip32":{
+                "public":27108450,
+                "private":27106558
+             },
+             "pubKeyHash":48,
+             "scriptHash":50,
+             "wif":176,
+             "bech32":"ltc"
+          }
        },
        "coinNumber":2
     },
@@ -1880,53 +2174,75 @@ module.exports = {
        "shortName":"LTCt",
        "longName":"Litecoin Testnet",
        "network":{
-          "messagePrefix":"\u0018Litecoin Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":111,
-          "scriptHash":196,
-          "wif":239,
           "p2wpkh":{
-            "baseNetwork":"litecointestnet",
-            "messagePrefix":"\\x18Litecoin Signed Message:\n",
-            "bech32":"litecointestnet",
-            "bip32":{
-               "public":0x043587cf,
-               "private":0x04358394
-            },
-            "pubKeyHash":0x6f,
-            "scriptHash":0xc4,
-            "wif":0xef
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"litecointestnet",
-            "messagePrefix":"\\x18Litecoin Signed Message:\n",
-            "bech32":"litecointestnet",
-            "bip32":{
-               "public":0x043587cf,
-               "private":0x04358394
-            },
-            "pubKeyHash":0x6f,
-            "scriptHash":0xc4,
-            "wif":0xef
-         }
+             "baseNetwork":"litecointestnet",
+             "messagePrefix":"\\x18Litecoin Signed Message:\n",
+             "bech32":"litecointestnet",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"litecointestnet",
+             "messagePrefix":"\\x18Litecoin Signed Message:\n",
+             "bech32":"litecointestnet",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Litecoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239,
+             "bech32":"litecointestnet"
+          }
        },
        "coinNumber":1
+    },
+    "LTCxprv":{
+       "shortName":"LTC",
+       "longName":"Litecoin",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"\u0019Litecoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":48,
+             "scriptHash":50,
+             "wif":176
+          }
+       },
+       "coinNumber":2
     },
     "LTZ":{
        "shortName":"LTZ",
        "longName":"LitecoinZ",
        "network":{
-          "messagePrefix":"\u0018LitecoinZ Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066275
-          },
-          "pubKeyHash":2739,
-          "scriptHash":2744,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018LitecoinZ Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066275
+             },
+             "pubKeyHash":2739,
+             "scriptHash":2744,
+             "wif":128
+          }
        },
        "coinNumber":221
     },
@@ -1934,14 +2250,16 @@ module.exports = {
        "shortName":"LYNX",
        "longName":"Lynx",
        "network":{
-          "messagePrefix":"\u0018Lynx Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":45,
-          "scriptHash":50,
-          "wif":173
+          "p2pkh":{
+             "messagePrefix":"\u0018Lynx Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":45,
+             "scriptHash":50,
+             "wif":173
+          }
        },
        "coinNumber":191
     },
@@ -1949,14 +2267,16 @@ module.exports = {
        "shortName":"MAZA",
        "longName":"Maza",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":50,
-          "scriptHash":9,
-          "wif":224
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":9,
+             "wif":224
+          }
        },
        "coinNumber":13
     },
@@ -1964,14 +2284,16 @@ module.exports = {
        "shortName":"MEC",
        "longName":"Megacoin",
        "network":{
-          "messagePrefix":"\u0018Megacoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":50,
-          "scriptHash":5,
-          "wif":178
+          "p2pkh":{
+             "messagePrefix":"\u0018Megacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":5,
+             "wif":178
+          }
        },
        "coinNumber":217
     },
@@ -1980,15 +2302,17 @@ module.exports = {
        "longName":"MIX",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":76
     },
@@ -1996,14 +2320,16 @@ module.exports = {
        "shortName":"MNX",
        "longName":"Minexcoin",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":75,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":75,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":182
     },
@@ -2011,38 +2337,40 @@ module.exports = {
        "shortName":"MONA",
        "longName":"Monacoin",
        "network":{
-          "messagePrefix":"\u0018Monacoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":50,
-          "scriptHash":55,
-          "wif":176,
           "p2wpkh":{
-            "baseNetwork":"monacoin",
-            "messagePrefix":"\\x18Monacoin Signed Message:\n",
-            "bech32":"mona",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x32,
-            "scriptHash":0x37,
-            "wif":0xb0
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"monacoin",
-            "messagePrefix":"\\x18Monacoin Signed Message:\n",
-            "bech32":"mona",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x32,
-            "scriptHash":0x37,
-            "wif":0xb0
-         }
+             "baseNetwork":"monacoin",
+             "messagePrefix":"\\x18Monacoin Signed Message:\n",
+             "bech32":"mona",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":55,
+             "wif":176
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"monacoin",
+             "messagePrefix":"\\x18Monacoin Signed Message:\n",
+             "bech32":"mona",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":55,
+             "wif":176
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Monacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":55,
+             "wif":176
+          }
        },
        "coinNumber":22
     },
@@ -2050,38 +2378,40 @@ module.exports = {
        "shortName":"MONK",
        "longName":"Monkey Project",
        "network":{
-          "messagePrefix":"Monkey Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76078564
-          },
-          "pubKeyHash":51,
-          "scriptHash":28,
-          "wif":55,
           "p2wpkh":{
-            "baseNetwork":"monkeyproject",
-            "messagePrefix":"Monkey Signed Message:\n",
-            "bech32":"monkey",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488dde4
-            },
-            "pubKeyHash":0x33,
-            "scriptHash":0x1c,
-            "wif":0x37,
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"monkeyproject",
-            "messagePrefix":"Monkey Signed Message:\n",
-            "bech32":"monkey",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488dde4
-            },
-            "pubKeyHash":0x33,
-            "scriptHash":0x1c,
-            "wif":0x37
-         }
+             "baseNetwork":"monkeyproject",
+             "messagePrefix":"Monkey Signed Message:\n",
+             "bech32":"monkey",
+             "bip32":{
+                "public":76067358,
+                "private":76078564
+             },
+             "pubKeyHash":51,
+             "scriptHash":28,
+             "wif":55
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"monkeyproject",
+             "messagePrefix":"Monkey Signed Message:\n",
+             "bech32":"monkey",
+             "bip32":{
+                "public":76067358,
+                "private":76078564
+             },
+             "pubKeyHash":51,
+             "scriptHash":28,
+             "wif":55
+          },
+          "p2pkh":{
+             "messagePrefix":"Monkey Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76078564
+             },
+             "pubKeyHash":51,
+             "scriptHash":28,
+             "wif":55
+          }
        },
        "coinNumber":214
     },
@@ -2090,15 +2420,17 @@ module.exports = {
        "longName":"MOAC",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":314
     },
@@ -2107,52 +2439,68 @@ module.exports = {
        "longName":"Musicoin",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":184
     },
     "NANO":{
        "shortName":"NANO",
        "longName":"Nano",
-       "network":"dummyNetwork",
+       "addressStyle":"nano",
+       "network":{
+         "p2pkh":{
+            "bip32": {"public": 0, "private": 0},
+            "messagePrefix": '',
+            "pubKeyHash": 0,
+            "scriptHash": 0,
+            "wif": 0,
+        }
+      },
        "coinNumber":165
     },
     "NAV":{
        "shortName":"NAV",
        "longName":"Navcoin",
        "network":{
-          "messagePrefix":"\u0018Navcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":53,
-          "scriptHash":85,
-          "wif":150
+          "p2pkh":{
+             "messagePrefix":"\u0018Navcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":53,
+             "scriptHash":85,
+             "wif":150
+          }
        },
        "coinNumber":130
     },
     "NAS":{
        "shortName":"NAS",
        "longName":"Nebulas",
+       "addressStyle":"nebulas",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":2718
     },
@@ -2160,14 +2508,16 @@ module.exports = {
        "shortName":"NEBL",
        "longName":"Neblio",
        "network":{
-          "messagePrefix":"\u0018Neblio Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":53,
-          "scriptHash":112,
-          "wif":181
+          "p2pkh":{
+             "messagePrefix":"\u0018Neblio Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":53,
+             "scriptHash":112,
+             "wif":181
+          }
        },
        "coinNumber":146
     },
@@ -2175,14 +2525,16 @@ module.exports = {
        "shortName":"NEOS",
        "longName":"Neoscoin",
        "network":{
-          "messagePrefix":"\u0018NeosCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":53,
-          "scriptHash":5,
-          "wif":177
+          "p2pkh":{
+             "messagePrefix":"\u0018NeosCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":53,
+             "scriptHash":5,
+             "wif":177
+          }
        },
        "coinNumber":25
     },
@@ -2190,38 +2542,40 @@ module.exports = {
        "shortName":"NIX",
        "longName":"NIX Platform",
        "network":{
-          "messagePrefix":"\u0018Nix Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":53,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"nix",
-            "messagePrefix":"\\x18Nix Signed Message:\n",
-            "bech32":"nix",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x26,
-            "scriptHash":0x35,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"nix",
-            "messagePrefix":"\\x18Nix Signed Message:\n",
-            "bech32":"nix",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x26,
-            "scriptHash":0x35,
-            "wif":0x80
-         }
+             "baseNetwork":"nix",
+             "messagePrefix":"\\x18Nix Signed Message:\n",
+             "bech32":"nix",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":53,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"nix",
+             "messagePrefix":"\\x18Nix Signed Message:\n",
+             "bech32":"nix",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":53,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Nix Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":53,
+             "wif":128
+          }
        },
        "coinNumber":400
     },
@@ -2229,14 +2583,16 @@ module.exports = {
        "shortName":"NLG",
        "longName":"Gulden",
        "network":{
-          "messagePrefix":"\u0018Guldencoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":38,
-          "scriptHash":98,
-          "wif":98
+          "p2pkh":{
+             "messagePrefix":"\u0018Guldencoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":38,
+             "scriptHash":98,
+             "wif":98
+          }
        },
        "coinNumber":87
     },
@@ -2244,14 +2600,16 @@ module.exports = {
        "shortName":"NMC",
        "longName":"Namecoin",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":52,
-          "scriptHash":13,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":52,
+             "scriptHash":13,
+             "wif":128
+          }
        },
        "coinNumber":7
     },
@@ -2259,14 +2617,16 @@ module.exports = {
        "shortName":"NRG",
        "longName":"Energi",
        "network":{
-          "messagePrefix":"DarkCoin Signed Message:\n",
-          "bip32":{
-             "public":62441558,
-             "private":3621547679
-          },
-          "pubKeyHash":33,
-          "scriptHash":53,
-          "wif":106
+          "p2pkh":{
+             "messagePrefix":"DarkCoin Signed Message:\n",
+             "bip32":{
+                "public":62441558,
+                "private":3621547679
+             },
+             "pubKeyHash":33,
+             "scriptHash":53,
+             "wif":106
+          }
        },
        "coinNumber":204
     },
@@ -2274,14 +2634,16 @@ module.exports = {
        "shortName":"NRO",
        "longName":"Neurocoin",
        "network":{
-          "messagePrefix":"\u0018PPCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":53,
-          "scriptHash":117,
-          "wif":181
+          "p2pkh":{
+             "messagePrefix":"\u0018PPCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":53,
+             "scriptHash":117,
+             "wif":181
+          }
        },
        "coinNumber":110
     },
@@ -2289,14 +2651,16 @@ module.exports = {
        "shortName":"NSR",
        "longName":"Nushares",
        "network":{
-          "messagePrefix":"\u0018Nu Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":63,
-          "scriptHash":64,
-          "wif":149
+          "p2pkh":{
+             "messagePrefix":"\u0018Nu Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":63,
+             "scriptHash":64,
+             "wif":149
+          }
        },
        "coinNumber":11
     },
@@ -2304,14 +2668,16 @@ module.exports = {
        "shortName":"NYC",
        "longName":"Newyorkc",
        "network":{
-          "messagePrefix":"\u0018newyorkc Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":22,
-          "wif":188
+          "p2pkh":{
+             "messagePrefix":"\u0018newyorkc Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":22,
+             "wif":188
+          }
        },
        "coinNumber":179
     },
@@ -2319,14 +2685,16 @@ module.exports = {
        "shortName":"NVC",
        "longName":"Novacoin",
        "network":{
-          "messagePrefix":"\u0018NovaCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":8,
-          "scriptHash":20,
-          "wif":136
+          "p2pkh":{
+             "messagePrefix":"\u0018NovaCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":8,
+             "scriptHash":20,
+             "wif":136
+          }
        },
        "coinNumber":50
     },
@@ -2334,14 +2702,16 @@ module.exports = {
        "shortName":"OK",
        "longName":"Okcash",
        "network":{
-          "messagePrefix":"\u0018OKCash Signed Message:\n",
-          "bip32":{
-             "public":63710167,
-             "private":63708275
-          },
-          "pubKeyHash":55,
-          "scriptHash":28,
-          "wif":3
+          "p2pkh":{
+             "messagePrefix":"\u0018OKCash Signed Message:\n",
+             "bip32":{
+                "public":63710167,
+                "private":63708275
+             },
+             "pubKeyHash":55,
+             "scriptHash":28,
+             "wif":3
+          }
        },
        "coinNumber":69
     },
@@ -2349,14 +2719,16 @@ module.exports = {
        "shortName":"OMNI",
        "longName":"Omnicore",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":200
     },
@@ -2364,38 +2736,40 @@ module.exports = {
        "shortName":"ONION",
        "longName":"DeepOnion",
        "network":{
-          "messagePrefix":"x18DeepOnion Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":31,
-          "scriptHash":78,
-          "wif":159,
           "p2wpkh":{
-            "baseNetwork":"deeponion",
-            "messagePrefix":"\\x18DeepOnion Signed Message:\n",
-            "bech32":"dpn",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x1f,
-            "scriptHash":0x4e,
-            "wif":0x9f
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"deeponion",
-            "messagePrefix":"\\x18DeepOnion Signed Message:\n",
-            "bech32":"dpn",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":0x1f,
-            "scriptHash":0x4e,
-            "wif":0x9f
-         }
+             "baseNetwork":"deeponion",
+             "messagePrefix":"\\x18DeepOnion Signed Message:\n",
+             "bech32":"dpn",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":31,
+             "scriptHash":78,
+             "wif":159
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"deeponion",
+             "messagePrefix":"\\x18DeepOnion Signed Message:\n",
+             "bech32":"dpn",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":31,
+             "scriptHash":78,
+             "wif":159
+          },
+          "p2pkh":{
+             "messagePrefix":"x18DeepOnion Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":31,
+             "scriptHash":78,
+             "wif":159
+          }
        },
        "coinNumber":305
     },
@@ -2403,14 +2777,16 @@ module.exports = {
        "shortName":"ONX",
        "longName":"Onixcoin",
        "network":{
-          "messagePrefix":"ONIX Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":75,
-          "scriptHash":5,
-          "wif":203
+          "p2pkh":{
+             "messagePrefix":"ONIX Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":75,
+             "scriptHash":5,
+             "wif":203
+          }
        },
        "coinNumber":174
     },
@@ -2418,14 +2794,16 @@ module.exports = {
        "shortName":"PHR",
        "longName":"Phore",
        "network":{
-          "messagePrefix":"\u0018Phore Signed Message:\n",
-          "bip32":{
-             "public":36513075,
-             "private":35729707
-          },
-          "pubKeyHash":55,
-          "scriptHash":13,
-          "wif":212
+          "p2pkh":{
+             "messagePrefix":"\u0018Phore Signed Message:\n",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":55,
+             "scriptHash":13,
+             "wif":212
+          }
        },
        "coinNumber":444
     },
@@ -2433,14 +2811,16 @@ module.exports = {
        "shortName":"PINK",
        "longName":"Pinkcoin",
        "network":{
-          "messagePrefix":"\u0018Pinkcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":3,
-          "scriptHash":28,
-          "wif":131
+          "p2pkh":{
+             "messagePrefix":"\u0018Pinkcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":3,
+             "scriptHash":28,
+             "wif":131
+          }
        },
        "coinNumber":117
     },
@@ -2449,45 +2829,51 @@ module.exports = {
        "longName":"Pirl",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":164
     },
     "PIVX":{
-        "shortName":"PIVX",
-        "longName":"PIVX",
-        "network":{
-            "messagePrefix": 'unused',
-            "bip32": {
-              "public": 0x022d2533,
-              "private": 0x0221312b
-            },
-            "pubKeyHash": 0x1e,
-            "scriptHash": 0x0d,
-            "wif": 0xd4
-        },
-        "coinNumber":119
-     },
+       "shortName":"PIVX",
+       "longName":"PIVX",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":30,
+             "scriptHash":13,
+             "wif":212
+          }
+       },
+       "coinNumber":119
+    },
     "PIVXt":{
        "shortName":"PIVX",
        "longName":"PIVX Testnet",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":981492128,
-             "private":981489719
-          },
-          "pubKeyHash":139,
-          "scriptHash":19,
-          "wif":239
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":981492128,
+                "private":981489719
+             },
+             "pubKeyHash":139,
+             "scriptHash":19,
+             "wif":239
+          }
        },
        "coinNumber":1
     },
@@ -2496,15 +2882,17 @@ module.exports = {
        "longName":"Poa",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":178
     },
@@ -2512,14 +2900,16 @@ module.exports = {
        "shortName":"POSW",
        "longName":"POSWcoin",
        "network":{
-          "messagePrefix":"\u0018Poswcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":85,
-          "wif":183
+          "p2pkh":{
+             "messagePrefix":"\u0018Poswcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":85,
+             "wif":183
+          }
        },
        "coinNumber":47
     },
@@ -2527,14 +2917,16 @@ module.exports = {
        "shortName":"POT",
        "longName":"Potcoin",
        "network":{
-          "messagePrefix":"\u0018Potcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":5,
-          "wif":183
+          "p2pkh":{
+             "messagePrefix":"\u0018Potcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":5,
+             "wif":183
+          }
        },
        "coinNumber":81
     },
@@ -2542,14 +2934,16 @@ module.exports = {
        "shortName":"PPC",
        "longName":"Peercoin",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":117,
-          "wif":183
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":117,
+             "wif":183
+          }
        },
        "coinNumber":6
     },
@@ -2557,14 +2951,16 @@ module.exports = {
        "shortName":"PRJ",
        "longName":"ProjectCoin",
        "network":{
-          "messagePrefix":"\u0018ProjectCoin Signed Message:\n",
-          "bip32":{
-             "public":36513075,
-             "private":35729707
-          },
-          "pubKeyHash":55,
-          "scriptHash":8,
-          "wif":117
+          "p2pkh":{
+             "messagePrefix":"\u0018ProjectCoin Signed Message:\n",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":55,
+             "scriptHash":8,
+             "wif":117
+          }
        },
        "coinNumber":533
     },
@@ -2572,14 +2968,16 @@ module.exports = {
        "shortName":"PSB",
        "longName":"Pesobit",
        "network":{
-          "messagePrefix":"\u0018Pesobit Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":85,
-          "wif":183
+          "p2pkh":{
+             "messagePrefix":"\u0018Pesobit Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":85,
+             "wif":183
+          }
        },
        "coinNumber":62
     },
@@ -2587,14 +2985,16 @@ module.exports = {
        "shortName":"PUT",
        "longName":"Putincoin",
        "network":{
-          "messagePrefix":"\u0018PutinCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":55,
-          "scriptHash":20,
-          "wif":183
+          "p2pkh":{
+             "messagePrefix":"\u0018PutinCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":55,
+             "scriptHash":20,
+             "wif":183
+          }
        },
        "coinNumber":122
     },
@@ -2602,14 +3002,16 @@ module.exports = {
        "shortName":"RPD",
        "longName":"Rapids",
        "network":{
-          "messagePrefix":"DarkNet Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":61,
-          "scriptHash":6,
-          "wif":46
+          "p2pkh":{
+             "messagePrefix":"DarkNet Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":61,
+             "scriptHash":6,
+             "wif":46
+          }
        },
        "coinNumber":320
     },
@@ -2617,44 +3019,56 @@ module.exports = {
        "shortName":"RVN",
        "longName":"Ravencoin",
        "network":{
-          "messagePrefix":"\u0016Raven Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":122,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0016Raven Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":122,
+             "wif":128
+          }
        },
        "coinNumber":175
     },
     "R-BTC":{
        "shortName":"R-BTC",
        "longName":"RSK",
+       "addressStyle":"RSK",
+       "addressPrefix":"0x",
+       "chainId":30,
        "network":{
-          "messagePrefix":"\u0018RSK Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018RSK Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":137
     },
     "tR-BTC":{
        "shortName":"tR-BTC",
        "longName":"RSK Testnet",
+       "addressStyle":"RSK",
+       "addressPrefix":"0x",
+       "chainId":31,
        "network":{
-          "messagePrefix":"\u0018RSK Testnet Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":111,
-          "scriptHash":196,
-          "wif":239
+          "p2pkh":{
+             "messagePrefix":"\u0018RSK Testnet Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":239
+          }
        },
        "coinNumber":37310
     },
@@ -2662,14 +3076,16 @@ module.exports = {
        "shortName":"RBY",
        "longName":"Rubycoin",
        "network":{
-          "messagePrefix":"\u0018Rubycoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":85,
-          "wif":188
+          "p2pkh":{
+             "messagePrefix":"\u0018Rubycoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":85,
+             "wif":188
+          }
        },
        "coinNumber":16
     },
@@ -2677,14 +3093,16 @@ module.exports = {
        "shortName":"RDD",
        "longName":"Reddcoin",
        "network":{
-          "messagePrefix":"\u0018Reddcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":61,
-          "scriptHash":5,
-          "wif":189
+          "p2pkh":{
+             "messagePrefix":"\u0018Reddcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":61,
+             "scriptHash":5,
+             "wif":189
+          }
        },
        "coinNumber":4
     },
@@ -2692,14 +3110,16 @@ module.exports = {
        "shortName":"RVR",
        "longName":"RevolutionVR",
        "network":{
-          "messagePrefix":"\u0018Voxels Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":70,
-          "scriptHash":5,
-          "wif":198
+          "p2pkh":{
+             "messagePrefix":"\u0018Voxels Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":70,
+             "scriptHash":5,
+             "wif":198
+          }
        },
        "coinNumber":129
     },
@@ -2707,14 +3127,16 @@ module.exports = {
        "shortName":"SAFE",
        "longName":"Safecoin",
        "network":{
-          "messagePrefix":"\u0018Safecoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":61,
-          "scriptHash":86,
-          "wif":189
+          "p2pkh":{
+             "messagePrefix":"\u0018Safecoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":61,
+             "scriptHash":86,
+             "wif":189
+          }
        },
        "coinNumber":19165
     },
@@ -2722,14 +3144,16 @@ module.exports = {
        "shortName":"SCRIBE",
        "longName":"Scribe",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":60,
-          "scriptHash":125,
-          "wif":110
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":60,
+             "scriptHash":125,
+             "wif":110
+          }
        },
        "coinNumber":545
     },
@@ -2737,44 +3161,50 @@ module.exports = {
        "shortName":"SLS",
        "longName":"Salus",
        "network":{
-          "messagePrefix":"\u0018Salus Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":63,
-          "scriptHash":196,
-          "wif":191
+          "p2pkh":{
+             "messagePrefix":"\u0018Salus Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":63,
+             "scriptHash":196,
+             "wif":191
+          }
        },
        "coinNumber":63
     },
     "SDC":{
-        "shortName":"SDC",
-        "longName":"ShadowCash",
-        "network":{
-            "messagePrefix": 'unused',
-            "bip32": {
-                "public": 0xEE80286A,
-                "private": 0xEE8031E8
-            },
-            "pubKeyHash": 0x3f,
-            "scriptHash": 0x7d,
-            "wif": 0xbf
-        },
-        "coinNumber":35
-     },
+       "shortName":"SDC",
+       "longName":"ShadowCash",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":4001376362,
+                "private":4001378792
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":191
+          }
+       },
+       "coinNumber":35
+    },
     "SDCt":{
        "shortName":"SDC",
        "longName":"ShadowCash Testnet",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":1992359419,
-             "private":1992361850
-          },
-          "pubKeyHash":127,
-          "scriptHash":196,
-          "wif":255
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":1992359419,
+                "private":1992361850
+             },
+             "pubKeyHash":127,
+             "scriptHash":196,
+             "wif":255
+          }
        },
        "coinNumber":1
     },
@@ -2782,50 +3212,69 @@ module.exports = {
        "shortName":"SLM",
        "longName":"Slimcoin",
        "network":{
-        "messagePrefix": 'unused',
-            "bip32": {
-                "public": 0xef6adf10,
-                "private": 0xef69ea80
-            },
-            "pubKeyHash": 0x3f,
-            "scriptHash": 0x7d,
-            "wif": 0x46
-        },
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":4016758544,
+                "private":4016695936
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":70
+          }
+       },
        "coinNumber":63
     },
     "SLMt":{
-        "shortName":"SLM",
-        "longName":"Slimcoin Testnet",
-        "network":{
-           "messagePrefix":"unused",
-           "bip32":{
-              "public":70617039,
-              "private":70615956
-           },
-           "pubKeyHash":111,
-           "scriptHash":196,
-           "wif":87
-        },
-        "coinNumber":111
-     },
+       "shortName":"SLM",
+       "longName":"Slimcoin Testnet",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":111,
+             "scriptHash":196,
+             "wif":87
+          }
+       },
+       "coinNumber":111
+    },
     "SLP":{
        "shortName":"SLP",
        "longName":"Simple Ledger Protocol",
-       "network":"dummyNetwork",
+       "network":{
+         "p2pkh":{
+            "baseNetwork":"bitcoin",
+            "messagePrefix":"\\x18Bitcoin Signed Message:\n",
+            "bech32":"bc",
+            "bip32":{
+               "public":78792518,
+               "private":78791436
+            },
+            "pubKeyHash":0,
+            "scriptHash":5,
+            "wif":128
+         }
+       },
        "coinNumber":245
     },
     "SLR":{
        "shortName":"SLR",
        "longName":"Solarcoin",
        "network":{
-          "messagePrefix":"\u0018SolarCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":18,
-          "scriptHash":5,
-          "wif":146
+          "p2pkh":{
+             "messagePrefix":"\u0018SolarCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":18,
+             "scriptHash":5,
+             "wif":146
+          }
        },
        "coinNumber":58
     },
@@ -2833,59 +3282,67 @@ module.exports = {
        "shortName":"SMLY",
        "longName":"Smileycoin",
        "network":{
-          "messagePrefix":"\u0018Smileycoin Signed Message:\n",
-          "bip32":{
-             "public":508964250,
-             "private":508965308
-          },
-          "pubKeyHash":25,
-          "scriptHash":5,
-          "wif":5
+          "p2pkh":{
+             "messagePrefix":"\u0018Smileycoin Signed Message:\n",
+             "bip32":{
+                "public":508964250,
+                "private":508965308
+             },
+             "pubKeyHash":25,
+             "scriptHash":5,
+             "wif":5
+          }
        },
        "coinNumber":59
     },
     "STASH":{
-        "shortName":"STASH",
-        "longName":"Stash",
-        "network":{
-            "messagePrefix": '\x18Stash Signed Message:\n',
-            "bip32": {
-              "public": 0x0488b21e,
-              "private": 0x0488ade4
-            },
-            "pubKeyHash": 0x4c,
-            "scriptHash": 0x10,
-            "wif": 0xcc
-        },
-        "coinNumber":0xC0C0
-     },
+       "shortName":"STASH",
+       "longName":"Stash",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"\u0018Stash Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":76,
+             "scriptHash":16,
+             "wif":204
+          }
+       },
+       "coinNumber":49344
+    },
     "STASHt":{
        "shortName":"STASHt",
        "longName":"Stash Testnet",
        "network":{
-          "messagePrefix":"\u0018Stash Test Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":140,
-          "scriptHash":19,
-          "wif":239
+          "p2pkh":{
+             "messagePrefix":"\u0018Stash Test Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":140,
+             "scriptHash":19,
+             "wif":239
+          }
        },
-       "coinNumber":0xCAFE
+       "coinNumber":51966
     },
     "STRAT":{
        "shortName":"STRAT",
        "longName":"Stratis",
        "network":{
-          "messagePrefix":"\u0018Stratis Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":63,
-          "scriptHash":125,
-          "wif":191
+          "p2pkh":{
+             "messagePrefix":"\u0018Stratis Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":191
+          }
        },
        "coinNumber":105
     },
@@ -2893,38 +3350,40 @@ module.exports = {
        "shortName":"SUGAR",
        "longName":"Sugarchain",
        "network":{
-          "messagePrefix":"\u0018Sugarchain Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":63,
-          "scriptHash":125,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"sugarchain",
-            "messagePrefix":"\\x1DSugarchain Signed Message:\n",
-            "bech32":"sugar",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x3f,
-            "scriptHash":0x7d,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"sugarchain",
-            "messagePrefix":"\\x1DSugarchain Signed Message:\n",
-            "bech32":"sugar",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x3f,
-            "scriptHash":0x7d,
-            "wif":0x80
-         }
+             "baseNetwork":"sugarchain",
+             "messagePrefix":"\\x1DSugarchain Signed Message:\n",
+             "bech32":"sugar",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"sugarchain",
+             "messagePrefix":"\\x1DSugarchain Signed Message:\n",
+             "bech32":"sugar",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Sugarchain Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":63,
+             "scriptHash":125,
+             "wif":128
+          }
        },
        "coinNumber":408
     },
@@ -2932,54 +3391,59 @@ module.exports = {
        "shortName":"TUGAR",
        "longName":"Sugarchain Testnet",
        "network":{
-          "messagePrefix":"\u0018Sugarchain Signed Message:\n",
-          "bip32":{
-             "public":73342198,
-             "private":73341116
-          },
-          "pubKeyHash":66,
-          "scriptHash":128,
-          "wif":239,
           "p2wpkh":{
-            "baseNetwork":"sugarchaintestnet",
-            "messagePrefix":"\\x18Sugarchain Signed Message:\n",
-            "bech32":"tugar",
-            "bip32":{
-               "public":0x045f1cf6,
-               "private":0x045f18bc
-            },
-            "pubKeyHash":0x42,
-            "scriptHash":0x80,
-            "wif":0xef,
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"sugarchaintestnet",
-            "messagePrefix":"\\x18Sugarchain Signed Message:\n",
-            "bech32":"tugar",
-            "bip32":{
-               "public":0x044a5262,
-               "private":0x044a4e28
-            },
-            "pubKeyHash":0x42,
-            "scriptHash":0x80,
-            "wif":0xef
-         }
+             "baseNetwork":"sugarchaintestnet",
+             "messagePrefix":"\\x18Sugarchain Signed Message:\n",
+             "bech32":"tugar",
+             "bip32":{
+                "public":73342198,
+                "private":73341116
+             },
+             "pubKeyHash":66,
+             "scriptHash":128,
+             "wif":239
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"sugarchaintestnet",
+             "messagePrefix":"\\x18Sugarchain Signed Message:\n",
+             "bech32":"tugar",
+             "bip32":{
+                "public":71979618,
+                "private":71978536
+             },
+             "pubKeyHash":66,
+             "scriptHash":128,
+             "wif":239
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Sugarchain Signed Message:\n",
+             "bip32":{
+                "public":73342198,
+                "private":73341116
+             },
+             "pubKeyHash":66,
+             "scriptHash":128,
+             "wif":239
+          }
        },
        "coinNumber":408
     },
     "SWTC":{
        "shortName":"SWTC",
        "longName":"Jingtum",
+       "addressStyle":"jingtum",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":315
     },
@@ -2987,14 +3451,16 @@ module.exports = {
        "shortName":"TSTRAT",
        "longName":"Stratis Testnet",
        "network":{
-          "messagePrefix":"\u0018Stratis Test Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":65,
-          "scriptHash":125,
-          "wif":191
+          "p2pkh":{
+             "messagePrefix":"\u0018Stratis Test Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":65,
+             "scriptHash":125,
+             "wif":191
+          }
        },
        "coinNumber":105
     },
@@ -3002,38 +3468,40 @@ module.exports = {
        "shortName":"SYS",
        "longName":"Syscoin",
        "network":{
-          "messagePrefix":"\u0018Syscoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":63,
-          "scriptHash":5,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"syscoin",
-            "messagePrefix":"\\x18Syscoin Signed Message:\n",
-            "bech32":"sys",
-            "bip32":{
-               "public":0x04b24746,
-               "private":0x04b2430c
-            },
-            "pubKeyHash":0x3f,
-            "scriptHash":0x05,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"syscoin",
-            "messagePrefix":"\\x18Syscoin Signed Message:\n",
-            "bech32":"sys",
-            "bip32":{
-               "public":0x049d7cb2,
-               "private":0x049d7878
-            },
-            "pubKeyHash":0x3f,
-            "scriptHash":0x05,
-            "wif":0x80
-         }
+             "baseNetwork":"syscoin",
+             "messagePrefix":"\\x18Syscoin Signed Message:\n",
+             "bech32":"sys",
+             "bip32":{
+                "public":78792518,
+                "private":78791436
+             },
+             "pubKeyHash":63,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"syscoin",
+             "messagePrefix":"\\x18Syscoin Signed Message:\n",
+             "bech32":"sys",
+             "bip32":{
+                "public":77429938,
+                "private":77428856
+             },
+             "pubKeyHash":63,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Syscoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":63,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":57
     },
@@ -3041,14 +3509,16 @@ module.exports = {
        "shortName":"THC",
        "longName":"Hempcoin",
        "network":{
-          "messagePrefix":"\u0018Hempcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":40,
-          "scriptHash":8,
-          "wif":168
+          "p2pkh":{
+             "messagePrefix":"\u0018Hempcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":40,
+             "scriptHash":8,
+             "wif":168
+          }
        },
        "coinNumber":113
     },
@@ -3056,14 +3526,16 @@ module.exports = {
        "shortName":"THT",
        "longName":"Thought",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":4224098317,
-             "private":1525405894
-          },
-          "pubKeyHash":7,
-          "scriptHash":9,
-          "wif":123
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":4224098317,
+                "private":1525405894
+             },
+             "pubKeyHash":7,
+             "scriptHash":9,
+             "wif":123
+          }
        },
        "coinNumber":1618
     },
@@ -3071,50 +3543,70 @@ module.exports = {
        "shortName":"TOA",
        "longName":"Toa",
        "network":{
-          "messagePrefix":"\u0018TOA Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":65,
-          "scriptHash":23,
-          "wif":193
+          "p2pkh":{
+             "messagePrefix":"\u0018TOA Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":65,
+             "scriptHash":23,
+             "wif":193
+          }
        },
        "coinNumber":159
     },
     "TRX":{
        "shortName":"TRX",
        "longName":"Tron",
-       "network":"dummyNetwork",
-       "coinNumver":195
+       "addressStyle":"tron",
+       "addressPrefix":0x41,
+       "network":{
+         "p2pkh":{
+            "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+            "bip32":{
+               "public":76067358,
+               "private":76066276
+            },
+            "pubKeyHash":0,
+            "scriptHash":5,
+            "wif":128,
+            "bech32":"bc"
+         }
+      },
+      "coinNumber":195,
     },
     "TWINS":{
-        "shortName":"TWINS",
-        "longName":"TWINS",
-        "network":{
-            "messagePrefix": 'unused',
-            "bip32": {
-              "public": 0x022d2533,
-              "private": 0x0221312b
-            },
-            "pubKeyHash": 0x49,
-            "scriptHash": 0x53,
-            "wif": 0x42
-        },
-        "coinNumber":970
-     },
+       "shortName":"TWINS",
+       "longName":"TWINS",
+       "network":{
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":73,
+             "scriptHash":83,
+             "wif":66
+          }
+       },
+       "coinNumber":970
+    },
     "TWINSt":{
        "shortName":"TWINSt",
        "longName":"TWINS Testnet",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":981492128,
-             "private":981489719
-          },
-          "pubKeyHash":76,
-          "scriptHash":137,
-          "wif":237
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":981492128,
+                "private":981489719
+             },
+             "pubKeyHash":76,
+             "scriptHash":137,
+             "wif":237
+          }
        },
        "coinNumber":1
     },
@@ -3122,14 +3614,16 @@ module.exports = {
        "shortName":"USC",
        "longName":"Ultimatesecurecash",
        "network":{
-          "messagePrefix":"\u0018UltimateSecureCash Signed Message:\n",
-          "bip32":{
-             "public":4001376362,
-             "private":4001378792
-          },
-          "pubKeyHash":68,
-          "scriptHash":125,
-          "wif":191
+          "p2pkh":{
+             "messagePrefix":"\u0018UltimateSecureCash Signed Message:\n",
+             "bip32":{
+                "public":4001376362,
+                "private":4001378792
+             },
+             "pubKeyHash":68,
+             "scriptHash":125,
+             "wif":191
+          }
        },
        "coinNumber":112
     },
@@ -3137,14 +3631,16 @@ module.exports = {
        "shortName":"USNBT",
        "longName":"NuBits",
        "network":{
-          "messagePrefix":"\u0018Nu Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":26,
-          "wif":150
+          "p2pkh":{
+             "messagePrefix":"\u0018Nu Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":26,
+             "wif":150
+          }
        },
        "coinNumber":12
     },
@@ -3152,14 +3648,16 @@ module.exports = {
        "shortName":"UNO",
        "longName":"Unobtanium",
        "network":{
-          "messagePrefix":"\u0018Unobtanium Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":130,
-          "scriptHash":30,
-          "wif":224
+          "p2pkh":{
+             "messagePrefix":"\u0018Unobtanium Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":130,
+             "scriptHash":30,
+             "wif":224
+          }
        },
        "coinNumber":92
     },
@@ -3167,14 +3665,16 @@ module.exports = {
        "shortName":"VASH",
        "longName":"Vpncoin",
        "network":{
-          "messagePrefix":"\u0018VpnCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":71,
-          "scriptHash":5,
-          "wif":199
+          "p2pkh":{
+             "messagePrefix":"\u0018VpnCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":5,
+             "wif":199
+          }
        },
        "coinNumber":33
     },
@@ -3182,69 +3682,75 @@ module.exports = {
        "shortName":"VET",
        "longName":"VeChain",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":818
     },
     "VIA":{
-        "shortName":"VIA",
-        "longName":"Viacoin",
-        "network":{
-            "messagePrefix": '\x18Viacoin Signed Message:\n',
-            "bip32": {
-              "public": 0x0488b21e,
-              "private": 0x0488ade4
-            },
-            "pubKeyHash": 0x47,
-            "scriptHash": 0x21,
-            "wif": 0xc7,
-            "p2wpkh":{
-               "baseNetwork":"viacoin",
-               "messagePrefix":"\\x18Viacoin Signed Message:\n",
-               "bech32":"viacoin",
-               "bip32":{
-                  "public":0x0488b21e,
-                  "private":0x0488ade4
-               },
-               "pubKeyHash":0x47,
-               "scriptHash":0x21,
-               "wif":0xc7
-            },
-            "p2wpkhInP2sh":{
-               "baseNetwork":"viacoin",
-               "messagePrefix":"\\x18Viacoin Signed Message:\n",
-               "bech32":"viacoin",
-               "bip32":{
-                  "public":0x0488b21e,
-                  "private":0x0488ade4
-               },
-               "pubKeyHash":0x47,
-               "scriptHash":0x21,
-               "wif":0xc7
-            }
-        },
-        "coinNumber":14
-     },
+       "shortName":"VIA",
+       "longName":"Viacoin",
+       "network":{
+          "p2wpkh":{
+             "baseNetwork":"viacoin",
+             "messagePrefix":"\\x18Viacoin Signed Message:\n",
+             "bech32":"viacoin",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":33,
+             "wif":199
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"viacoin",
+             "messagePrefix":"\\x18Viacoin Signed Message:\n",
+             "bech32":"viacoin",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":33,
+             "wif":199
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Viacoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":33,
+             "wif":199
+          }
+       },
+       "coinNumber":14
+    },
     "VIAt":{
        "shortName":"VIAt",
        "longName":"Viacoin Testnet",
        "network":{
-          "messagePrefix":"\u0018Viacoin Signed Message:\n",
-          "bip32":{
-             "public":70617039,
-             "private":70615956
-          },
-          "pubKeyHash":127,
-          "scriptHash":196,
-          "wif":255
+          "p2pkh":{
+             "messagePrefix":"\u0018Viacoin Signed Message:\n",
+             "bip32":{
+                "public":70617039,
+                "private":70615956
+             },
+             "pubKeyHash":127,
+             "scriptHash":196,
+             "wif":255
+          }
        },
        "coinNumber":1
     },
@@ -3252,14 +3758,16 @@ module.exports = {
        "shortName":"VIVO",
        "longName":"Vivo",
        "network":{
-          "messagePrefix":"\u0018DarkCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":70,
-          "scriptHash":10,
-          "wif":198
+          "p2pkh":{
+             "messagePrefix":"\u0018DarkCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":70,
+             "scriptHash":10,
+             "wif":198
+          }
        },
        "coinNumber":166
     },
@@ -3267,37 +3775,39 @@ module.exports = {
        "shortName":"VTC",
        "longName":"Vertcoin",
        "network":{
-          "messagePrefix":"\u0018Vertcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":71,
-          "scriptHash":5,
-          "wif":128,
           "p2wpkh":{
-            "baseNetwork":"vertcoin",
-            "messagePrefix":"\\x18Vertcoin Signed Message:\n",
-            "bech32":"vtc",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":71,
-            "scriptHash":5,
-            "wif":0x80
-         },
-         "p2wpkhInP2sh":{
-            "baseNetwork":"vertcoin",
-            "messagePrefix":"\\x18Vertcoin Signed Message:\n",
-            "bip32":{
-               "public":0x0488b21e,
-               "private":0x0488ade4
-            },
-            "pubKeyHash":71,
-            "scriptHash":5,
-            "wif":0x80
-         }
+             "baseNetwork":"vertcoin",
+             "messagePrefix":"\\x18Vertcoin Signed Message:\n",
+             "bech32":"vtc",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2wpkhInP2sh":{
+             "baseNetwork":"vertcoin",
+             "messagePrefix":"\\x18Vertcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":5,
+             "wif":128
+          },
+          "p2pkh":{
+             "messagePrefix":"\u0018Vertcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":5,
+             "wif":128
+          }
        },
        "coinNumber":28
     },
@@ -3305,14 +3815,16 @@ module.exports = {
        "shortName":"WGR",
        "longName":"Wagerr",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":36513075,
-             "private":35729707
-          },
-          "pubKeyHash":73,
-          "scriptHash":63,
-          "wif":199
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":73,
+             "scriptHash":63,
+             "wif":199
+          }
        },
        "coinNumber":7825266
     },
@@ -3320,14 +3832,16 @@ module.exports = {
        "shortName":"WC",
        "longName":"Wincoin",
        "network":{
-          "messagePrefix":"\u0018WinCoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":73,
-          "scriptHash":28,
-          "wif":201
+          "p2pkh":{
+             "messagePrefix":"\u0018WinCoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":73,
+             "scriptHash":28,
+             "wif":201
+          }
        },
        "coinNumber":181
     },
@@ -3335,14 +3849,16 @@ module.exports = {
        "shortName":"XAX",
        "longName":"Artax",
        "network":{
-          "messagePrefix":"\u0018Artax Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":23,
-          "scriptHash":7357,
-          "wif":151
+          "p2pkh":{
+             "messagePrefix":"\u0018Artax Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":23,
+             "scriptHash":7357,
+             "wif":151
+          }
        },
        "coinNumber":219
     },
@@ -3350,51 +3866,69 @@ module.exports = {
        "shortName":"XBC",
        "longName":"Bitcoinplus",
        "network":{
-          "messagePrefix":"\u0018BitcoinPlus Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":25,
-          "scriptHash":8,
-          "wif":153
+          "p2pkh":{
+             "messagePrefix":"\u0018BitcoinPlus Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":25,
+             "scriptHash":8,
+             "wif":153
+          }
        },
        "coinNumber":65
     },
     "XLM":{
        "shortName":"XLM",
        "longName":"Stellar",
-       "network":"dummyNetwork",
+       "addressStyle":"stellar",
+       "network":{
+         "p2pkh":{
+            "bip32": {public: 0, private: 0},
+            "messagePrefix": '',
+            "pubKeyHash": 0,
+            "scriptHash": 0,
+            "wif": 0,
+         }
+      },
        "coinNumber":148
     },
+
+
     "XMY":{
        "shortName":"XMY",
        "longName":"Myriadcoin",
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":50,
-          "scriptHash":9,
-          "wif":178
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":50,
+             "scriptHash":9,
+             "wif":178
+          }
        },
        "coinNumber":90
     },
     "XRP":{
        "shortName":"XRP",
        "longName":"Ripple",
+       "addressStyle":"ripple",
        "network":{
-          "messagePrefix":"\u0018Bitcoin Signed Message:\n",
-          "bech32":"bc",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":0,
-          "scriptHash":5,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Bitcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":0,
+             "scriptHash":5,
+             "wif":128,
+             "bech32":"bc"
+          }
        },
        "coinNumber":144
     },
@@ -3402,14 +3936,16 @@ module.exports = {
        "shortName":"XVC",
        "longName":"Vcash",
        "network":{
-          "messagePrefix":"\u0018Vcash Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":71,
-          "scriptHash":8,
-          "wif":199
+          "p2pkh":{
+             "messagePrefix":"\u0018Vcash Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":71,
+             "scriptHash":8,
+             "wif":199
+          }
        },
        "coinNumber":127
     },
@@ -3417,14 +3953,16 @@ module.exports = {
        "shortName":"XVG",
        "longName":"Verge",
        "network":{
-          "messagePrefix":"\u0018VERGE Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":30,
-          "scriptHash":33,
-          "wif":158
+          "p2pkh":{
+             "messagePrefix":"\u0018VERGE Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":30,
+             "scriptHash":33,
+             "wif":158
+          }
        },
        "coinNumber":77
     },
@@ -3433,14 +3971,16 @@ module.exports = {
        "longName":"Xuez",
        "segwitAvailable":false,
        "network":{
-          "messagePrefix":"unused",
-          "bip32":{
-             "public":36513075,
-             "private":35729707
-          },
-          "pubKeyHash":75,
-          "scriptHash":18,
-          "wif":212
+          "p2pkh":{
+             "messagePrefix":"unused",
+             "bip32":{
+                "public":36513075,
+                "private":35729707
+             },
+             "pubKeyHash":75,
+             "scriptHash":18,
+             "wif":212
+          }
        },
        "coinNumber":225
     },
@@ -3448,14 +3988,16 @@ module.exports = {
        "shortName":"XWC",
        "longName":"Whitecoin",
        "network":{
-          "messagePrefix":"\u0018Whitecoin Signed Message:\n",
-          "bip32":{
-             "public":76054302,
-             "private":76059885
-          },
-          "pubKeyHash":73,
-          "scriptHash":87,
-          "wif":201
+          "p2pkh":{
+             "messagePrefix":"\u0018Whitecoin Signed Message:\n",
+             "bip32":{
+                "public":76054302,
+                "private":76059885
+             },
+             "pubKeyHash":73,
+             "scriptHash":87,
+             "wif":201
+          }
        },
        "coinNumber":155
     },
@@ -3463,14 +4005,16 @@ module.exports = {
        "shortName":"XZC",
        "longName":"Zcoin (rebranded to Firo)",
        "network":{
-          "messagePrefix":"\u0018Zcoin Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":82,
-          "scriptHash":7,
-          "wif":210
+          "p2pkh":{
+             "messagePrefix":"\u0018Zcoin Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":82,
+             "scriptHash":7,
+             "wif":210
+          }
        },
        "coinNumber":136
     },
@@ -3478,14 +4022,16 @@ module.exports = {
        "shortName":"ZCL",
        "longName":"Zclassic",
        "network":{
-          "messagePrefix":"\u0018Zcash Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":7352,
-          "scriptHash":7357,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Zcash Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":7352,
+             "scriptHash":7357,
+             "wif":128
+          }
        },
        "coinNumber":147
     },
@@ -3493,14 +4039,16 @@ module.exports = {
        "shortName":"ZEC",
        "longName":"Zcash",
        "network":{
-          "messagePrefix":"\u0018Zcash Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":7352,
-          "scriptHash":7357,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Zcash Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":7352,
+             "scriptHash":7357,
+             "wif":128
+          }
        },
        "coinNumber":133
     },
@@ -3508,14 +4056,16 @@ module.exports = {
        "shortName":"ZEN",
        "longName":"Horizen",
        "network":{
-          "messagePrefix":"\u0018Zcash Signed Message:\n",
-          "bip32":{
-             "public":76067358,
-             "private":76066276
-          },
-          "pubKeyHash":8329,
-          "scriptHash":8342,
-          "wif":128
+          "p2pkh":{
+             "messagePrefix":"\u0018Zcash Signed Message:\n",
+             "bip32":{
+                "public":76067358,
+                "private":76066276
+             },
+             "pubKeyHash":8329,
+             "scriptHash":8342,
+             "wif":128
+          }
        },
        "coinNumber":121
     }
