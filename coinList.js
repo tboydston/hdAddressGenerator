@@ -655,6 +655,7 @@ module.exports = {
     "BSC":{
        "shortName":"BSC",
        "longName":"Binance Smart Chain",
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -874,7 +875,7 @@ module.exports = {
     "CLO":{
        "shortName":"CLO",
        "longName":"Callisto",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1043,7 +1044,7 @@ module.exports = {
     "CRW":{
        "shortName":"CRW",
        "longName":"Crown",
-       "addressStyle":"crown",
+       "addressType":"crown",
        "network":{
          "p2pkh":{
             "messagePrefix": 'unused',
@@ -1061,7 +1062,7 @@ module.exports = {
     "CSC":{
        "shortName":"CSC",
        "longName":"CasinoCoin",
-       "addressStyle":"casinoCoin",
+       "addressType":"casinoCoin",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1281,6 +1282,7 @@ module.exports = {
     "DXN":{
        "shortName":"DXN",
        "longName":"DEXON",
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1350,6 +1352,7 @@ module.exports = {
     "ELA":{
        "shortName":"ELA",
        "longName":"Elastos",
+       "addressType":"elastos",
        "network":{
           "p2pkh":{
              "messagePrefix":"unused",
@@ -1367,7 +1370,7 @@ module.exports = {
     "ELLA":{
        "shortName":"ELLA",
        "longName":"Ellaism",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1420,7 +1423,7 @@ module.exports = {
     "EOS":{
        "shortName":"EOS",
        "longName":"EOSIO",
-       "addressStyle":"eosio",
+       "addressType":"eosio",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1439,7 +1442,7 @@ module.exports = {
     "ERE":{
        "shortName":"ERE",
        "longName":"EtherCore",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1458,7 +1461,7 @@ module.exports = {
     "ESN":{
        "shortName":"ESN",
        "longName":"Ethersocial Network",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1477,7 +1480,8 @@ module.exports = {
     "ETC":{
        "shortName":"ETC",
        "longName":"Ethereum Classic",
-       "segwitAvailable":false,
+
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1496,7 +1500,7 @@ module.exports = {
     "ETH":{
        "shortName":"ETH",
        "longName":"Ethereum",
-       "addressStyle":"ethereum",
+       "addressType":"ethereum",
        "addressPrefix":"0x",
        "network":{
           "p2pkh":{
@@ -1516,6 +1520,7 @@ module.exports = {
     "EWT":{
        "shortName":"EWT",
        "longName":"EnergyWeb",
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1568,7 +1573,7 @@ module.exports = {
     "EXP":{
        "shortName":"EXP",
        "longName":"Expanse",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1587,7 +1592,7 @@ module.exports = {
     "FIO":{
        "shortName":"FIO",
        "longName":"Foundation for Interwallet Operability",
-       "addressStyle":"fio",
+       "addressType":"fio",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -1817,7 +1822,7 @@ module.exports = {
     "GRS":{
        "shortName":"GRS",
        "longName":"Groestlcoin",
-       "addressStyle":"groestlcoin",
+       "addressType":"groestlcoin",
        "bech32":"grs",
        "network":{
           "p2wpkh":{
@@ -1860,7 +1865,7 @@ module.exports = {
     "GRSt":{
        "shortName":"GRSt",
        "longName":"Groestlcoin Testnet",
-       "addressStyle":"groestlcoin",
+       "addressType":"groestlcoin",
        "network":{
           "p2wpkh":{
              "baseNetwork":"groestlcointestnet",
@@ -2113,7 +2118,6 @@ module.exports = {
     "LKR":{
        "shortName":"LKR",
        "longName":"Lkrcoin",
-       "segwitAvailable":false,
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018LKRcoin Signed Message:\n",
@@ -2300,7 +2304,7 @@ module.exports = {
     "MIX":{
        "shortName":"MIX",
        "longName":"MIX",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -2418,7 +2422,7 @@ module.exports = {
     "MOAC":{
        "shortName":"MOAC",
        "longName":"MOAC",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -2437,7 +2441,7 @@ module.exports = {
     "MUSIC":{
        "shortName":"MUSIC",
        "longName":"Musicoin",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -2456,7 +2460,7 @@ module.exports = {
     "NANO":{
        "shortName":"NANO",
        "longName":"Nano",
-       "addressStyle":"nano",
+       "addressType":"nano",
        "network":{
          "p2pkh":{
             "bip32": {"public": 0, "private": 0},
@@ -2488,7 +2492,7 @@ module.exports = {
     "NAS":{
        "shortName":"NAS",
        "longName":"Nebulas",
-       "addressStyle":"nebulas",
+       "addressType":"nebulas",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -2827,7 +2831,7 @@ module.exports = {
     "PIRL":{
        "shortName":"PIRL",
        "longName":"Pirl",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -2880,7 +2884,7 @@ module.exports = {
     "POA":{
        "shortName":"POA",
        "longName":"Poa",
-       "segwitAvailable":false,
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -3035,7 +3039,7 @@ module.exports = {
     "R-BTC":{
        "shortName":"R-BTC",
        "longName":"RSK",
-       "addressStyle":"RSK",
+       "addressType":"RSK",
        "addressPrefix":"0x",
        "chainId":30,
        "network":{
@@ -3055,7 +3059,7 @@ module.exports = {
     "tR-BTC":{
        "shortName":"tR-BTC",
        "longName":"RSK Testnet",
-       "addressStyle":"RSK",
+       "addressType":"RSK",
        "addressPrefix":"0x",
        "chainId":31,
        "network":{
@@ -3431,7 +3435,7 @@ module.exports = {
     "SWTC":{
        "shortName":"SWTC",
        "longName":"Jingtum",
-       "addressStyle":"jingtum",
+       "addressType":"jingtum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -3559,7 +3563,7 @@ module.exports = {
     "TRX":{
        "shortName":"TRX",
        "longName":"Tron",
-       "addressStyle":"tron",
+       "addressType":"tron",
        "addressPrefix":0x41,
        "network":{
          "p2pkh":{
@@ -3681,6 +3685,7 @@ module.exports = {
     "VET":{
        "shortName":"VET",
        "longName":"VeChain",
+       "addressType":"ethereum",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -3882,7 +3887,7 @@ module.exports = {
     "XLM":{
        "shortName":"XLM",
        "longName":"Stellar",
-       "addressStyle":"stellar",
+       "addressType":"stellar",
        "network":{
          "p2pkh":{
             "bip32": {public: 0, private: 0},
@@ -3916,7 +3921,7 @@ module.exports = {
     "XRP":{
        "shortName":"XRP",
        "longName":"Ripple",
-       "addressStyle":"ripple",
+       "addressType":"ripple",
        "network":{
           "p2pkh":{
              "messagePrefix":"\u0018Bitcoin Signed Message:\n",
@@ -3969,7 +3974,6 @@ module.exports = {
     "XUEZ":{
        "shortName":"XUEZ",
        "longName":"Xuez",
-       "segwitAvailable":false,
        "network":{
           "p2pkh":{
              "messagePrefix":"unused",

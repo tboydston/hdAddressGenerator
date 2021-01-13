@@ -1,17 +1,25 @@
+// BIP libs
 const bip32 = require('bip32')
 const bip39 = require('bip39')
-const bitcoin = require('bitcoinjs-lib')
-const ethUtil = require('ethereumjs-util')
-const bchaddr = require('bchaddrjs')
-const stellarBase = require('stellar-base')
+const bip38 = require('bip38')
+
+// Formatting libvs
 const edHd = require('ed25519-hd-key')
 const basex = require('base-x')
-const nebulas = require('nebulas')
+const bs58 = require('bs58')
+const createHash = require('create-hash')
+
+// Coin specific libs
+const bitcoin = require('bitcoinjs-lib')
+const ethreumUtil = require('ethereumjs-util')
+const stellarUtil = require('stellar-base')
+const nebulasUtil = require('nebulas')
 const nanoUtil = require('nanocurrency-web')
 const bchSlpUtil = require('bchaddrjs-slp')
-const createHash = require('create-hash')
-const bs58 = require('bs58')
-const groestlUtil = require('groestlcoinjs-lib')
+const bchaddr = require('bchaddrjs')
+
+
+
 
 
 
@@ -42,13 +50,26 @@ class AddressGenerator {
         49:"p2wpkhInP2sh",
         84:"p2wpkh",
     }
+    bip38Password=false
+    unsupported = ["GRS","ELA"] // Coins there is network info for but that are currently not supported. 
+    showEncryptProgress = false
 
+    /**
+     * Options may be set directly on initialization but some are incompatible. It is recommended that you use an initialization function.  
+     * @param {string} mnemonic BIP39 mnemonic with spaces between words.
+     * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
+     * @param {bool} hardened Should the resulting addresses be hardened?
+     * @param {int} bip What BIP style addresses are you trying to create. Default: 44 Options: 32,44,49,84,141
+     * @param {int} account Account used in HD address path. 
+     * @param {int} change Used in HD address path to signify if address is for change.
+     * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
+     * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+	constructor(mnemonic=false,passphrase=false,seed=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false,bip38Password=false){
 
-
-
-	constructor(mnemonic=false,passphrase=false,seed=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false){
-
-        
         if ( coinList[coin] == undefined ){
             throw new Error(`Coin ${coin} does not exist.`)
         } else {
@@ -68,7 +89,7 @@ class AddressGenerator {
         } else {
             this.seed = bip39.mnemonicToSeedSync(mnemonic,passPhrase)
         }
-        
+  
         this.root = bip32.fromSeed(this.seed)
 
         this.bip = bip
@@ -77,12 +98,21 @@ class AddressGenerator {
         this.hardend = hardened
         this.bip32Seed = this.seed.toString('hex')
         this.bip32RootKey = bip32.fromSeed(this.seed).toBase58()
+
         this.hashAlgo = ( hashAlgo == false ) ? this.hashAlgos[bip] : hashAlgo
         this.bip32Path = ( customPath != false ) ? customPath : ""
+        this.bip38Password = bip38Password
 
-        
         if ( [49,84,141].includes(bip) && this.coin.network[this.hashAlgo] == undefined ){
             throw new Error(`${this.coinName} does not support ${this.hashAlgo}.`)
+        }
+
+        if ( this.unsupported.includes(this.coinName) ){
+            throw new Error(`${this.coinName} is not supported at this time.`)
+        }
+
+        if ( this.coin.addressType != undefined && bip38Password != false ) {
+            throw new Error(`BIP 38 private key encryption only supported for bitcoin like address generation.`)
         }
 
         this.initKeys()
@@ -96,31 +126,83 @@ class AddressGenerator {
         console.log( `BIP X Priv Key: ${this.bip32XprivKey}` )
         console.log( `BIP X Pub Key: ${this.bip32XpubKey}` )
 
-
     }
 
-    static withSeed(seed,coin,hardened=false,bip=44,account=0,change=0){
-        return new AddressGenerator(false,false,seed,coin,hardened,bip,account,change)
+    /**
+     * Generate addresses with a Seed directly not with a mnemonic. 
+     * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
+     * @param {bool} hardened Should the resulting addresses be hardened?
+     * @param {int} bip What BIP style addresses are you trying to create. Default: 44 Options: 32,44,49,84,141
+     * @param {int} account Account used in HD address path. 
+     * @param {int} change Used in HD address path to signify if address is for change.
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withSeed(seed,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false){
+        return new AddressGenerator(false,false,seed,coin,hardened,bip,account,change,false,false,bip38Password)
     }
 
-    static withMnemonic(mnemonic,passphrase,coin,hardened=false,bip=44,account=0,change=0){
-        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,bip,account,change)
+    /**
+     * Generate addresses with a BIP 39 mnemonic.
+     * @param {string} mnemonic BIP39 mnemonic with spaces between words.
+     * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
+     * @param {bool} hardened Should the resulting addresses be hardened?
+     * @param {int} bip What BIP style addresses are you trying to create. Default: 44 Options: 32,44,49,84,141
+     * @param {int} account Account used in HD address path. 
+     * @param {int} change Used in HD address path to signify if address is for change.
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withMnemonic(mnemonic,passphrase,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false){
+        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,bip,account,change,false,false,bip38Password)
     }
 
-    static withMnemonicBIP32(mnemonic,passphrase,customPath,hardened=false){
-        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,32,0,0,customPath)
+    /**
+     * Generate BIP 32 addresses with a custom path and mnemonic. 
+     * @param {string} mnemonic BIP39 mnemonic with spaces between words.
+     * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
+     * @param {bool} hardened Should the resulting addresses be hardened?
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withMnemonicBIP32(mnemonic,passphrase,customPath,hardened=false,bip38Password=false){
+        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,32,0,0,customPath,false,bip38Password)
     }
 
-    static withSeedBIP32(seed,customPath,hardened=false){
-        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,32,0,0,customPath)
+    /**
+     * Generate BIP 32 addresses with a custom path and a seed instead of mnemonic.
+     * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
+     * @param {bool} hardened Should the resulting addresses be hardened?
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withSeedBIP32(seed,customPath,hardened=false,bip38Password=false){
+        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,32,0,0,customPath,false,bip38Password)
     }
 
-    static withMnemonicBIP141(mnemonic,passphrase,customPath,hashAlgo,hardened=false){
-        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,141,0,0,customPath,hashAlgo)
+    /**
+     * Generate BIP 141 style addresses with mnemonic, custom path, and custom hash algo.
+     * @param {string} mnemonic BIP39 mnemonic with spaces between words.
+     * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
+     * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh 
+     * @param {bool} hardened Should the resulting addresses be hardened? 
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withMnemonicBIP141(mnemonic,passphrase,customPath,hashAlgo,hardened=false,bip38Password=false){
+        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,141,0,0,customPath,hashAlgo,bip38Password)
     }
 
-    static withSeedBIP141(seed,customPath,hashAlgo,hardened=false){
-        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,141,0,0,customPath,hashAlgo)
+    /**
+     * Generate BIP 141 style addresses with seed instead of mnemonic, custom path, and custom hash algo.
+     * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} customPath Custom path overwriting the path generated using bip/account/change. 
+     * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh 
+     * @param {bool} hardened Should the resulting addresses be hardened? 
+     * @param {string} bip38Password Additional password used to encrypt private keys.
+     */
+    static withSeedBIP141(seed,customPath,hashAlgo,hardened=false,bip38Password=false){
+        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,141,0,0,customPath,hashAlgo,bip38Password)
     }
 
     initKeys(){
@@ -145,6 +227,11 @@ class AddressGenerator {
 
     }
 
+    /**
+     * Generates address as well as address pub/priv keys. 
+     * @param {int} totalToGenerate Number of addresses you would like to generate starting from the index.
+     * @param {int} startIndex Index to start generating addresses from.
+     */
     generate(totalToGenerate,startIndex=0){
 
         let addresses = []
@@ -155,20 +242,19 @@ class AddressGenerator {
 
             let keyPair = {}
 
-            if ( this.coin.addressStyle == undefined ) keyPair = this.generateBitcoinLikeAddress(index)
-            if ( this.coin.addressStyle == "ethereum" ) keyPair = this.generateEthereumLikeAddress(index)
-            if ( this.coin.addressStyle == "tron" ) keyPair = this.generateTronLikeAddress(index)
-            if ( this.coin.addressStyle == "RSK" ) keyPair = this.generateRSKLikeAddress(index)
-            if ( this.coin.addressStyle == "stellar" ) keyPair = this.generateStellarLikeAddress(index)
-            if ( this.coin.addressStyle == "nebulas" ) keyPair = this.generateNebulasLikeAddress(index)
-            if ( this.coin.addressStyle == "ripple" ) keyPair = this.generateRippleLikeAddress(index)
-            if ( this.coin.addressStyle == "nano" ) keyPair = this.generateNanoLikeAddress(index)
-            if ( this.coin.addressStyle == "jingtum" ) keyPair = this.generateJingtumLikeAddress(index)
-            if ( this.coin.addressStyle == "casinoCoin" ) keyPair = this.generateCasinoCoinLikeAddress(index)
-            if ( this.coin.addressStyle == "crown" ) keyPair = this.generateCrownLikeAddress(index)
-            if ( this.coin.addressStyle == "eosio" ) keyPair = this.generateEOSLikeAddress(index)
-            if ( this.coin.addressStyle == "fio" ) keyPair = this.generateFIOLikeAddress(index)
-            if ( this.coin.addressStyle == "groestlcoin" ) keyPair = this.generateGroestlcoinLikeAddress(index)
+            if ( this.coin.addressType == undefined ) keyPair = this.generateBitcoinAddress(index)
+            if ( this.coin.addressType == "ethereum" ) keyPair = this.generateEthereumAddress(index)
+            if ( this.coin.addressType == "tron" ) keyPair = this.generateTronAddress(index)
+            if ( this.coin.addressType == "RSK" ) keyPair = this.generateRSKAddress(index)
+            if ( this.coin.addressType == "stellar" ) keyPair = this.generateStellarAddress(index)
+            if ( this.coin.addressType == "nebulas" ) keyPair = this.generateNebulasAddress(index)
+            if ( this.coin.addressType == "ripple" ) keyPair = this.generateRippleAddress(index)
+            if ( this.coin.addressType == "nano" ) keyPair = this.generateNanoAddress(index)
+            if ( this.coin.addressType == "jingtum" ) keyPair = this.generateJingtumAddress(index)
+            if ( this.coin.addressType == "casinoCoin" ) keyPair = this.generateCasinoCoinAddress(index)
+            if ( this.coin.addressType == "crown" ) keyPair = this.generateCrownAddress(index)
+            if ( this.coin.addressType == "eosio" ) keyPair = this.generateEOSAddress(index)
+            if ( this.coin.addressType == "fio" ) keyPair = this.generateFIOAddress(index)
 
             console.log(
                 keyPair.path,
@@ -187,6 +273,11 @@ class AddressGenerator {
 
     }
 
+    /**
+     * Convert an address into a new format.                        
+     * @param {string} address Coin specific address.
+     * @param {string} format Address format you would like to convert the address to. 
+     */
     convertAddress(address,format){
 
         if( format == "cashAddress" ) return bchaddr.toCashAddress(address)
@@ -197,37 +288,50 @@ class AddressGenerator {
 
     }
 
-    generateBitcoinLikeAddress(index){
+    
+    generateBitcoinAddress(index){
 
         let keyPair = {}
+        let compressedKeys = ( this.bip38Password != false )? false : true
+        let showEncryptProgress = this.showEncryptProgress
+
+        keyPair.network = this.coin.network[this.hashAlgo]
         keyPair.path = this.path(index)
-        keyPair.rawPair = this.root.derivePath(keyPair.path)
-        
-        if( this.bip == 49 ){
-            keyPair.rawPair.network = this.coin.network
-            keyPair.rawAddress = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({
-                pubkey: keyPair.rawPair.publicKey,
-                network: this.coin.network,
-            }), 
-            network: this.coin.network 
-            })
+        keyPair.pairBuffers = this.root.derivePath(keyPair.path)
+        keyPair.rawAddress = bitcoin.ECPair.fromPrivateKey(keyPair.pairBuffers.privateKey, { network: keyPair.network , compressed: compressedKeys })
+        keyPair.pubKey = keyPair.rawAddress.publicKey.toString('hex')
+
+        if( this.bip38Password == false  ){
+            keyPair.privKey = keyPair.pairBuffers.toWIF()   
         } else {
-            keyPair.rawPair.network = this.coin.network[this.hashAlgo]
-            keyPair.rawAddress = bitcoin.payments[this.hashAlgo]({ 
-                pubkey: keyPair.rawPair.publicKey, 
-                network: this.coin.network
-            })
+            keyPair.privKey = bip38.encrypt(keyPair.pairBuffers.privateKey, false, this.bip38Password, function(p) {
+                if ( showEncryptProgress ) console.log("Progressed " + p.percent.toFixed(1) + "% for index " + index)
+            })  
         }
 
-        keyPair.address = keyPair.rawAddress.address
-        keyPair.privKey = keyPair.rawPair.toWIF()
-        keyPair.pubKey = keyPair.rawPair.publicKey.toString('hex')
+        if( this.bip == 49 ){
+ 
+            keyPair.address = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({
+                pubkey: keyPair.pairBuffers.publicKey,
+                network: keyPair.network 
+            }), 
+                network: keyPair.network 
+            }).address
+
+        } else {
+
+            keyPair.address = bitcoin.payments[this.hashAlgo]({ 
+                pubkey: keyPair.rawAddress.publicKey, 
+                network: this.coin.network[this.hashAlgo]
+            }).address  
+
+        }
 
         return keyPair
 
     }
 
-    generateEthereumLikeAddress(index){
+    generateEthereumAddress(index){
 
         let addressPrefix = this.coin.addressPrefix
 
@@ -235,12 +339,12 @@ class AddressGenerator {
         keyPair.path = this.path(index)
         keyPair.rawPair = this.root.derivePath(keyPair.path)
        
-        let ethPubkey = ethUtil.importPublic(keyPair.rawPair.publicKey)
-        let addressBuffer = ethUtil.publicToAddress(ethPubkey)
+        let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
+        let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
         let hexAddress = addressBuffer.toString('hex')
-        let checksumAddress = ethUtil.toChecksumAddress(addressPrefix+hexAddress)
+        let checksumAddress = ethreumUtil.toChecksumAddress(addressPrefix+hexAddress)
         
-        keyPair.address = ethUtil.addHexPrefix(checksumAddress)
+        keyPair.address = ethreumUtil.addHexPrefix(checksumAddress)
         keyPair.privKey = addressPrefix+keyPair.rawPair.privateKey.toString('hex')
         keyPair.pubKey = addressPrefix+keyPair.rawPair.publicKey.toString('hex')
 
@@ -248,7 +352,7 @@ class AddressGenerator {
 
     }
 
-    generateTronLikeAddress(index){
+    generateTronAddress(index){
 
         let addressPrefix = this.coin.addressPrefix
        
@@ -259,8 +363,8 @@ class AddressGenerator {
         keyPair.ECPair =  bitcoin.ECPair.fromPrivateKey(keyPair.rawPair.privateKey, { network: this.coin.network.p2pkh, compressed: false })
       
 
-        let ethPubkey = ethUtil.importPublic(keyPair.ECPair.publicKey)
-        let addressBuffer = ethUtil.publicToAddress(ethPubkey)
+        let ethPubkey = ethreumUtil.importPublic(keyPair.ECPair.publicKey)
+        let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
 
         keyPair.address = bitcoin.address.toBase58Check(addressBuffer, addressPrefix )
         keyPair.privKey = keyPair.ECPair.privateKey.toString('hex')
@@ -270,8 +374,7 @@ class AddressGenerator {
 
     }
 
-    generateRSKLikeAddress(index){
-
+    generateRSKAddress(index){
 
         let addressPrefix = this.coin.addressPrefix
         let chainId = ( this.coin.chainId != undefined )? this.coin.chainId : null 
@@ -280,12 +383,12 @@ class AddressGenerator {
         keyPair.path = this.path(index)
         keyPair.rawPair = this.root.derivePath(keyPair.path)
        
-        let ethPubkey = ethUtil.importPublic(keyPair.rawPair.publicKey)
-        let addressBuffer = ethUtil.publicToAddress(ethPubkey)
+        let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
+        let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
         let hexAddress = addressBuffer.toString('hex')
-        let checksumAddress = ethUtil.toChecksumAddress(addressPrefix+hexAddress,chainId)
+        let checksumAddress = ethreumUtil.toChecksumAddress(addressPrefix+hexAddress,chainId)
         
-        keyPair.address = ethUtil.addHexPrefix(checksumAddress)
+        keyPair.address = ethreumUtil.addHexPrefix(checksumAddress)
         keyPair.privKey = addressPrefix+keyPair.rawPair.privateKey.toString('hex')
         keyPair.pubKey = addressPrefix+keyPair.rawPair.publicKey.toString('hex')
 
@@ -293,13 +396,13 @@ class AddressGenerator {
 
     }
 
-    generateStellarLikeAddress(index){        
+    generateStellarAddress(index){        
         
         let keyPair = {}
         keyPair.path = "m/"+this.bip+"'/"+this.coin.coinNumber + "'/" + index + "'"
 
         let Ed25519Seed = edHd.derivePath(keyPair.path, this.seed)
-        keyPair.rawPair = stellarBase.Keypair.fromRawEd25519Seed(Ed25519Seed.key)
+        keyPair.rawPair = stellarUtil.Keypair.fromRawEd25519Seed(Ed25519Seed.key)
 
         keyPair.address = keyPair.rawPair.publicKey()
         keyPair.privKey = keyPair.rawPair.secret()
@@ -309,14 +412,14 @@ class AddressGenerator {
 
     }
 
-    generateNebulasLikeAddress(index){
+    generateNebulasAddress(index){
 
         let keyPair = {}
         keyPair.path = this.path(index)
         keyPair.rawPair = this.root.derivePath(keyPair.path)
 
         let privKeyBuffer = keyPair.rawPair.privateKey
-        let nebulasAccount = nebulas.Account.NewAccount()
+        let nebulasAccount = nebulasUtil.Account.NewAccount()
 
         nebulasAccount.setPrivateKey(privKeyBuffer)
         keyPair.address = nebulasAccount.getAddressString()
@@ -327,9 +430,9 @@ class AddressGenerator {
 
     }
 
-    generateRippleLikeAddress(index){
+    generateRippleAddress(index){
         
-        let keyPair = this.generateBitcoinLikeAddress(index)  
+        let keyPair = this.generateBitcoinAddress(index)  
         
         keyPair.address = basex('rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
@@ -339,7 +442,7 @@ class AddressGenerator {
 
     }
 
-    generateNanoLikeAddress(index){
+    generateNanoAddress(index){
 
         let keyPair = {}
         keyPair.path = this.path(index)
@@ -354,9 +457,9 @@ class AddressGenerator {
 
     }
 
-    generateJingtumLikeAddress(index){
+    generateJingtumAddress(index){
         
-        let keyPair = this.generateBitcoinLikeAddress(index)  
+        let keyPair = this.generateBitcoinAddress(index)  
         
         keyPair.address = basex('jpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65rkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
@@ -366,9 +469,9 @@ class AddressGenerator {
 
     }
 
-    generateCasinoCoinLikeAddress(index){
+    generateCasinoCoinAddress(index){
         
-        let keyPair = this.generateBitcoinLikeAddress(index)  
+        let keyPair = this.generateBitcoinAddress(index)  
         
         keyPair.address = basex('cpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2brdeCg65jkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
@@ -378,17 +481,17 @@ class AddressGenerator {
 
     }
 
-    generateCrownLikeAddress(index){
+    generateCrownAddress(index){
         
-        let keyPair = this.generateBitcoinLikeAddress(index)  
+        let keyPair = this.generateBitcoinAddress(index)  
         keyPair.address = this.crownAddressConvert(keyPair.address)
         
         return keyPair
     }
 
-    generateEOSLikeAddress(index){
+    generateEOSAddress(index){
 
-        let keyPair = this.generateBitcoinLikeAddress(index) 
+        let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
         keyPair.privKey = this.EOSbufferToPrivate(keyPair.rawPair.privateKey)
         keyPair.pubKey = this.EOSbufferToPublic(keyPair.rawPair.publicKey,"EOS")
@@ -397,24 +500,12 @@ class AddressGenerator {
 
     }
 
-    generateFIOLikeAddress(index){
+    generateFIOAddress(index){
 
-        let keyPair = this.generateBitcoinLikeAddress(index) 
+        let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
         keyPair.privKey = this.EOSbufferToPrivate(keyPair.rawPair.privateKey)
         keyPair.pubKey = this.EOSbufferToPublic(keyPair.rawPair.publicKey,"FIO")
-
-        return keyPair
-
-    }
-
-    generateGroestlcoinLikeAddress(index){
-
-        let keyPair = this.generateBitcoinLikeAddress(index) 
-        
-        if ( this.hashAlgo == "p2wpkh" || this.hashAlgo == "p2wpkhInP2sh" ){
-            keyPair.address = groestlUtil.address.fromOutputScript(keyPair.rawPair.publicKey,this.coin.network)
-        }
 
         return keyPair
 
