@@ -1,7 +1,7 @@
 {
-  "name": "cryptoaddressgenerator",
+  "name": "hdAddressGenerator",
   "version": "0.0.1",
-  "description": "Generates coin specific crypto addresses from single master key pair. ",
+  "description": "Generate hierarchical deterministic(HD) coin specific crypto addresses from single master key pair for over 100 different currencies.",
   "main": "generator.js",
   "scripts": {
     "test": "mocha test"
@@ -24,15 +24,13 @@
     "bip44-constants": "^8.0.78",
     "bitcoinjs-lib": "^5.2.0",
     "bs58": "^4.0.1",
+    "chai": "^4.2.0",
     "create-hash": "^1.2.0",
     "ed25519-hd-key": "^1.1.2",
-    "elastos-wallet-js": "^1.0.9",
     "ethereumjs-util": "^7.0.7",
-    "groestlcoinjs-lib": "^5.1.10",
+    "mocha": "^8.2.1",
     "nanocurrency-web": "^1.2.2",
     "nebulas": "^0.5.7",
-    "stellar-base": "^4.0.3",
-    "typescript": "^4.1.3",
-    "wrapsequel": "^1.0.0"
+    "stellar-base": "^4.0.3"
   }
 }

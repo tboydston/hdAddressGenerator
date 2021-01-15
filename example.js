@@ -1,4 +1,3 @@
-const coinList = require('./coinList')
 const Generator = require('./generator')
 
 let gen = Generator.withMnemonic("brand improve symbol strike say focus ginger imitate ginger appear wheel brand swear relief zero",false,"BTC",false,49,0,0,"test")

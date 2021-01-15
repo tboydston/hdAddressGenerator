@@ -3,7 +3,7 @@ const bip32 = require('bip32')
 const bip39 = require('bip39')
 const bip38 = require('bip38')
 
-// Formatting libvs
+// Formatting libs
 const edHd = require('ed25519-hd-key')
 const basex = require('base-x')
 const bs58 = require('bs58')
@@ -17,11 +17,6 @@ const nebulasUtil = require('nebulas')
 const nanoUtil = require('nanocurrency-web')
 const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
-
-
-
-
-
 
 const coinList = require('./coinlist')
 
@@ -45,7 +40,7 @@ class AddressGenerator {
     bip32XpubKey = ""
     hashAlgo = ""
     hashAlgos = {
-        39:"",
+        32:"p2pkh",
         44:"p2pkh",
         49:"p2wpkhInP2sh",
         84:"p2wpkh",
@@ -70,6 +65,7 @@ class AddressGenerator {
      */
 	constructor(mnemonic=false,passphrase=false,seed=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false,bip38Password=false){
 
+    
         if ( coinList[coin] == undefined ){
             throw new Error(`Coin ${coin} does not exist.`)
         } else {
@@ -83,11 +79,11 @@ class AddressGenerator {
         }
 
         if ( seed !== false ){
-            this.seed = seed
-        } else if (mnemonic != false && passphrase == false ) {
+            this.seed = Buffer.from(seed, 'hex')
+        } else if (mnemonic !== false && passphrase == false ) {
             this.seed = bip39.mnemonicToSeedSync(mnemonic)
         } else {
-            this.seed = bip39.mnemonicToSeedSync(mnemonic,passPhrase)
+            this.seed = bip39.mnemonicToSeedSync(mnemonic,passphrase)
         }
   
         this.root = bip32.fromSeed(this.seed)
@@ -95,7 +91,7 @@ class AddressGenerator {
         this.bip = bip
         this.account = account
         this.change = change
-        this.hardend = hardened
+        this.hardened = hardened
         this.bip32Seed = this.seed.toString('hex')
         this.bip32RootKey = bip32.fromSeed(this.seed).toBase58()
 
@@ -161,48 +157,52 @@ class AddressGenerator {
      * Generate BIP 32 addresses with a custom path and mnemonic. 
      * @param {string} mnemonic BIP39 mnemonic with spaces between words.
      * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
      * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
      * @param {bool} hardened Should the resulting addresses be hardened?
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
-    static withMnemonicBIP32(mnemonic,passphrase,customPath,hardened=false,bip38Password=false){
-        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,32,0,0,customPath,false,bip38Password)
+    static withMnemonicBIP32(mnemonic,passphrase,coin,customPath,hardened=false,bip38Password=false){
+        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,32,0,0,customPath,false,bip38Password)
     }
 
     /**
      * Generate BIP 32 addresses with a custom path and a seed instead of mnemonic.
      * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
      * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
      * @param {bool} hardened Should the resulting addresses be hardened?
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
-    static withSeedBIP32(seed,customPath,hardened=false,bip38Password=false){
-        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,32,0,0,customPath,false,bip38Password)
+    static withSeedBIP32(seed,coin,customPath,hardened=false,bip38Password=false){
+        return new AddressGenerator(false,false,seed,coin,hardened,32,0,0,customPath,false,bip38Password)
     }
 
     /**
      * Generate BIP 141 style addresses with mnemonic, custom path, and custom hash algo.
      * @param {string} mnemonic BIP39 mnemonic with spaces between words.
      * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
      * @param {string} customPath Custom path overwriting the path generated using bip/account/change.
      * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh 
      * @param {bool} hardened Should the resulting addresses be hardened? 
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
-    static withMnemonicBIP141(mnemonic,passphrase,customPath,hashAlgo,hardened=false,bip38Password=false){
-        return new AddressGenerator(mnemonic,passphrase,false,"BTC",hardened,141,0,0,customPath,hashAlgo,bip38Password)
+    static withMnemonicBIP141(mnemonic,passphrase,coin,customPath,hashAlgo,hardened=false,bip38Password=false){
+        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
     }
 
     /**
      * Generate BIP 141 style addresses with seed instead of mnemonic, custom path, and custom hash algo.
      * @param {string} seed BIP39 seed used instead of a mnemonic.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
      * @param {string} customPath Custom path overwriting the path generated using bip/account/change. 
      * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh 
      * @param {bool} hardened Should the resulting addresses be hardened? 
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
-    static withSeedBIP141(seed,customPath,hashAlgo,hardened=false,bip38Password=false){
-        return new AddressGenerator(false,false,seed,coin,"BTC",hardened,141,0,0,customPath,hashAlgo,bip38Password)
+    static withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false){
+        return new AddressGenerator(false,false,seed,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
     }
 
     initKeys(){
@@ -232,11 +232,10 @@ class AddressGenerator {
      * @param {int} totalToGenerate Number of addresses you would like to generate starting from the index.
      * @param {int} startIndex Index to start generating addresses from.
      */
-    generate(totalToGenerate,startIndex=0){
+    async generate(totalToGenerate,startIndex=0){
 
         let addresses = []
         let index = startIndex
-
 
         while ( addresses.length < totalToGenerate ) {
 
@@ -309,7 +308,7 @@ class AddressGenerator {
             })  
         }
 
-        if( this.bip == 49 ){
+        if( this.bip == 49 || this.hashAlgo == "p2wpkhInP2sh" ){
  
             keyPair.address = bitcoin.payments.p2sh({ redeem: bitcoin.payments.p2wpkh({
                 pubkey: keyPair.pairBuffers.publicKey,
@@ -555,6 +554,7 @@ class AddressGenerator {
     }
 
     path(index){
+        if ( this.bip == 32 || this.bip == 141 ) return `${this.bip32Path}/${index}${this.hardened?"'":""}`
         return `m/${this.bip}'/${this.coin.coinNumber}'/${this.account}'/${this.change}/${index}${this.hardened?"'":""}`
     }
     
