@@ -2136,6 +2136,17 @@ module.exports = {
        "shortName":"LTC",
        "longName":"Litecoin",
        "network":{
+         "p2pkh":{
+            "messagePrefix":"\\x19Litecoin Signed Message:\n",
+            "bip32":{
+               "public":27108450,
+               "private":27106558
+            },
+            "pubKeyHash":48,
+            "scriptHash":50,
+            "wif":176,
+            "bech32":"ltc"
+         },
           "p2wpkh":{
              "baseNetwork":"litecoin",
              "messagePrefix":"\\x19Litecoin Signed Message:\n",
@@ -2159,17 +2170,6 @@ module.exports = {
              "pubKeyHash":48,
              "scriptHash":50,
              "wif":176
-          },
-          "p2pkh":{
-             "messagePrefix":"\\x19Litecoin Signed Message:\n",
-             "bip32":{
-                "public":27108450,
-                "private":27106558
-             },
-             "pubKeyHash":48,
-             "scriptHash":50,
-             "wif":176,
-             "bech32":"ltc"
           }
        },
        "coinNumber":2

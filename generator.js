@@ -13,7 +13,7 @@ const createHash = require('create-hash')
 const bitcoin = require('bitcoinjs-lib')
 const ethreumUtil = require('ethereumjs-util')
 const stellarUtil = require('stellar-base')
-const nebulasUtil = require('nebulas')
+//const nebulasUtil = require('nebulas') // This library has some issues that break testing. Disabled until resolved.
 const nanoUtil = require('nanocurrency-web')
 const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
@@ -46,7 +46,7 @@ class AddressGenerator {
         84:"p2wpkh",
     }
     bip38Password=false
-    unsupported = ["GRS","ELA"] // Coins there is network info for but that are currently not supported. 
+    unsupported = ["GRS","ELA","NAS"] // Coins there is network info for but that are currently not supported. 
     showEncryptProgress = false
 
     /**
@@ -297,6 +297,7 @@ class AddressGenerator {
         keyPair.network = this.coin.network[this.hashAlgo]
         keyPair.path = this.path(index)
         keyPair.pairBuffers = this.root.derivePath(keyPair.path)
+        keyPair.pairBuffers.network = keyPair.network
         keyPair.rawAddress = bitcoin.ECPair.fromPrivateKey(keyPair.pairBuffers.privateKey, { network: keyPair.network , compressed: compressedKeys })
         keyPair.pubKey = keyPair.rawAddress.publicKey.toString('hex')
 
@@ -332,7 +333,7 @@ class AddressGenerator {
 
     generateEthereumAddress(index){
 
-        let addressPrefix = this.coin.addressPrefix
+        let addressPrefix = ( this.coin.addressPrefix == undefined ) ? "0x" : this.coin.addressPrefix
 
         let keyPair = {}
         keyPair.path = this.path(index)
