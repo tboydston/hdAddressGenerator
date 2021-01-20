@@ -17,4 +17,4 @@ module.exports={
     pubKeyBip44HardIndex0:"0x02ca1c39032611ff68424dffd2e9e05bba5bc799576c4c8949b2bdb022a4b7ee93",
     privKeyBip44HardIndex0:"0xc5a9a8ad97b5537d5f640bdcdbe427ea15a6bb093948ed2d44f7ae3a76e72594"
 
-}
+}  

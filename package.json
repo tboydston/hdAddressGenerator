@@ -1,15 +1,18 @@
 {
   "name": "hdAddressGenerator",
-  "version": "0.0.1",
-  "description": "Generate hierarchical deterministic(HD) coin specific crypto addresses from single master key pair for over 100 different currencies.",
-  "main": "generator.js",
+  "version": "1.0.0",
+  "description": "Generate hierarchical deterministic(HD) coin specific crypto addresses ( legacy, segwit, bech32 ) from single master key pair for over 190 different cryptocurrencies.",
+  "main": "hdAddressGenerator.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha --recursive tests/"
   },
   "keywords": [
     "cryto",
     "address",
-    "generator"
+    "generator",
+    "hierarchical deterministic",
+    "bitcoin",
+    "ethereum"
   ],
   "author": "Tracey Boydston",
   "license": "MIT",
@@ -25,12 +28,12 @@
     "bitcoinjs-lib": "^5.2.0",
     "bs58": "^4.0.1",
     "chai": "^4.2.0",
+    "coinnetworklist": "^1.0.0",
     "create-hash": "^1.2.0",
     "ed25519-hd-key": "^1.1.2",
     "ethereumjs-util": "^7.0.7",
     "mocha": "^8.2.1",
     "nanocurrency-web": "^1.2.2",
-    "nebulas": "^0.5.7",
     "stellar-base": "^4.0.3"
   }
 }

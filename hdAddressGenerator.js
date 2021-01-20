@@ -1,3 +1,5 @@
+const fs = require("fs")
+
 // BIP libs
 const bip32 = require('bip32')
 const bip39 = require('bip39')
@@ -13,12 +15,12 @@ const createHash = require('create-hash')
 const bitcoin = require('bitcoinjs-lib')
 const ethreumUtil = require('ethereumjs-util')
 const stellarUtil = require('stellar-base')
-//const nebulasUtil = require('nebulas') // This library has some issues that break testing. Disabled until resolved.
+//const nebulasUtil = require('nebulas') // This library has some security issues. Disabled until resolved.
 const nanoUtil = require('nanocurrency-web')
 const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
 
-const coinList = require('./coinlist')
+const coinList = require('coinNetworkList')
 
 class AddressGenerator {
 
@@ -78,6 +80,10 @@ class AddressGenerator {
             throw new Error(`Coin ${coin} exists but has no network details.`)
         }
 
+        if ( !this.coinHasTest(coin) ){
+            console.warn(`${coin} has no test and results may not be accurate. Please see ReadMe.md about how to add a test for this coin.`)
+        }
+
         if ( seed !== false ){
             this.seed = Buffer.from(seed, 'hex')
         } else if (mnemonic !== false && passphrase == false ) {
@@ -113,15 +119,6 @@ class AddressGenerator {
 
         this.initKeys()
          
-        console.log( `BIP 32 Algo: ${this.hashAlgo}` )
-        console.log( `BIP 32 Path: ${this.bip32Path}` )
-        console.log( `BIP 32 Seed: ${this.bip32Seed}` )
-        console.log( `BIP 32 Root Key: ${this.bip32RootKey}` )
-        console.log( `Account X Priv Key: ${this.accountXprivKey}` )
-        console.log( `Account X Pub Key: ${this.accountXpubKey}` )
-        console.log( `BIP X Priv Key: ${this.bip32XprivKey}` )
-        console.log( `BIP X Pub Key: ${this.bip32XpubKey}` )
-
     }
 
     /**
@@ -255,13 +252,6 @@ class AddressGenerator {
             if ( this.coin.addressType == "eosio" ) keyPair = this.generateEOSAddress(index)
             if ( this.coin.addressType == "fio" ) keyPair = this.generateFIOAddress(index)
 
-            console.log(
-                keyPair.path,
-                //this.convertAddress(keyPair.address,"bchSlp"),
-                keyPair.address,
-                keyPair.pubKey,
-                keyPair.privKey,
-            )
             addresses.push(keyPair)
             
             index++
@@ -305,7 +295,7 @@ class AddressGenerator {
             keyPair.privKey = keyPair.pairBuffers.toWIF()   
         } else {
             keyPair.privKey = bip38.encrypt(keyPair.pairBuffers.privateKey, false, this.bip38Password, function(p) {
-                if ( showEncryptProgress ) console.log("Progressed " + p.percent.toFixed(1) + "% for index " + index)
+                if ( showEncryptProgress ) console.log("Priv key encryption progress " + p.percent.toFixed(1) + "% for index " + index)
             })  
         }
 
@@ -493,8 +483,8 @@ class AddressGenerator {
 
         let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
-        keyPair.privKey = this.EOSbufferToPrivate(keyPair.rawPair.privateKey)
-        keyPair.pubKey = this.EOSbufferToPublic(keyPair.rawPair.publicKey,"EOS")
+        keyPair.privKey = this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        keyPair.pubKey = this.EOSbufferToPublic(keyPair.pairBuffers.publicKey,"EOS")
 
         return keyPair
 
@@ -504,8 +494,8 @@ class AddressGenerator {
 
         let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
-        keyPair.privKey = this.EOSbufferToPrivate(keyPair.rawPair.privateKey)
-        keyPair.pubKey = this.EOSbufferToPublic(keyPair.rawPair.publicKey,"FIO")
+        keyPair.privKey = this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        keyPair.pubKey = this.EOSbufferToPublic(keyPair.pairBuffers.publicKey,"FIO")
 
         return keyPair
 
@@ -557,6 +547,22 @@ class AddressGenerator {
     path(index){
         if ( this.bip == 32 || this.bip == 141 ) return `${this.bip32Path}/${index}${this.hardened?"'":""}`
         return `m/${this.bip}'/${this.coin.coinNumber}'/${this.account}'/${this.change}/${index}${this.hardened?"'":""}`
+    }
+
+    /**
+     * Checks if a coin has a test in the 'coins' folder.
+     * @param {sting} coinName Short name of the coin.
+     */
+    coinHasTest(coinName){
+        
+        let coinList = []
+        const coins = fs.readdirSync('tests/coins')
+        coins.forEach(coin => {
+            coinList.push(coin.split(".")[0])
+        })
+
+        return coinList.includes(coinName)
+
     }
     
 }

@@ -2,8 +2,7 @@ const assert = require('assert');
 const fs = require("fs")
 const settings = require("./settings")
 const coins = fs.readdirSync('tests/coins')
-const Gen = require("../generator.js");
-const { argv } = require('process');
+const Gen = require("../hdAddressGenerator.js");
 
 let coinData = {}
 
@@ -29,9 +28,6 @@ if( settings.testCoin == "ALL") {
 for (const coin in coinData) {
 
     const ref = coinData[coin]
-
-    console.log(ref)
-
     
     describe(`${ref.longName} (${ref.shortName})`, async () => {
 
