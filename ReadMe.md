@@ -20,7 +20,7 @@ npm install hdaddressgenerator
 
 
 ## Quick Start
-``
+```
 const HdAddGen = require('hdaddressgenerator')
 const mnemonic = "brand improve symbol strike say focus ginger imitate ginger appear wheel brand swear relief zero"
 
@@ -40,11 +40,11 @@ addresses.forEach(address => {
     )
 });
 
-``
+```
 
 ## Examples
 
-Please see the examples.js file. 
+See the examples.js file. 
 
 ## Initiation Functions
 
@@ -127,10 +127,16 @@ convertAddress(address,format)
 
 # Tests
 
-Before using this library in production it is important that you insure your coin has a test in the tests/coins folder to insure that addresses are generated accurately. 
+Before using this library in production it is important that you verify your coin has a test in the tests/coins folder to insure that addresses are generated accurately. 
 
-If it does not, it is easy to create one. Go to [iancoleman.io/bip39/](https://iancoleman.io/bip39/) or a similar site. Enter the seed from the tests/settings.js file into the as the mnemonic. Create a new coin in the tests/coins/ folder using the shortname of your coin. This needs to match the short name used in the coinlist [here](https://github.com/tboydston/coinnetworklist/blob/main/coinNetworkList.js). Copy the content of a coin that is similar to yours from the tests/coins/ folder and replace the values you generated. You probably don't want to use bitcoin as this contains some general tests that are not coin specific. If your coin uses bip 49 or 84 address make sure you include those test addresses as well. Replace your coin shortname with the contents of 'testCoin' in the test.settings.js file. You can test your coin with "mocha tests/coinTests.js". If all tests pass change 'testCoin' back to 'ALL' im the settings file commit, and submit a pull request. If your test fail double check your content. If it still fails open an issue for your coin. 
+If it does not, it is easy to create one. 
+1. Go to [iancoleman.io/bip39/](https://iancoleman.io/bip39/) or a similar site. 
+2. Enter the seed from the tests/settings.js file into the as the mnemonic. 
+3. Create a new coin in the tests/coins/ folder using the shortname of your coin. This needs to match the short name used in the coinlist [here](https://github.com/tboydston/coinnetworklist/blob/main/coinNetworkList.js). 
+4. Copy the content of a coin that is similar to yours from the tests/coins/ folder and replace the values you generated. You probably don't want to use bitcoin as this contains some general tests that are not coin specific. If your coin uses bip 49 or 84 address make sure you include those tests as well. 
+5. Replace your coin shortname with the contents of 'testCoin' in the test/settings.js file. 
+6. Test your coin with `mocha tests/coinTests.js`. If all tests pass change 'testCoin' back to 'ALL' im the settings file commit and submit a pull request. If your test fail double check your content. If it still fails open an issue for your coin. 
 
 # Credit 
 
-This generator is based on the Ian Coleman's BIP 39 generator available [iancoleman.io/bip39/](https://iancoleman.io/bip39/) which is in turn based on the work of many people who created the underlining libraries. 
+This generator is based on Ian Coleman's BIP 39 generator available at [iancoleman.io/bip39/](https://iancoleman.io/bip39/) which is in turn based on the work of many people who created the underlining libraries. 
