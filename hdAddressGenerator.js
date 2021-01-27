@@ -556,7 +556,7 @@ class AddressGenerator {
     coinHasTest(coinName){
         
         let coinList = []
-        const coins = fs.readdirSync('tests/coins')
+        const coins = fs.readdirSync(__dirname+'/tests/coins/')
         coins.forEach(coin => {
             coinList.push(coin.split(".")[0])
         })

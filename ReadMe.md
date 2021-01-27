@@ -63,6 +63,7 @@ Note: Not all initiation functions require all options.
 - change: Used in HD address path to signify if address is for change.
 - bip38Password: Additional password used to encrypt private keys.
 - customPath: Custom path overwriting the path generated using bip/account/change.
+- hashAlgo: Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh 
 
 
 ### Generate BIP 44(legacy),49(segwit compatible), or 84(bech32) address using mnemonic and optional pass phrase.
