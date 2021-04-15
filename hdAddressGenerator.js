@@ -20,7 +20,7 @@ const nanoUtil = require('nanocurrency-web')
 const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
 
-const coinList = require('coinNetworkList')
+const coinList = require('coinnetworklist')
 
 class AddressGenerator {
 

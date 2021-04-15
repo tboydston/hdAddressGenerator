@@ -1,7 +1,7 @@
 const assert = require('assert');
 const settings = require("./settings")
 
-const Gen = require("../generator.js")
+const Gen = require("../hdAddressGenerator.js")
 const gen = Gen.withMnemonic(settings.mnemonic,false,"BTC")
 
 describe('bip39seed', () => {

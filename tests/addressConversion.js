@@ -1,7 +1,7 @@
 const assert = require('assert');
 const settings = require("./settings")
 
-const Gen = require("../generator.js")
+const Gen = require("../hdAddressGenerator.js")
 const genBCH = Gen.withMnemonic(settings.mnemonic,false,"BCH")
 const genSLP = Gen.withMnemonic(settings.mnemonic,false,"SLP")
 
