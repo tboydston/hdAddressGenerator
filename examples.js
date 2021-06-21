@@ -5,15 +5,17 @@ const seed = "09a0a3b58d10bbc456254f1915c2627d8f0e9968922505b39dbb08f6a5dc9dafde
 ;(async()=>{
 
 /**
- * Generate cryptographically random Mnemonic and seed buffer. 
+ * Generate cryptographically random Mnemonic and seed buffer.
+ * This is a pass through for the Bip39 libraries generateMnemomic function. 
+ * Please review the bip39 implementation to make sure you are comfortable with 
+ * the implementation before using this for anything critical.
  */
-let sampleMnemonic = await HdAddGen.generateMnemonic('english',256)
+let sampleMnemonic = await HdAddGen.generateMnemonic('english',128 /* 128=12words, 256=24words */ ) 
 
 console.log( `\nSample Mnemonic and Seed Generation` )
 console.log(`Mnemonic: ${sampleMnemonic.mnemonic}`)
 console.log(`Seed: ${sampleMnemonic.seed.toString('hex')}`)
 
-process.exit()
 /**
  * Generate BIP 44 ( Legacy '1' ) addresses for bitcoin. 
  */
