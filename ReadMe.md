@@ -23,6 +23,7 @@ npm install hdaddressgenerator
 ```
 const HdAddGen = require('hdaddressgenerator')
 const mnemonic = "brand improve symbol strike say focus ginger imitate ginger appear wheel brand swear relief zero"
+// OR you can use the HdAddGen.getMnemonic() function to generate a mnemonic and seed. 
 
 
 // The easiest way to initiate a class is by using an initiation function.  

@@ -5,6 +5,16 @@ const seed = "09a0a3b58d10bbc456254f1915c2627d8f0e9968922505b39dbb08f6a5dc9dafde
 ;(async()=>{
 
 /**
+ * Generate cryptographically random Mnemonic and seed buffer. 
+ */
+let sampleMnemonic = await HdAddGen.generateMnemonic('english',256)
+
+console.log( `\nSample Mnemonic and Seed Generation` )
+console.log(`Mnemonic: ${sampleMnemonic.mnemonic}`)
+console.log(`Seed: ${sampleMnemonic.seed.toString('hex')}`)
+
+process.exit()
+/**
  * Generate BIP 44 ( Legacy '1' ) addresses for bitcoin. 
  */
 let bip44 = HdAddGen.withMnemonic(mnemonic,false,"BTC")

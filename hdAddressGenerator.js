@@ -21,6 +21,7 @@ const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
 
 const coinList = require('coinnetworklist')
+const { arrayContainsArray } = require("ethereumjs-util")
 
 class AddressGenerator {
 
@@ -200,6 +201,33 @@ class AddressGenerator {
      */
     static withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false){
         return new AddressGenerator(false,false,seed,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
+    }
+
+    /**
+     * Generate a cryptographically random bip39 mnemonic. This is a pass through for the Bip39 libraries generateMnemomic function. 
+     * Please review the bip39 implementation to make sure you are comfortable with the implementation before using this for anything critical.
+     * @param {string} wordlist Name of wordlist to generate mnemonic from. Use this getSupportedWordLists function to see complete lists.
+     * @param {int} strength Must be divisible by 32. 128=12words, 256=24words
+     * @returns 
+     */
+    static async generateMnemonic(wordlist="english",strength=128){
+
+        let result = {}
+ 
+        if ( bip39.wordlists[wordlist] == undefined ){
+            throw new Error(`Worldlist Not Supported. Supported Worlists: ${this.getSupportedWordLists().join(", ")} Default: english`)
+        }
+
+        try {
+            result.mnemonic = bip39.generateMnemonic(strength,undefined,bip39.wordlists[wordlist])
+        } catch (e){
+            throw e
+        }
+
+        result.seed = await bip39.mnemonicToSeed(result.mnemonic)
+        
+        return result 
+
     }
 
     initKeys(){
@@ -564,7 +592,24 @@ class AddressGenerator {
         return coinList.includes(coinName)
 
     }
+
+    /**
+     * Returns list of supported Bip39 mnemonic wordlists.
+     * @returns 
+     */
+    static getSupportedWordLists(){
+
+        let supportedLists = []
+
+        for (const list in bip39.wordlists) {
+            supportedLists.push(list)
+        }
+
+        
+        return supportedLists
     
+    }
+
 }
 
 module.exports = AddressGenerator 
