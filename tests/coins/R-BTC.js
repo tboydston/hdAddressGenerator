@@ -4,6 +4,8 @@ module.exports={
     shortName:"R-BTC",
     bip32ExtPubKeyBip44:"xpub6EDFNzVrcu6wwubbgqqyXEww3FkuCgTsvAevJ6FZ1qNniwqNKkLxxtkhSTvjrJbczeZQdabrQZWhNu6ArRd5fpAsuRHv5NCYaJZ4KNNd4EN",
 
+    bip44AccountExtPubKey:"xpub6BwmTH5ZifnEdbYrYg6vG7vVThv37bqNSvpsciEwPuYG1SzbTavAxybvX81RqKR1LtQXiKz5hdDXKUvBz6qjtxSiqqRS2g1BRpHaJ6HLXo9",
+
     // BIP 44 Addresses
     addressBip44index0:"0x85181bEC7585C18C69dc9348623216c7d5a8b0d7",
     pubKeyBip44index0:"0x03a5f3f750fb8c59fe518870314836380179247a4b80d3c4f04f0b8c891cfc7c3a",

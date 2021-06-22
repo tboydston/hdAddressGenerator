@@ -4,6 +4,8 @@ module.exports={
     shortName:"SWTC",
     bip32ExtPubKeyBip44:"xpub6EB9bEkREqRHWp2WJg4karRxq8b22qiP4tp1p1ttiAGyoxvTV8dW6SvayjoWxFTWGYZD3p2qMkaMJs7hqd8NhsFRnipZEYeYfjo5pyrR2Ra",
 
+    bip44AccountExtPubKey:"xpub6CjZseFtwH8cxDNjwiMqhuwC4g6zAUJveca4miLMDhLeYvnn1BegJMuvSoSPA6WzZccUbNyoLJXmYF1ZpMCK1WjcJdyLjBhwrKTm84SpnXA",
+
     // BIP 44 Addresses
     addressBip44index0:"jJnrDaKPXSuGghL1u5faAAmSNKVh1ii4Mc",
     pubKeyBip44index0:"039929406b125b659cfc2a0ea68092f9447513a6288651917307db11c6258d8f9f",

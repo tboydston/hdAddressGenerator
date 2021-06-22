@@ -4,6 +4,8 @@ module.exports = {
     shortName: "ETC",
     bip32ExtPubKeyBip44:"xpub6DhmMMLySe73ErFXyuV4ZgbwYUg7pv3FaeqYmVmqhvGWgeYtsUavJvbFqgV1uGtZix79wKCVqMonSCRKAZ4FuLqRDondRPK8pvvMRbkW6cv",
 
+    bip44AccountExtPubKey:"xpub6BiAr6pHaxyW5YGRZ9pNiRrXgyV6W1xSHLTNPjFq4Rnue6yHNweztrJyab5iarmwnmxJ2cEH29ymMFvEfjhxjZwvQrZt8cKXtiQTriAUw1H",
+    
     // BIP 44 Addresses
     addressBip44index0:"0x9d83fa82AabA35B2d995EB6690ebCf12B48453B0",
     pubKeyBip44index0:"0x02b411e51929daba457a79901c08cb98e7cba63d7699795afbdb89816e127d68fc",

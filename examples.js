@@ -1,6 +1,7 @@
 const HdAddGen = require('./hdAddressGenerator')
 const mnemonic = "brand improve symbol strike say focus ginger imitate ginger appear wheel brand swear relief zero"
 const seed = "09a0a3b58d10bbc456254f1915c2627d8f0e9968922505b39dbb08f6a5dc9dafdee40cff16aa488add7ee4e2ec6eaf40425d3f2aea81c18c2c314d58885e923a"
+const xpub = "xpub6CfhGffKu2dhKxhxVS7gmTwtfK6NKA6pVAjgTgManuJoTVqLjiN6RTydgE13GPGCShaEQk1BjbHZ7Lps7eE5ECTk48vJuYjcf2FsPN1n9av"
 
 ;(async()=>{
 
@@ -165,6 +166,24 @@ bip141Addresses.forEach(address => {
     )
 })
 
+/**
+ * Generate Neutered BIP 44 ( Legacy '1' ) addresses for bitcoin with XPUB. 
+ */
+
+let bip44xpub = {}
+
+bip44xpub = HdAddGen.withExtPub(xpub,"BTC",44)
+
+// Generate 3 address pairs starting from index 0,
+let bip44xpubAddresses = await bip44xpub.generate(3)
+bip44xpubAddresses.forEach(address => {
+    console.log(
+        address.path,
+        address.address,
+        address.pubKey,
+        address.privKey
+    )
+})
 
 /**
  * BCH addresses conversion.  

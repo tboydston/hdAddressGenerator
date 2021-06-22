@@ -4,6 +4,8 @@ module.exports={
     shortName:"ETH",
     bip32ExtPubKeyBip44:"xpub6EqY3Q7DzBLbYb49JJpSSpcuqMaj1aFg74EKbYAmJYNzBJnTtmL7cJwENwG4yrkGCBstnVX2HRRcwoGiN74ZLUF2wfABfeyr4skKoNYDMqN",
 
+    bip44AccountExtPubKey:"xpub6CfQ8VHnXQd3QhSnMmyCGbV7Yq4wUAZyt3wXnqHGvvtUsr4ViP9Hkkj2vwiXU4FHtNTi7z1Zm9Bw4vW1tWjwt8mpvBsJb98sSjfQJaqVSza",    
+
     // BIP 44 Addresses
     addressBip44index0:"0xAf5CBF39d271197b1453aD839876De9e54dBc4Ef",
     pubKeyBip44index0:"0x036ac7244d43935b77ea0c1b1a5566dfe4c92a5134c171067d9cdbe68d93acc44d",

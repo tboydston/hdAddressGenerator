@@ -4,6 +4,8 @@ module.exports={
     shortName:"CRW",
     bip32ExtPubKeyBip44:"xpub6EU1kJBxmTfwbxAhUqZuoLqAtLXoGJeeworU5TJwLxYdDhTVSGx8kKVXud866RsmmNMfnWLH6x4ttzYBi5BaEiy6UVQecLPYV4sriWFiVqt",
 
+    bip44AccountExtPubKey:"xpub6DG76h7D2uCUXCwLaSpnartYt4ce9DjEp44A9MoZdx3LJNufsc1HJAPUUSEGtm2iQHF6fqazeygnwH1HnCUjus2w7ArSpzZvUGRWPGd7vAz",
+
     // BIP 44 Addresses
     addressBip44index0:"CRWUBMjb8Vddz9eUqo6QVk1Z2LTyAmyQMfz5",
     pubKeyBip44index0:"03456b640dc90d3852b469f592662eedef17b9df332896ca4692b0580a23d40263",

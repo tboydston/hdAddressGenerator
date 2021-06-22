@@ -4,11 +4,13 @@ Generate hierarchical deterministic(HD) coin specific crypto addresses from sing
 
 # Features 
 
+- Mnemonic generation 
 - BIP 32,44,49,84,141 address logic. 
 - p2pkh(legacy), p2wpkhInP2sh(segwit compatible), p2wpkh(bech32) hashing.
 - Unique address building logic for ETH,EOS,XRP,XLM, and others. 
 - Custom BIP 39 Passphrases.
 - BIP 38 private key encryption.
+- Neutered address generation from extended public keys. 
 
 # Installation  
 
@@ -56,6 +58,7 @@ Note: Not all initiation functions require all options.
 
 - mnemonic: BIP39 mnemonic with spaces between words.
 - seed: BIP39 seed used instead of a mnemonic.
+- xpub: Account extended public key used to generate addresses without private keys.
 - passphrase: Additional BIP39 passphrase custom passphrase to further secure mnemonic.
 - coin: Coin short name ( BTC, ETH, XRP, ect.).
 - hardened: Should the resulting addresses be hardened?
@@ -82,26 +85,35 @@ HdAddGen.withSeed(seed,coin,hardened=false,bip=44,account=0,change=0,bip38Passwo
 ### Generate BIP 32 legacy addresses with custom path, mnemonic, and optional pass phrase. 
 
 `
-withMnemonicBIP32(mnemonic,passphrase,coin,customPath,hardened=false,bip38Password=false)
+HdAddGen.withMnemonicBIP32(mnemonic,passphrase,coin,customPath,hardened=false,bip38Password=false)
 `
 
 ### Generate BIP 32 legacy addresses with custom path and seed. 
 
 `
-withSeedBIP32(seed,coin,customPath,hardened=false,bip38Password=false)
+HdAddGen.withSeedBIP32(seed,coin,customPath,hardened=false,bip38Password=false)
 `
 
 ### Generate BIP 141 addresses with custom path, mnemonic, and hashing algo. 
 
 `
-withMnemonicBIP141(mnemonic,passphrase,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
+HdAddGen.withMnemonicBIP141(mnemonic,passphrase,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
 `
 
 ### Generate BIP 141 addresses with custom path, seed, and hashing algo. 
 
 `
-withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
+HdAddGen.withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
 `
+
+### Generate addresses without private keys from Account Extended Public Keys. 
+
+Addresses generated with only an extended public key ( extPub ) go not have private keys. 
+
+`
+HdAddGen.withExtPub(extPub,coin,bip=44,account=0,change=0)
+`
+
 
 ## Generating Addresses 
 

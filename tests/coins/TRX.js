@@ -4,6 +4,8 @@ module.exports={
     shortName:"TRX",
     bip32ExtPubKeyBip44:"xpub6EHd7URQHYMYuiHMmWEEtiUHPUJ6WvfSFuRTodiWLWWE3Ep73ZT9nLVAnGfxa2CU4cSLWbWiqxWowswMpg4WaxJrH6pxYNTm56JxXNcY2J5",
 
+    bip44AccountExtPubKey:"xpub6Bf5YuBnqZ71qsErdJEXRKQXQhCfUfzcpSEVMKdmDADRGZueV13AxJDiFaQWzJtqM2NsHWxaBTevUgWirrJEtMMfoTY1aJrbLT3LBKozqBC",
+
     // BIP 44 Addresses
     addressBip44index0:"TKP2mZrYNKdrXJi38vxQsAykfo1YoWjxpR",
     pubKeyBip44index0:"03b1b154336d542401492ea0d85966acb330e920474f357a5131097a18f30fa5df",

@@ -11,6 +11,10 @@ module.exports = {
 
     bip32RootKeyBip44WithPassphrase:"xprv9s21ZrQH143K3yzT7JAia2Ybm1hVA6GqCA5bgfp6Xt6QfBP2LX5ju2qyebMkpjLNndo2QKS9kYZWF6Psuco15u4X1SqRfJFA9nQbTFNkneg",
 
+    bip44AccountExtPubKey:"xpub6CfhGffKu2dhKxhxVS7gmTwtfK6NKA6pVAjgTgManuJoTVqLjiN6RTydgE13GPGCShaEQk1BjbHZ7Lps7eE5ECTk48vJuYjcf2FsPN1n9av",
+    bip49AccountExtPubKey:"ypub6YJacKnvDsdgQeUAxZ5iepgyjB3wfGk99bRWuiabXE9ZFxxcv8RFNTYC6XR11dKxw7KSy7S9mcyBxRFCeUyTonkYSbyXd9xQT4GKaUqM9sv",
+    bip84AccountExtPubKey:"zpub6qrsSadadY2LEWgupuqk7GSCbriHn2WQGVenBwNkBT3SHMBjt3LGD1Z1nJ6khrY2SSgMrCjkPsKmK4BdKZetunrhpYfqExWxFpuezmD2Rbj",
+
     // BIP 44 Addresses
     addressBip44index0:"1PYe57JWhfosaog1s9TApW2DttCebwjeeC",
     pubKeyBip44index0:"0230175f65585b898540016463ac077776b5da6e8dcfd18e086e3d5f9735293c42",

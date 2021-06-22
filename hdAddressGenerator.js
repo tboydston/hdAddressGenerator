@@ -10,6 +10,7 @@ const edHd = require('ed25519-hd-key')
 const basex = require('base-x')
 const bs58 = require('bs58')
 const createHash = require('create-hash')
+const pubConvert = require('pubkeyconverter')
 
 // Coin specific libs
 const bitcoin = require('bitcoinjs-lib')
@@ -21,7 +22,6 @@ const bchSlpUtil = require('bchaddrjs-slp')
 const bchaddr = require('bchaddrjs')
 
 const coinList = require('coinnetworklist')
-const { arrayContainsArray } = require("ethereumjs-util")
 
 class AddressGenerator {
 
@@ -51,6 +51,9 @@ class AddressGenerator {
     bip38Password=false
     unsupported = ["GRS","ELA","NAS"] // Coins there is network info for but that are currently not supported. 
     showEncryptProgress = false
+    xpub = false
+    extPub = ''
+    unsupportedXpub = ["stellar","nebulas","nano"]
 
     /**
      * Options may be set directly on initialization but some are incompatible. It is recommended that you use an initialization function.  
@@ -66,9 +69,8 @@ class AddressGenerator {
      * @param {string} hashAlgo Algorithm used to hash the address. Coin must have supporting network information. Options: p2pkh,p2wpkhInP2sh,p2wpkh
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
-	constructor(mnemonic=false,passphrase=false,seed=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false,bip38Password=false){
+	constructor(mnemonic=false,passphrase=false,seed=false,extPub=false,coin,hardened=false,bip=44,account=0,change=0,customPath=false,hashAlgo=false,bip38Password=false){
 
-    
         if ( coinList[coin] == undefined ){
             throw new Error(`Coin ${coin} does not exist.`)
         } else {
@@ -85,26 +87,35 @@ class AddressGenerator {
             console.warn(`${coin} has no test and results may not be accurate. Please see ReadMe.md about how to add a test for this coin.`)
         }
 
+        // If a BIP 49 'y' or BIP 141 'z' xpub is submitted it is converted to an 'x' pub it can be processed. 
+        this.extPub = extPub
+        this.xpub = ( extPub === false ) ? false : pubConvert.pubToXpub(extPub)
+    
         if ( seed !== false ){
             this.seed = Buffer.from(seed, 'hex')
-        } else if (mnemonic !== false && passphrase == false ) {
+        } else if (mnemonic !== false && passphrase === false ) {
             this.seed = bip39.mnemonicToSeedSync(mnemonic)
-        } else {
+        } else if ( this.xpub === false ) {
             this.seed = bip39.mnemonicToSeedSync(mnemonic,passphrase)
         }
-  
-        this.root = bip32.fromSeed(this.seed)
+
+        if ( this.xpub === false ){
+            this.root = bip32.fromSeed(this.seed)
+            this.bip32Seed = this.seed.toString('hex')
+            this.bip32RootKey = bip32.fromSeed(this.seed).toBase58()
+        } else {
+
+            this.root = bip32.fromBase58(this.xpub) 
+
+        }
 
         this.bip = bip
         this.account = account
         this.change = change
         this.hardened = hardened
-        this.bip32Seed = this.seed.toString('hex')
-        this.bip32RootKey = bip32.fromSeed(this.seed).toBase58()
-
-        this.hashAlgo = ( hashAlgo == false ) ? this.hashAlgos[bip] : hashAlgo
         this.bip32Path = ( customPath != false ) ? customPath : ""
         this.bip38Password = bip38Password
+        this.hashAlgo = ( hashAlgo === false ) ? this.hashAlgos[bip] : hashAlgo
 
         if ( [49,84,141].includes(bip) && this.coin.network[this.hashAlgo] == undefined ){
             throw new Error(`${this.coinName} does not support ${this.hashAlgo}.`)
@@ -117,6 +128,15 @@ class AddressGenerator {
         if ( this.coin.addressType != undefined && bip38Password != false ) {
             throw new Error(`BIP 38 private key encryption only supported for bitcoin like address generation.`)
         }
+
+        if ( this.unsupportedXpub.includes(this.coin.addressType) && this.xpub !== false ){
+            throw new Error(`ExtPub key generation not supported for ${this.coin}.`)
+        }
+
+        if ( [32,141].includes(bip) && this.xpub !== false ){
+            throw new Error(`${this.bip} does not support extPub key generation.`)
+        }
+
 
         this.initKeys()
          
@@ -133,7 +153,7 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withSeed(seed,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false){
-        return new AddressGenerator(false,false,seed,coin,hardened,bip,account,change,false,false,bip38Password)
+        return new AddressGenerator(false,false,seed,false,coin,hardened,bip,account,change,false,false,bip38Password)
     }
 
     /**
@@ -148,7 +168,7 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withMnemonic(mnemonic,passphrase,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false){
-        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,bip,account,change,false,false,bip38Password)
+        return new AddressGenerator(mnemonic,passphrase,false,false,coin,hardened,bip,account,change,false,false,bip38Password)
     }
 
     /**
@@ -161,7 +181,7 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withMnemonicBIP32(mnemonic,passphrase,coin,customPath,hardened=false,bip38Password=false){
-        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,32,0,0,customPath,false,bip38Password)
+        return new AddressGenerator(mnemonic,passphrase,false,false,coin,hardened,32,0,0,customPath,false,bip38Password)
     }
 
     /**
@@ -173,7 +193,7 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withSeedBIP32(seed,coin,customPath,hardened=false,bip38Password=false){
-        return new AddressGenerator(false,false,seed,coin,hardened,32,0,0,customPath,false,bip38Password)
+        return new AddressGenerator(false,false,seed,false,coin,hardened,32,0,0,customPath,false,bip38Password)
     }
 
     /**
@@ -187,7 +207,7 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withMnemonicBIP141(mnemonic,passphrase,coin,customPath,hashAlgo,hardened=false,bip38Password=false){
-        return new AddressGenerator(mnemonic,passphrase,false,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
+        return new AddressGenerator(mnemonic,passphrase,false,false,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
     }
 
     /**
@@ -200,7 +220,47 @@ class AddressGenerator {
      * @param {string} bip38Password Additional password used to encrypt private keys.
      */
     static withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false){
-        return new AddressGenerator(false,false,seed,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
+        return new AddressGenerator(false,false,seed,false,coin,hardened,141,0,0,customPath,hashAlgo,bip38Password)
+    }
+
+    /**
+     * 
+     * @param {string} xpub Account extended public key.
+     * @param {string} coin Coin short name ( BTC, ETH, XRP, ect.).
+     * @param {int} bip What BIP style addresses are you trying to create. Default: 44 Options: 32,44,49,84,141
+     * @param {int} account Account used in HD address path. 
+     * @param {int} change Used in HD address path to signify if address is for change.
+     * @returns 
+     */
+     static withExtPub(extPub,coin,bip=44,account=0,change=0){
+        return new AddressGenerator(false,false,false,extPub,coin,false,bip,account,change,false)
+    }
+
+    initKeys(){
+
+        if( this.bip == 32 ){
+            this.bip32RootKeyRaw = bip32.fromSeed(this.seed)
+        } else if ( this.xpub === false ) {
+            this.bip32RootKeyRaw = bip32.fromSeed(this.seed,this.coin.network[this.hashAlgo])
+        } else {
+            this.bip32RootKeyRaw = bip32.fromBase58(this.xpub)
+        }
+
+        this.bip32RootKey = this.bip32RootKeyRaw.toBase58()
+        
+        if ( this.bip != 32 && this.bip != 141 ){    
+            
+            this.accountPath = `m/${this.bip}'/${this.coinNumber}'/${this.account}'`
+            this.accountXprivKey = ( this.xpub === false ) ? this.bip32RootKeyRaw.derivePath(this.accountPath).toBase58() : ""
+            this.accountXpubKey = ( this.xpub === false ) ? this.bip32RootKeyRaw.derivePath(this.accountPath).neutered().toBase58() : this.extPub
+
+            this.bip32Path = `m/${this.bip}'/${this.coinNumber}'/${this.account}'/${this.change}`
+
+        }
+
+        this.bip32XprivKey = ( this.xpub === false ) ? this.bip32RootKeyRaw.derivePath(this.bip32Path).toBase58() : ''
+        this.bip32XpubKey = ( this.xpub === false ) ? this.bip32RootKeyRaw.derivePath(this.bip32Path).neutered().toBase58() : ''
+
     }
 
     /**
@@ -227,28 +287,6 @@ class AddressGenerator {
         result.seed = await bip39.mnemonicToSeed(result.mnemonic)
         
         return result 
-
-    }
-
-    initKeys(){
-
-        if( this.bip == 32 ){
-            this.bip32RootKeyRaw = bip32.fromSeed(this.seed)
-        } else {
-            this.bip32RootKeyRaw = bip32.fromSeed(this.seed,this.coin.network[this.hashAlgo])
-        }
-
-        this.bip32RootKey = this.bip32RootKeyRaw.toBase58()
-        
-        if ( this.bip != 32 && this.bip != 141 ){
-            this.accountPath = `m/${this.bip}'/${this.coinNumber}'/${this.account}'`
-            this.accountXprivKey = this.bip32RootKeyRaw.derivePath(this.accountPath).toBase58()
-            this.accountXpubKey = this.bip32RootKeyRaw.derivePath(this.accountPath).neutered().toBase58()
-            this.bip32Path = `m/${this.bip}'/${this.coinNumber}'/${this.account}'/${this.change}`
-        }
-
-        this.bip32XprivKey = this.bip32RootKeyRaw.derivePath(this.bip32Path).toBase58()
-        this.bip32XpubKey = this.bip32RootKeyRaw.derivePath(this.bip32Path).neutered().toBase58()
 
     }
 
@@ -314,18 +352,33 @@ class AddressGenerator {
 
         keyPair.network = this.coin.network[this.hashAlgo]
         keyPair.path = this.path(index)
-        keyPair.pairBuffers = this.root.derivePath(keyPair.path)
-        keyPair.pairBuffers.network = keyPair.network
-        keyPair.rawAddress = bitcoin.ECPair.fromPrivateKey(keyPair.pairBuffers.privateKey, { network: keyPair.network , compressed: compressedKeys })
-        keyPair.pubKey = keyPair.rawAddress.publicKey.toString('hex')
 
-        if( this.bip38Password == false  ){
-            keyPair.privKey = keyPair.pairBuffers.toWIF()   
+
+        if ( this.xpub === false ){
+
+            keyPair.pairBuffers = this.root.derivePath(keyPair.path)
+            keyPair.rawAddress = bitcoin.ECPair.fromPrivateKey(keyPair.pairBuffers.privateKey, { network: keyPair.network , compressed: compressedKeys })
+            keyPair.pairBuffers.network = keyPair.network
+
+            if( this.bip38Password === false  ){
+                keyPair.privKey = keyPair.pairBuffers.toWIF()   
+            } else {
+                keyPair.privKey = bip38.encrypt(keyPair.pairBuffers.privateKey, false, this.bip38Password, function(p) {
+                    if ( showEncryptProgress ) console.log("Priv key encryption progress " + p.percent.toFixed(1) + "% for index " + index)
+                })  
+            }
+
         } else {
-            keyPair.privKey = bip38.encrypt(keyPair.pairBuffers.privateKey, false, this.bip38Password, function(p) {
-                if ( showEncryptProgress ) console.log("Priv key encryption progress " + p.percent.toFixed(1) + "% for index " + index)
-            })  
+
+            keyPair.pairBuffers = {}
+            keyPair.rawAddress = {}
+            keyPair.pairBuffers.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.rawAddress.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.privKey = ""
+
         }
+
+        keyPair.pubKey = keyPair.rawAddress.publicKey.toString('hex')
 
         if( this.bip == 49 || this.hashAlgo == "p2wpkhInP2sh" ){
  
@@ -355,15 +408,21 @@ class AddressGenerator {
 
         let keyPair = {}
         keyPair.path = this.path(index)
-        keyPair.rawPair = this.root.derivePath(keyPair.path)
-       
+
+        if (this.xpub === false ){
+            keyPair.rawPair = this.root.derivePath(keyPair.path)
+        } else {
+            keyPair.rawPair = {}
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+        }
+
         let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
         let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
         let hexAddress = addressBuffer.toString('hex')
         let checksumAddress = ethreumUtil.toChecksumAddress(addressPrefix+hexAddress)
         
         keyPair.address = ethreumUtil.addHexPrefix(checksumAddress)
-        keyPair.privKey = addressPrefix+keyPair.rawPair.privateKey.toString('hex')
+        keyPair.privKey = (this.xpub === false ) ? addressPrefix+keyPair.rawPair.privateKey.toString('hex') : ""
         keyPair.pubKey = addressPrefix+keyPair.rawPair.publicKey.toString('hex')
 
         return keyPair
@@ -376,16 +435,21 @@ class AddressGenerator {
        
         let keyPair = {}
         keyPair.path = this.path(index)
-        keyPair.rawPair = this.root.derivePath(keyPair.path)
 
-        keyPair.ECPair =  bitcoin.ECPair.fromPrivateKey(keyPair.rawPair.privateKey, { network: this.coin.network.p2pkh, compressed: false })
-      
+        if (this.xpub === false ){
+            keyPair.rawPair = this.root.derivePath(keyPair.path)
+            keyPair.ECPair =  bitcoin.ECPair.fromPrivateKey(keyPair.rawPair.privateKey, { network: this.coin.network.p2pkh, compressed: false })
+        } else {
+            keyPair.rawPair = {}
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+        }
 
-        let ethPubkey = ethreumUtil.importPublic(keyPair.ECPair.publicKey)
+
+        let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
         let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
 
         keyPair.address = bitcoin.address.toBase58Check(addressBuffer, addressPrefix )
-        keyPair.privKey = keyPair.ECPair.privateKey.toString('hex')
+        keyPair.privKey = (this.xpub === false ) ? keyPair.ECPair.privateKey.toString('hex') : ''
         keyPair.pubKey = keyPair.rawPair.publicKey.toString('hex')
 
         return keyPair
@@ -399,15 +463,21 @@ class AddressGenerator {
          
         let keyPair = {}
         keyPair.path = this.path(index)
-        keyPair.rawPair = this.root.derivePath(keyPair.path)
-       
+
+        if (this.xpub === false ){
+            keyPair.rawPair = this.root.derivePath(keyPair.path)
+        } else {
+            keyPair.rawPair = {}
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+        }
+
         let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
         let addressBuffer = ethreumUtil.publicToAddress(ethPubkey)
         let hexAddress = addressBuffer.toString('hex')
         let checksumAddress = ethreumUtil.toChecksumAddress(addressPrefix+hexAddress,chainId)
         
         keyPair.address = ethreumUtil.addHexPrefix(checksumAddress)
-        keyPair.privKey = addressPrefix+keyPair.rawPair.privateKey.toString('hex')
+        keyPair.privKey = (this.xpub === false ) ? addressPrefix+keyPair.rawPair.privateKey.toString('hex') : ''
         keyPair.pubKey = addressPrefix+keyPair.rawPair.publicKey.toString('hex')
 
         return keyPair
@@ -454,7 +524,7 @@ class AddressGenerator {
         
         keyPair.address = basex('rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
-        keyPair.privKey = basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66)
+        keyPair.privKey = (this.xpub === false ) ? basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66) : ""
 
         return keyPair
 
@@ -481,7 +551,7 @@ class AddressGenerator {
         
         keyPair.address = basex('jpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65rkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
-        keyPair.privKey = basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66)
+        keyPair.privKey = ( this.xpub === false ) ? basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66) : ""
 
         return keyPair
 
@@ -493,7 +563,7 @@ class AddressGenerator {
         
         keyPair.address = basex('cpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2brdeCg65jkm8oFqi1tuvAxyz').encode(
             basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.address))
-        keyPair.privKey = basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66)
+        keyPair.privKey = ( this.xpub === false ) ? basex('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz').decode(keyPair.privKey).toString("hex").slice(2,66) : ""
 
         return keyPair
 
@@ -511,7 +581,7 @@ class AddressGenerator {
 
         let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
-        keyPair.privKey = this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        keyPair.privKey = ( this.xpub === false ) ? this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey) : ""
         keyPair.pubKey = this.EOSbufferToPublic(keyPair.pairBuffers.publicKey,"EOS")
 
         return keyPair
@@ -522,7 +592,7 @@ class AddressGenerator {
 
         let keyPair = this.generateBitcoinAddress(index) 
         keyPair.address = ""
-        keyPair.privKey = this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        keyPair.privKey = ( this.xpub === false ) ? this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey) : ""
         keyPair.pubKey = this.EOSbufferToPublic(keyPair.pairBuffers.publicKey,"FIO")
 
         return keyPair

@@ -6,6 +6,10 @@ module.exports = {
     bip32ExtPubKeyBip49:"ypub6ZSHPYuJvuaY8mP9HQFyW1pjJLCBBvn37Ge1C5coLex6QPYLYdy1cs99L43q7cxhmrKGibxVriGp69qY8dcy6BQKuKsZSDoWQAdnP9yvLXH",
     bip32ExtPubKeyBip84:"zpub6siv3px1VExQDSexUusPvJcKfLWd4nUxdYNaVNUZ5Jdd2metJimjCCZvn3ZR2xQYBHs2r17Vz4LFgyNkGjZTNcLmxVVQxNmPQ9uN5mgm6hW",
 
+    bip44AccountExtPubKey:"xpub6CmqaGzF4ULoZRLNCXL1dz8RX21JQtVRtpuwVt3uouRw2aMuF1VTRKvFpTxY8KQx78xowCpjgiWPFzeXs9PoQacszNxwMmTowSFx8mtTgSb",
+    bip49AccountExtPubKey:"ypub6WWQ6fbJBZAG5SvKdXXE1JbotwetgpK98GmdD4HxKsQFVLEnzZJB37PVT9B5fRoV3heE2tFzYtpzWVrv7wi3fWZrBncsZtTnEHY4aM5spCe",
+    bip84AccountExtPubKey:"zpub6rmmsQtF8pSjWnWXKKNTRMNbMYqKfRpibPGd1KvYDhB6xNtGNExyqreyer1mxN2FLDgCFy4GuUAe1ea3eShaMCc2W991Y5bfwDXdboovmsn",
+
     // BIP 44 Addresses
     addressBip44index0:"174NQ1TWFbWCbuGWgCStj1SNF7QPm5jbK4",
     pubKeyBip44index0:"0229209c04cb0dff55322975eca0e12c9a5a7ea8e2a22636a0c70cc1a19301104d",

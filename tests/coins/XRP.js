@@ -4,6 +4,8 @@ module.exports={
     shortName:"XRP",
     bip32ExtPubKeyBip44:"xpub6Esx2p95uN7f16ZFhV3VGKvdowQUbaus69YGLh3sjFdqdqv8k3fq5VjxGB48UsD84M4EANrkQBycoGUoHtgFvAL8dJCdhrxynuw6BdCAWw9",
 
+    bip44AccountExtPubKey:"xpub6Cp3xCQ4nYtjoooLTd33K5tsDo2CXkuQ1joQzCBeUnwy7V3JyJxEWtYJCGxNvWiXJLqLmykS6zbDQYPvuQF2sEW5iqL2LrZrh5icU9tY7rU",
+
     // BIP 44 Addresses
     addressBip44index0:"rPEGErn3qKNe99miiGHf82fznf86GVkYEs",
     pubKeyBip44index0:"030d79ccdbd5cfa25e2c21c950cd725365b1576d68668e4d9a3cc7ee6caeb3eeea",

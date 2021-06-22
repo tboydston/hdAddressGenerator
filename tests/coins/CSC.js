@@ -4,6 +4,8 @@ module.exports={
     shortName:"CSC",
     bip32ExtPubKeyBip44:"xpub6EG3X6fymh9kYMKgVFDTsLd6V6U3kvMYdmP4vxExTY9yaP97ZtymLsowPLQhzsvZsqQPJT29pd7yzfFxv9EXmpJMaREoACcU2Pfnm982bfA",
 
+    bip44AccountExtPubKey:"xpub6CC4QPitvdiwvRqrevzaojdNnEeack5PEVQ8aCNHbtKLPtL75Kzdqre19qgwSQVTpp5bSJogw4XGKsV4QmxKurPrZ4J7BiLPZroUH99XXRM",
+
     // BIP 44 Addresses
     addressBip44index0:"cPNV15VKuZFTRSpLfkmriBwZvhsyZVHUXB",
     pubKeyBip44index0:"02e3f5e5db6e50ee9473f859c5418f334752b49a7e6ec52bb9eabd2fd2d9c94b64",

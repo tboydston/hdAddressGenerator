@@ -42,7 +42,10 @@ for (const coin in coinData) {
         let bip32 = false
         let bip32seed = false
         let bip141 = false
-        let bip141seed = false 
+        let bip141seed = false
+        let withExtPub44 = false
+        let withExtPub49 = false 
+        let withExtPub84 = false 
 
         try{ bip44 = Gen.withMnemonic(settings.mnemonic,false,ref.shortName) } catch(e){}
         try{ bip44WithPassPhrase = Gen.withMnemonic(settings.mnemonic,settings.passphrase,ref.shortName,false) } catch(e){}
@@ -56,8 +59,10 @@ for (const coin in coinData) {
         try{ bip32seed = Gen.withSeedBIP32(settings.bip32Seed,ref.shortName,"m/0'/0'",false) } catch(e){}
         try{ bip141 = Gen.withMnemonicBIP141(settings.mnemonic,false,ref.shortName,"m/0'/0'","p2wpkhInP2sh") } catch(e){}
         try{ bip141seed = Gen.withSeedBIP141(settings.bip32Seed,ref.shortName,"m/0'/0'","p2wpkhInP2sh") } catch(e){}
+        try{ withExtPub44 = Gen.withExtPub(ref.bip44AccountExtPubKey,ref.shortName ) } catch(e){}
+        try{ withExtPub49 = Gen.withExtPub(ref.bip49AccountExtPubKey,ref.shortName,49 ) } catch(e){}
+        try{ withExtPub84 = Gen.withExtPub(ref.bip84AccountExtPubKey,ref.shortName,84 ) } catch(e){}  
         
-
         // Test root Keys
         if ( ref.bip32RootKeyBip44 != undefined ){
             it('Expect bip32RootKeyBip44 to match reference.', () => {
@@ -252,6 +257,51 @@ for (const coin in coinData) {
                 assert.strictEqual(addresses[1].privKey,ref.privKeyBip141index1)
         
             })
+        }
+
+        if ( ref.bip44AccountExtPubKey !== undefined && ref.addressBip44index0 != undefined && ref.addressBip44index1 != undefined ){
+            it('Expect extPub generated address addressBip44index0 and addressBip44index1 address and pub keys to match reference.', async () => {
+                
+                let addresses = await withExtPub44.generate(2)
+
+                assert.strictEqual(addresses[0].address,ref.addressBip44index0)
+                assert.strictEqual(addresses[0].pubKey,ref.pubKeyBip44index0)
+                assert.strictEqual(addresses[0].privKey,'')
+                assert.strictEqual(addresses[1].address,ref.addressBip44index1)
+                assert.strictEqual(addresses[1].pubKey,ref.pubKeyBip44index1)
+                assert.strictEqual(addresses[1].privKey,'')
+        
+            })            
+        }
+
+        if ( ref.bip49AccountExtPubKey !== undefined && ref.addressBip49index0 != undefined && ref.addressBip49index1 != undefined ){
+            it('Expect extPub generated address addressBip49index0 and addressBip49index1 address and pub keys to match reference.', async () => {
+                
+                let addresses = await withExtPub49.generate(2)
+
+                assert.strictEqual(addresses[0].address,ref.addressBip49index0)
+                assert.strictEqual(addresses[0].pubKey,ref.pubKeyBip49index0)
+                assert.strictEqual(addresses[0].privKey,'')
+                assert.strictEqual(addresses[1].address,ref.addressBip49index1)
+                assert.strictEqual(addresses[1].pubKey,ref.pubKeyBip49index1)
+                assert.strictEqual(addresses[1].privKey,'')
+        
+            })            
+        }
+
+        if ( ref.bip84AccountExtPubKey !== undefined && ref.addressBip84index0 != undefined && ref.addressBip84index1 != undefined ){
+            it('Expect extPub generated address addressBip84index0 and addressBip84index1 address and pub keys to match reference.', async () => {
+                
+                let addresses = await withExtPub84.generate(2)
+
+                assert.strictEqual(addresses[0].address,ref.addressBip84index0)
+                assert.strictEqual(addresses[0].pubKey,ref.pubKeyBip84index0)
+                assert.strictEqual(addresses[0].privKey,'')
+                assert.strictEqual(addresses[1].address,ref.addressBip84index1)
+                assert.strictEqual(addresses[1].pubKey,ref.pubKeyBip84index1)
+                assert.strictEqual(addresses[1].privKey,'')
+        
+            })            
         }
         
     })

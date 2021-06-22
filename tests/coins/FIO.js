@@ -4,6 +4,8 @@ module.exports={
     shortName:"FIO",
     bip32ExtPubKeyBip44:"xpub6FGUKy6W2Txz22Gz8N2TeSfLkfpKQvK4kgK3cZtwaj8ZCcKNZDG4W4ksJC7VnimDzbJd6CFxezMuF2y1qzzSPbW2QHJ6w1FdET1k9CJbzFA",
 
+    bip44AccountExtPubKey:"xpub6BsmBafDB31UmoL2WQf2L1ibMMX5gKLwEHjiENdU3kfkydjeCaNerAyUJnjnBeJTQMVK9PNfANQcbZmMUrNNUSg83p3GEhd3FC45FancxJe",    
+
     // BIP 44 Addresses
     addressBip44index0:"",
     pubKeyBip44index0:"FIO6dc2BVowP9afrcK8gaJUoe4SVrQf5e7z8hHzknXJW9ndhZb96Z",

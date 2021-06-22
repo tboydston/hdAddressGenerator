@@ -11,6 +11,10 @@ module.exports = {
     bip32ExtPubKeyBip49:"Mtub2tsQuMdYr2NANjQa6C3AfSGtYBVqary6gSuXRHPd1Jg42uoA8p1FUNZxHqf1L3898doVCSknheT3c7uvqCQNYonAh7TZwzmpDwjpGdau7mb",
     bip32ExtPubKeyBip84:"zpub6tktDBjpgDik9VUWds5d8ZTeJonoUj3uzWdtmXgaK8CJbrT6n44sp29qq3Jg4Vx7bFT6mmkceW17KeJsPfUTk8GSq8yfzP4n4jVqYAhAFpa",
 
+    bip44AccountExtPubKey:"Ltub2ZB5hCtgn7gqVPzt93yqG19A2VGPR8QubaJh1dagpMoJWFBmH2LX4uwRm5ihBQGKHiJLKaKMgfARozBUaBbSeR5A8VxkU5vCZcsFu9G3HHk",
+    bip49AccountExtPubKey:"Mtub2te8vVn8SuKDHSDsM2ZKMNZnGCErRV1f4cPiT74fCYZF5d4jpAmzHtjJ7Jdn9Ca5yqxL4xk36AN8NBZjbuhFV4aV7tB6swT9mqdkK3GfP45",
+    bip84AccountExtPubKey:"zpub6qa4qbPy1N6DMjqmrsGfEPxxdNCcrqKNuPvWx3SJKykBhdEmSPtgDUiK7s43K8cisLNbiLZcTCtsTmX7afR5WfRMYJ72CrTHRTDRscRS7rW",
+
     bip32RootKeyBip44WithPassphrase:"Ltpv71G8qDifUiNetxe2ZCDLiSmLxHAMF5xAc979eACXXXgVfz9uD9rJFsYdcMtmhSyZhkNJUq5fudGAEbWxJjmyj1Rry1nbyFJBxB2VWghGJcU",
 
     // BIP 44 Addresses
