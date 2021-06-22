@@ -246,7 +246,7 @@ class AddressGenerator {
             this.bip32RootKeyRaw = bip32.fromBase58(this.xpub)
         }
 
-        this.bip32RootKey = this.bip32RootKeyRaw.toBase58()
+        this.bip32RootKey = ( this.xpub === false ) ? this.bip32RootKeyRaw.toBase58() : ''
         
         if ( this.bip != 32 && this.bip != 141 ){    
             
