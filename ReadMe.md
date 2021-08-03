@@ -14,9 +14,9 @@ Generate hierarchical deterministic(HD) coin specific crypto addresses from sing
 
 # Installation  
 
-`
+```
 npm install hdaddressgenerator
-`
+```
 
 # Usage
 
@@ -72,47 +72,47 @@ Note: Not all initiation functions require all options.
 
 ### Generate BIP 44(legacy),49(segwit compatible), or 84(bech32) address using mnemonic and optional pass phrase.
 
-`
+```
 HdAddGen.withMnemonic(mnemonic,passphrase,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false)
-`
+```
 
 ### Generate BIP 44(legacy),49(segwit compatible), or 84(bech32) address using seed.
 
-`
+```
 HdAddGen.withSeed(seed,coin,hardened=false,bip=44,account=0,change=0,bip38Password=false)
-`
+```
 
 ### Generate BIP 32 legacy addresses with custom path, mnemonic, and optional pass phrase. 
 
-`
+```
 HdAddGen.withMnemonicBIP32(mnemonic,passphrase,coin,customPath,hardened=false,bip38Password=false)
-`
+```
 
 ### Generate BIP 32 legacy addresses with custom path and seed. 
 
-`
+```
 HdAddGen.withSeedBIP32(seed,coin,customPath,hardened=false,bip38Password=false)
-`
+```
 
 ### Generate BIP 141 addresses with custom path, mnemonic, and hashing algo. 
 
-`
+```
 HdAddGen.withMnemonicBIP141(mnemonic,passphrase,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
-`
+```
 
 ### Generate BIP 141 addresses with custom path, seed, and hashing algo. 
 
-`
+```
 HdAddGen.withSeedBIP141(seed,coin,customPath,hashAlgo,hardened=false,bip38Password=false)
-`
+```
 
 ### Generate addresses without private keys from Account Extended Public Keys. 
 
 Addresses generated with only an extended public key ( extPub ) go not have private keys. 
 
-`
+```
 HdAddGen.withExtPub(extPub,coin,bip=44,account=0,change=0)
-`
+```
 
 
 ## Generating Addresses 
@@ -122,9 +122,9 @@ HdAddGen.withExtPub(extPub,coin,bip=44,account=0,change=0)
 - totalToGenerate: Number of addresses you would like to generate starting from the index.
 - startIndex: Index to start generating addresses from.
 
-`
+```
 hdAddGen.generate(totalToGenerate,startIndex=0)
-`
+```
 
 ## Address Conversion 
 
@@ -135,9 +135,9 @@ For certain coins ( currently only BCH ). You may need to convert legacy address
 - address: Coin specific address.
 - format: Address format you would like to convert the address to (cashAddress,bitpayAddress,bchSlp). 
 
-`
+```
 convertAddress(address,format)
-`
+```
 
 # Tests
 
