@@ -46,6 +46,7 @@ for (const coin in coinData) {
         let withExtPub44 = false
         let withExtPub49 = false 
         let withExtPub84 = false 
+        let withExtPub44Internal = false 
 
         try{ bip44 = Gen.withMnemonic(settings.mnemonic,false,ref.shortName) } catch(e){}
         try{ bip44WithPassPhrase = Gen.withMnemonic(settings.mnemonic,settings.passphrase,ref.shortName,false) } catch(e){}
@@ -60,8 +61,10 @@ for (const coin in coinData) {
         try{ bip141 = Gen.withMnemonicBIP141(settings.mnemonic,false,ref.shortName,"m/0'/0'","p2wpkhInP2sh") } catch(e){}
         try{ bip141seed = Gen.withSeedBIP141(settings.bip32Seed,ref.shortName,"m/0'/0'","p2wpkhInP2sh") } catch(e){}
         try{ withExtPub44 = Gen.withExtPub(ref.bip44AccountExtPubKey,ref.shortName ) } catch(e){}
+        try{ withExtPub44Internal = Gen.withExtPub(ref.bip44AccountExtPubKey,ref.shortName,44,0,1) } catch(e){}  
         try{ withExtPub49 = Gen.withExtPub(ref.bip49AccountExtPubKey,ref.shortName,49 ) } catch(e){}
-        try{ withExtPub84 = Gen.withExtPub(ref.bip84AccountExtPubKey,ref.shortName,84 ) } catch(e){}  
+        try{ withExtPub84 = Gen.withExtPub(ref.bip84AccountExtPubKey,ref.shortName,84 ) } catch(e){} 
+
         
         // Test root Keys
         if ( ref.bip32RootKeyBip44 != undefined ){
@@ -269,6 +272,21 @@ for (const coin in coinData) {
                 assert.strictEqual(addresses[0].privKey,'')
                 assert.strictEqual(addresses[1].address,ref.addressBip44index1)
                 assert.strictEqual(addresses[1].pubKey,ref.pubKeyBip44index1)
+                assert.strictEqual(addresses[1].privKey,'')
+        
+            })            
+        }
+
+        if ( ref.bip44AccountExtPubKey !== undefined && ref.addressBip44index0 != undefined && ref.addressBip44index1 != undefined && ref.shortName == "BTC" ){
+            it('Expect extPub generated address using internal option ( i.e. m/44\'/0\'/0\'/1/0 ) with addressBip44index0 and addressBip44index1 address and pub keys to match reference.', async () => {
+                
+                let addresses = await withExtPub44Internal.generate(2)
+
+                assert.strictEqual(addresses[0].address,ref.addressBip44index0Internal)
+                assert.strictEqual(addresses[0].pubKey,ref.pubKeyBip44index0Internal)
+                assert.strictEqual(addresses[0].privKey,'')
+                assert.strictEqual(addresses[1].address,ref.addressBip44index1Internal)
+                assert.strictEqual(addresses[1].pubKey,ref.pubKeyBip44index1Internal)
                 assert.strictEqual(addresses[1].privKey,'')
         
             })            

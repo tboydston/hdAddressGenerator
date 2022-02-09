@@ -649,7 +649,7 @@ class AddressGenerator {
 
     /**
      * Checks if a coin has a test in the 'coins' folder.
-     * @param {sting} coinName Short name of the coin.
+     * @param {string} coinName Short name of the coin.
      */
     coinHasTest(coinName){
         

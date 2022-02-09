@@ -32,6 +32,13 @@ module.exports = {
     pubKeyBip44EncryptedIndex0:"0430175f65585b898540016463ac077776b5da6e8dcfd18e086e3d5f9735293c4236e68d79975b57a124d434d9c0ff73bd726bc9286fb88c0e1e867c551c85edce",
     privKeyBip44EncryptedIndex0:"6PRVD9KM1EmjTZ2xrmg83qpeDoKnhxgJSsRJEUroWTViF1fkFzJXJz3GSq",
 
+    addressBip44index0Internal:"19TGQmBdTsS6ghQrkZs6b4LLuAMnLzNke8",
+    pubKeyBip44index0Internal:"037922ca607a670dbfc7108ae779d593b0fcd6436bc7887dad4fd138bd389c0337",
+
+    addressBip44index1Internal:"1PT3h8jPVzisaEGSx4S9Xudpax7M6hX63U",
+    pubKeyBip44index1Internal:"03904cb21857450eb62eed84815bba65f895a8b4624ab451952e9acc5e663b016e",
+
+
     // BIP 49 Addresses
     addressBip49index0:"34Rqef93KR98XMaLneHEhzkr1kxaHg5AAA",
     pubKeyBip49index0:"0269c38d634710f8db4c543b62754abf5cc276b5227e81ef82be13ebfac7804d01",
