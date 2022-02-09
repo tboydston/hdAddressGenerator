@@ -372,8 +372,8 @@ class AddressGenerator {
 
             keyPair.pairBuffers = {}
             keyPair.rawAddress = {}
-            keyPair.pairBuffers.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
-            keyPair.rawAddress.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.pairBuffers.publicKey = bip32.fromBase58(this.xpub).derive(this.change).derive(index).publicKey
+            keyPair.rawAddress.publicKey = bip32.fromBase58(this.xpub).derive(this.change).derive(index).publicKey
             keyPair.privKey = ""
 
         }
@@ -413,7 +413,7 @@ class AddressGenerator {
             keyPair.rawPair = this.root.derivePath(keyPair.path)
         } else {
             keyPair.rawPair = {}
-            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.change).derive(index).publicKey
         }
 
         let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
@@ -441,7 +441,7 @@ class AddressGenerator {
             keyPair.ECPair =  bitcoin.ECPair.fromPrivateKey(keyPair.rawPair.privateKey, { network: this.coin.network.p2pkh, compressed: false })
         } else {
             keyPair.rawPair = {}
-            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.change).derive(index).publicKey
         }
 
 
@@ -468,7 +468,7 @@ class AddressGenerator {
             keyPair.rawPair = this.root.derivePath(keyPair.path)
         } else {
             keyPair.rawPair = {}
-            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.account).derive(index).publicKey
+            keyPair.rawPair.publicKey = bip32.fromBase58(this.xpub).derive(this.change).derive(index).publicKey
         }
 
         let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey)
