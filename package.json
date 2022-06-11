@@ -1,6 +1,6 @@
 {
   "name": "hdaddressgenerator",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Generate hierarchical deterministic(HD) coin specific crypto addresses ( legacy, segwit, bech32 ) from single master key pair for over 190 different cryptocurrencies.",
   "main": "hdAddressGenerator.js",
   "scripts": {
@@ -14,6 +14,10 @@
     "bitcoin",
     "ethereum"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tboydston/hdAddressGenerator.git"
+  },
   "author": "Tracey Boydston",
   "license": "MIT",
   "dependencies": {
