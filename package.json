@@ -21,7 +21,6 @@
   "author": "Tracey Boydston",
   "license": "MIT",
   "dependencies": {
-    "@types/bitcoinjs-lib": "^5.0.0",
     "base-x": "^3.0.8",
     "bchaddrjs": "^0.5.2",
     "bchaddrjs-slp": "^0.2.11",
