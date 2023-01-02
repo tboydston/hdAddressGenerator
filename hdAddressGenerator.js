@@ -9,8 +9,9 @@ const bip38 = require("bip38");
 const edHd = require("ed25519-hd-key");
 const basex = require("base-x");
 const bs58 = require("bs58");
+const bs58check = require("bs58check");
+
 const createHash = require("create-hash");
-const pubConvert = require("pubkeyconverter");
 
 // Coin specific libs
 const bitcoin = require("bitcoinjs-lib");
@@ -102,7 +103,7 @@ class AddressGenerator {
 
     // If a BIP 49 'y' or BIP 141 'z' xpub is submitted it is converted to an 'x' pub it can be processed.
     this.extPub = extPub;
-    this.xpub = extPub === false ? false : pubConvert.pubToXpub(extPub);
+    this.xpub = extPub === false ? false : this.pubToXpub(extPub);
 
     if (seed !== false) {
       this.seed = Buffer.from(seed, "hex");
@@ -890,6 +891,13 @@ class AddressGenerator {
     return `m/${this.bip}'/${this.coin.coinNumber}'/${this.account}'/${
       this.change
     }/${index}${this.hardened ? "'" : ""}`;
+  }
+
+  pubToXpub(pub) {
+    let data = bs58check.decode(pub);
+    data = data.slice(4);
+    data = Buffer.concat([Buffer.from("0488b21e", "hex"), data]);
+    return bs58check.encode(data);
   }
 
   /**
