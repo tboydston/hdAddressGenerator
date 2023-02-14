@@ -1,0 +1,44 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": ["airbnb-base", "prettier", "plugin:mocha/recommended"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "no-mocha-arrows": 0,
+    "no-console": 0,
+    "spellcheck/spell-checker": [
+      1,
+      {
+        "comments": true,
+        "strings": true,
+        "identifiers": false,
+        "templates": false,
+        "lang": "en_US",
+        "skipWords": [
+          "dict",
+          "aff",
+          "hunspellchecker",
+          "hunspell",
+          "utils",
+          "priv",
+          "xpub",
+          "txid",
+          "tx",
+          "bitcoind",
+          "bool"
+        ],
+        "skipIfMatch": ["http://[^s]*", "^[-\\w]+/[-\\w\\.]+$"],
+        "skipWordIfMatch": ["^foobar.*$"],
+        "minLength": 4
+      }
+    ]
+  },
+  "plugins": ["prettier", "mocha", "spellcheck"]
+}

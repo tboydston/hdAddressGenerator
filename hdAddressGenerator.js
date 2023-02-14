@@ -17,7 +17,7 @@ const createHash = require("create-hash");
 const bitcoin = require("bitcoinjs-lib");
 const ethreumUtil = require("ethereumjs-util");
 const stellarUtil = require("stellar-base");
-//const nebulasUtil = require('nebulas') // This library has some security issues. Disabled until resolved.
+// const nebulasUtil = require('nebulas') // This library has some security issues. Disabled until resolved.
 const nanoUtil = require("nanocurrency-web");
 const bchSlpUtil = require("bchaddrjs-slp");
 const bchaddr = require("bchaddrjs");
@@ -26,33 +26,56 @@ const coinList = require("coinnetworklist");
 
 class AddressGenerator {
   coin = {};
+
   coinName = "";
+
   index = 0;
+
   hardened = false;
+
   bip = 0;
+
   account = 0;
+
   change = 0;
+
   bip32Seed = "";
+
   bip32RootKeyRaw = "";
+
   bip32RootKey = "";
+
   bip32Path = "";
+
   accountPath = "";
+
   accountXprivKey = "";
+
   accountXpubKey = "";
+
   bip32XprivKey = "";
+
   bip32XpubKey = "";
+
   hashAlgo = "";
+
   hashAlgos = {
     32: "p2pkh",
     44: "p2pkh",
     49: "p2wpkhInP2sh",
     84: "p2wpkh",
   };
+
   bip38Password = false;
+
   unsupported = ["GRS", "ELA", "NAS"]; // Coins there is network info for but that are currently not supported.
+
   showEncryptProgress = false;
+
   xpub = false;
+
   extPub = "";
+
   unsupportedXpub = ["stellar", "nebulas", "nano"];
 
   /**
@@ -70,10 +93,10 @@ class AddressGenerator {
    * @param {string} bip38Password Additional password used to encrypt private keys.
    */
   constructor(
-    mnemonic = false,
-    passphrase = false,
-    seed = false,
-    extPub = false,
+    mnemonic,
+    passphrase,
+    seed,
+    extPub,
     coin,
     hardened = false,
     bip = 44,
@@ -83,7 +106,7 @@ class AddressGenerator {
     hashAlgo = false,
     bip38Password = false
   ) {
-    if (coinList[coin] == undefined) {
+    if (coinList[coin] === undefined) {
       throw new Error(`Coin ${coin} does not exist.`);
     } else {
       this.coin = coinList[coin];
@@ -91,11 +114,11 @@ class AddressGenerator {
       this.coinNumber = this.coin.coinNumber;
     }
 
-    if (this.coin.network == undefined) {
+    if (this.coin.network === undefined) {
       throw new Error(`Coin ${coin} exists but has no network details.`);
     }
 
-    if (!this.coinHasTest(coin)) {
+    if (!AddressGenerator.coinHasTest(coin)) {
       console.warn(
         `${coin} has no test and results may not be accurate. Please see ReadMe.md about how to add a test for this coin.`
       );
@@ -103,7 +126,7 @@ class AddressGenerator {
 
     // If a BIP 49 'y' or BIP 141 'z' xpub is submitted it is converted to an 'x' pub it can be processed.
     this.extPub = extPub;
-    this.xpub = extPub === false ? false : this.pubToXpub(extPub);
+    this.xpub = extPub === false ? false : AddressGenerator.pubToXpub(extPub);
 
     if (seed !== false) {
       this.seed = Buffer.from(seed, "hex");
@@ -125,13 +148,13 @@ class AddressGenerator {
     this.account = account;
     this.change = change;
     this.hardened = hardened;
-    this.bip32Path = customPath != false ? customPath : "";
+    this.bip32Path = customPath !== false ? customPath : "";
     this.bip38Password = bip38Password;
     this.hashAlgo = hashAlgo === false ? this.hashAlgos[bip] : hashAlgo;
 
     if (
       [49, 84, 141].includes(bip) &&
-      this.coin.network[this.hashAlgo] == undefined
+      this.coin.network[this.hashAlgo] === undefined
     ) {
       throw new Error(`${this.coinName} does not support ${this.hashAlgo}.`);
     }
@@ -140,7 +163,7 @@ class AddressGenerator {
       throw new Error(`${this.coinName} is not supported at this time.`);
     }
 
-    if (this.coin.addressType != undefined && bip38Password != false) {
+    if (this.coin.addressType !== undefined && bip38Password !== false) {
       throw new Error(
         `BIP 38 private key encryption only supported for bitcoin like address generation.`
       );
@@ -389,7 +412,7 @@ class AddressGenerator {
   }
 
   initKeys() {
-    if (this.bip == 32) {
+    if (this.bip === 32) {
       this.bip32RootKeyRaw = bip32.fromSeed(this.seed);
     } else if (this.xpub === false) {
       this.bip32RootKeyRaw = bip32.fromSeed(
@@ -403,7 +426,7 @@ class AddressGenerator {
     this.bip32RootKey =
       this.xpub === false ? this.bip32RootKeyRaw.toBase58() : "";
 
-    if (this.bip != 32 && this.bip != 141) {
+    if (this.bip !== 32 && this.bip !== 141) {
       this.accountPath = `m/${this.bip}'/${this.coinNumber}'/${this.account}'`;
       this.accountXprivKey =
         this.xpub === false
@@ -438,25 +461,21 @@ class AddressGenerator {
    * @returns
    */
   static async generateMnemonic(wordlist = "english", strength = 128) {
-    let result = {};
+    const result = {};
 
-    if (bip39.wordlists[wordlist] == undefined) {
+    if (bip39.wordlists[wordlist] === undefined) {
       throw new Error(
-        `Worldlist Not Supported. Supported Worlists: ${this.getSupportedWordLists().join(
+        `Worldlist Not Supported. Supported Worlists: ${AddressGenerator.getSupportedWordLists().join(
           ", "
         )} Default: english`
       );
     }
 
-    try {
-      result.mnemonic = bip39.generateMnemonic(
-        strength,
-        undefined,
-        bip39.wordlists[wordlist]
-      );
-    } catch (e) {
-      throw e;
-    }
+    result.mnemonic = bip39.generateMnemonic(
+      strength,
+      undefined,
+      bip39.wordlists[wordlist]
+    );
 
     result.seed = await bip39.mnemonicToSeed(result.mnemonic);
 
@@ -469,44 +488,44 @@ class AddressGenerator {
    * @param {int} startIndex Index to start generating addresses from.
    */
   async generate(totalToGenerate, startIndex = 0) {
-    let addresses = [];
+    const addresses = [];
     let index = startIndex;
 
     while (addresses.length < totalToGenerate) {
       let keyPair = {};
 
-      if (this.coin.addressType == undefined)
+      if (this.coin.addressType === undefined)
         keyPair = this.generateBitcoinAddress(index);
-      if (this.coin.addressType == "ethereum")
+      if (this.coin.addressType === "ethereum")
         keyPair = this.generateEthereumAddress(index);
-      if (this.coin.addressType == "tron")
+      if (this.coin.addressType === "tron")
         keyPair = this.generateTronAddress(index);
-      if (this.coin.addressType == "RSK")
+      if (this.coin.addressType === "RSK")
         keyPair = this.generateRSKAddress(index);
-      if (this.coin.addressType == "stellar")
+      if (this.coin.addressType === "stellar")
         keyPair = this.generateStellarAddress(index);
-      if (this.coin.addressType == "nebulas")
+      if (this.coin.addressType === "nebulas")
         keyPair = this.generateNebulasAddress(index);
-      if (this.coin.addressType == "ripple")
+      if (this.coin.addressType === "ripple")
         keyPair = this.generateRippleAddress(index);
-      if (this.coin.addressType == "nano")
+      if (this.coin.addressType === "nano")
         keyPair = this.generateNanoAddress(index);
-      if (this.coin.addressType == "jingtum")
+      if (this.coin.addressType === "jingtum")
         keyPair = this.generateJingtumAddress(index);
-      if (this.coin.addressType == "casinoCoin")
+      if (this.coin.addressType === "casinoCoin")
         keyPair = this.generateCasinoCoinAddress(index);
-      if (this.coin.addressType == "crown")
+      if (this.coin.addressType === "crown")
         keyPair = this.generateCrownAddress(index);
-      if (this.coin.addressType == "eosio")
+      if (this.coin.addressType === "eosio")
         keyPair = this.generateEOSAddress(index);
-      if (this.coin.addressType == "fio")
+      if (this.coin.addressType === "fio")
         keyPair = this.generateFIOAddress(index);
 
       keyPair.index = index;
 
       addresses.push(keyPair);
 
-      index++;
+      index += 1;
     }
 
     return addresses;
@@ -517,18 +536,18 @@ class AddressGenerator {
    * @param {string} address Coin specific address.
    * @param {string} format Address format you would like to convert the address to.
    */
-  convertAddress(address, format) {
-    if (format == "cashAddress") return bchaddr.toCashAddress(address);
-    if (format == "bitpayAddress") return bchaddr.toBitpayAddress(address);
-    if (format == "bchSlp") return bchSlpUtil.toSlpAddress(address);
+  static convertAddress(address, format) {
+    if (format === "cashAddress") return bchaddr.toCashAddress(address);
+    if (format === "bitpayAddress") return bchaddr.toBitpayAddress(address);
+    if (format === "bchSlp") return bchSlpUtil.toSlpAddress(address);
 
     throw new Error(`Address format ${format} does not exist.`);
   }
 
   generateBitcoinAddress(index) {
-    let keyPair = {};
-    let compressedKeys = this.bip38Password != false ? false : true;
-    let showEncryptProgress = this.showEncryptProgress;
+    const keyPair = {};
+    const compressedKeys = this.bip38Password === false;
+    const { showEncryptProgress } = this;
 
     keyPair.network = this.coin.network[this.hashAlgo];
     keyPair.path = this.path(index);
@@ -548,13 +567,12 @@ class AddressGenerator {
           keyPair.pairBuffers.privateKey,
           false,
           this.bip38Password,
-          function (p) {
+          (p) => {
             if (showEncryptProgress)
               console.log(
-                "Priv key encryption progress " +
-                  p.percent.toFixed(1) +
-                  "% for index " +
-                  index
+                `Priv key encryption progress ${p.percent.toFixed(
+                  1
+                )}% for index ${index}`
               );
           }
         );
@@ -575,7 +593,7 @@ class AddressGenerator {
 
     keyPair.pubKey = keyPair.rawAddress.publicKey.toString("hex");
 
-    if (this.bip == 49 || this.hashAlgo == "p2wpkhInP2sh") {
+    if (this.bip === 49 || this.hashAlgo === "p2wpkhInP2sh") {
       keyPair.address = bitcoin.payments.p2sh({
         redeem: bitcoin.payments.p2wpkh({
           pubkey: keyPair.pairBuffers.publicKey,
@@ -594,10 +612,10 @@ class AddressGenerator {
   }
 
   generateEthereumAddress(index) {
-    let addressPrefix =
-      this.coin.addressPrefix == undefined ? "0x" : this.coin.addressPrefix;
+    const addressPrefix =
+      this.coin.addressPrefix === undefined ? "0x" : this.coin.addressPrefix;
 
-    let keyPair = {};
+    const keyPair = {};
     keyPair.path = this.path(index);
 
     if (this.xpub === false) {
@@ -610,10 +628,10 @@ class AddressGenerator {
         .derive(index).publicKey;
     }
 
-    let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
-    let addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
-    let hexAddress = addressBuffer.toString("hex");
-    let checksumAddress = ethreumUtil.toChecksumAddress(
+    const ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
+    const addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
+    const hexAddress = addressBuffer.toString("hex");
+    const checksumAddress = ethreumUtil.toChecksumAddress(
       addressPrefix + hexAddress
     );
 
@@ -628,9 +646,9 @@ class AddressGenerator {
   }
 
   generateTronAddress(index) {
-    let addressPrefix = this.coin.addressPrefix;
+    const { addressPrefix } = this.coin;
 
-    let keyPair = {};
+    const keyPair = {};
     keyPair.path = this.path(index);
 
     if (this.xpub === false) {
@@ -647,8 +665,8 @@ class AddressGenerator {
         .derive(index).publicKey;
     }
 
-    let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
-    let addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
+    const ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
+    const addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
 
     keyPair.address = bitcoin.address.toBase58Check(
       addressBuffer,
@@ -662,10 +680,10 @@ class AddressGenerator {
   }
 
   generateRSKAddress(index) {
-    let addressPrefix = this.coin.addressPrefix;
-    let chainId = this.coin.chainId != undefined ? this.coin.chainId : null;
+    const { addressPrefix } = this.coin;
+    const chainId = this.coin.chainId !== undefined ? this.coin.chainId : null;
 
-    let keyPair = {};
+    const keyPair = {};
     keyPair.path = this.path(index);
 
     if (this.xpub === false) {
@@ -678,10 +696,10 @@ class AddressGenerator {
         .derive(index).publicKey;
     }
 
-    let ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
-    let addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
-    let hexAddress = addressBuffer.toString("hex");
-    let checksumAddress = ethreumUtil.toChecksumAddress(
+    const ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
+    const addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
+    const hexAddress = addressBuffer.toString("hex");
+    const checksumAddress = ethreumUtil.toChecksumAddress(
       addressPrefix + hexAddress,
       chainId
     );
@@ -697,11 +715,10 @@ class AddressGenerator {
   }
 
   generateStellarAddress(index) {
-    let keyPair = {};
-    keyPair.path =
-      "m/" + this.bip + "'/" + this.coin.coinNumber + "'/" + index + "'";
+    const keyPair = {};
+    keyPair.path = `m/${this.bip}'/${this.coin.coinNumber}'/${index}'`;
 
-    let Ed25519Seed = edHd.derivePath(keyPair.path, this.seed);
+    const Ed25519Seed = edHd.derivePath(keyPair.path, this.seed);
     keyPair.rawPair = stellarUtil.Keypair.fromRawEd25519Seed(Ed25519Seed.key);
 
     keyPair.address = keyPair.rawPair.publicKey();
@@ -711,24 +728,25 @@ class AddressGenerator {
     return keyPair;
   }
 
-  generateNebulasAddress(index) {
-    let keyPair = {};
-    keyPair.path = this.path(index);
-    keyPair.rawPair = this.root.derivePath(keyPair.path);
-
-    let privKeyBuffer = keyPair.rawPair.privateKey;
-    let nebulasAccount = nebulasUtil.Account.NewAccount();
-
-    nebulasAccount.setPrivateKey(privKeyBuffer);
-    keyPair.address = nebulasAccount.getAddressString();
-    keyPair.privKey = nebulasAccount.getPrivateKeyString();
-    keyPair.pubKey = nebulasAccount.getPublicKeyString();
-
-    return keyPair;
-  }
+  //  Disabled due to insecure supporting library
+  //   generateNebulasAddress(index) {
+  //     const keyPair = {};
+  //     keyPair.path = this.path(index);
+  //     keyPair.rawPair = this.root.derivePath(keyPair.path);
+  //
+  //     const privKeyBuffer = keyPair.rawPair.privateKey;
+  //     const nebulasAccount = nebulasUtil.Account.NewAccount();
+  //
+  //     nebulasAccount.setPrivateKey(privKeyBuffer);
+  //     keyPair.address = nebulasAccount.getAddressString();
+  //     keyPair.privKey = nebulasAccount.getPrivateKeyString();
+  //     keyPair.pubKey = nebulasAccount.getPublicKeyString();
+  //
+  //     return keyPair;
+  //   }
 
   generateRippleAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
+    const keyPair = this.generateBitcoinAddress(index);
 
     keyPair.address = basex(
       "rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz"
@@ -749,7 +767,7 @@ class AddressGenerator {
   }
 
   generateNanoAddress(index) {
-    let keyPair = {};
+    const keyPair = {};
     keyPair.path = this.path(index);
 
     keyPair.rawPair = nanoUtil.wallet.accounts(
@@ -766,7 +784,7 @@ class AddressGenerator {
   }
 
   generateJingtumAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
+    const keyPair = this.generateBitcoinAddress(index);
 
     keyPair.address = basex(
       "jpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65rkm8oFqi1tuvAxyz"
@@ -787,7 +805,7 @@ class AddressGenerator {
   }
 
   generateCasinoCoinAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
+    const keyPair = this.generateBitcoinAddress(index);
 
     keyPair.address = basex(
       "cpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2brdeCg65jkm8oFqi1tuvAxyz"
@@ -808,20 +826,20 @@ class AddressGenerator {
   }
 
   generateCrownAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
-    keyPair.address = this.crownAddressConvert(keyPair.address);
+    const keyPair = this.generateBitcoinAddress(index);
+    keyPair.address = AddressGenerator.crownAddressConvert(keyPair.address);
 
     return keyPair;
   }
 
   generateEOSAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
+    const keyPair = this.generateBitcoinAddress(index);
     keyPair.address = "";
     keyPair.privKey =
       this.xpub === false
-        ? this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        ? AddressGenerator.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
         : "";
-    keyPair.pubKey = this.EOSbufferToPublic(
+    keyPair.pubKey = AddressGenerator.EOSbufferToPublic(
       keyPair.pairBuffers.publicKey,
       "EOS"
     );
@@ -830,13 +848,13 @@ class AddressGenerator {
   }
 
   generateFIOAddress(index) {
-    let keyPair = this.generateBitcoinAddress(index);
+    const keyPair = this.generateBitcoinAddress(index);
     keyPair.address = "";
     keyPair.privKey =
       this.xpub === false
-        ? this.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
+        ? AddressGenerator.EOSbufferToPrivate(keyPair.pairBuffers.privateKey)
         : "";
-    keyPair.pubKey = this.EOSbufferToPublic(
+    keyPair.pubKey = AddressGenerator.EOSbufferToPublic(
       keyPair.pairBuffers.publicKey,
       "FIO"
     );
@@ -844,56 +862,60 @@ class AddressGenerator {
     return keyPair;
   }
 
-  crownAddressConvert(oldAddress) {
-    let ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-    let b58 = basex(ALPHABET);
+  static crownAddressConvert(oldAddress) {
+    const ALPHABET =
+      "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+    const b58 = basex(ALPHABET);
 
-    let addrBytes = b58.decode(oldAddress);
+    const addrBytes = b58.decode(oldAddress);
 
-    let hash160 = Buffer.from(new Uint16Array(23));
-    hash160[0] = 0x01; //C
-    hash160[1] = 0x75; //R
-    hash160[2] = 0x07; //W
+    const hash160 = Buffer.from(new Uint16Array(23));
+    hash160[0] = 0x01; // C
+    hash160[1] = 0x75; // R
+    hash160[2] = 0x07; // W
     addrBytes.copy(hash160, 3, 1, 21);
 
-    let checksum = bitcoin.crypto.hash256(hash160).subarray(0, 4);
-    let binaryAddr = Buffer.from(new Uint16Array(27));
+    const checksum = bitcoin.crypto.hash256(hash160).subarray(0, 4);
+    const binaryAddr = Buffer.from(new Uint16Array(27));
 
     binaryAddr.set(hash160, 0);
     checksum.copy(binaryAddr, 23, 0, 4);
 
-    let newAddress = b58.encode(binaryAddr);
+    const newAddress = b58.encode(binaryAddr);
     return newAddress;
   }
 
-  EOSbufferToPublic(pubBuf, prefix) {
+  static EOSbufferToPublic(buffer, prefix) {
     const EOS_PUBLIC_PREFIX = prefix;
-    let checksum = createHash("rmd160")
-      .update(pubBuf)
+    const checksum = createHash("rmd160")
+      .update(buffer)
       .digest("hex")
       .slice(0, 8);
-    pubBuf = Buffer.concat([pubBuf, Buffer.from(checksum, "hex")]);
+    const pubBuf = Buffer.concat([buffer, Buffer.from(checksum, "hex")]);
     return EOS_PUBLIC_PREFIX.concat(bs58.encode(pubBuf));
   }
 
-  EOSbufferToPrivate(privBuf) {
+  static EOSbufferToPrivate(buffer) {
     const EOS_PRIVATE_PREFIX = "80";
-    privBuf = Buffer.concat([Buffer.from(EOS_PRIVATE_PREFIX, "hex"), privBuf]);
-    let tmp = createHash("sha256").update(privBuf).digest();
-    let checksum = createHash("sha256").update(tmp).digest("hex").slice(0, 8);
+    let privBuf = Buffer.concat([
+      Buffer.from(EOS_PRIVATE_PREFIX, "hex"),
+      buffer,
+    ]);
+    const tmp = createHash("sha256").update(privBuf).digest();
+    const checksum = createHash("sha256").update(tmp).digest("hex").slice(0, 8);
     privBuf = Buffer.concat([privBuf, Buffer.from(checksum, "hex")]);
     return bs58.encode(privBuf);
   }
 
   path(index) {
-    if (this.bip == 32 || this.bip == 141)
+    if (this.bip === 32 || this.bip === 141)
       return `${this.bip32Path}/${index}${this.hardened ? "'" : ""}`;
     return `m/${this.bip}'/${this.coin.coinNumber}'/${this.account}'/${
       this.change
     }/${index}${this.hardened ? "'" : ""}`;
   }
 
-  pubToXpub(pub) {
+  static pubToXpub(pub) {
     let data = bs58check.decode(pub);
     data = data.slice(4);
     data = Buffer.concat([Buffer.from("0488b21e", "hex"), data]);
@@ -904,14 +926,14 @@ class AddressGenerator {
    * Checks if a coin has a test in the 'coins' folder.
    * @param {string} coinName Short name of the coin.
    */
-  coinHasTest(coinName) {
-    let coinList = [];
-    const coins = fs.readdirSync(__dirname + "/tests/coins/");
+  static coinHasTest(coinName) {
+    const coinTestList = [];
+    const coins = fs.readdirSync(`${__dirname}/tests/coins/`);
     coins.forEach((coin) => {
-      coinList.push(coin.split(".")[0]);
+      coinTestList.push(coin.split(".")[0]);
     });
 
-    return coinList.includes(coinName);
+    return coinTestList.includes(coinName);
   }
 
   /**
@@ -919,11 +941,11 @@ class AddressGenerator {
    * @returns
    */
   static getSupportedWordLists() {
-    let supportedLists = [];
+    const supportedLists = [];
 
-    for (const list in bip39.wordlists) {
+    Object.keys(bip39.wordlists).forEach((list) => {
       supportedLists.push(list);
-    }
+    });
 
     return supportedLists;
   }
