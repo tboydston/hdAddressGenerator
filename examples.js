@@ -161,9 +161,7 @@ const xpub =
    * Generate Neutered BIP 44 ( Legacy '1' ) addresses for bitcoin with XPUB.
    */
 
-  let bip44xpub = {};
-
-  bip44xpub = HdAddGen.withExtPub(xpub, "BTC", 44);
+  const bip44xpub = HdAddGen.withExtPub(xpub, "BTC", 44);
 
   // Generate 3 address pairs starting from index 0,
   const bip44xpubAddresses = await bip44xpub.generate(3);
@@ -184,7 +182,7 @@ const xpub =
   bip44BCHAddresses.forEach((address) => {
     console.log(
       address.path,
-      bip44BCH.convertAddress(address.address, "cashAddress"),
+      HdAddGen.convertAddress(address.address, "cashAddress"),
       address.pubKey,
       address.privKey
     );
@@ -196,7 +194,7 @@ const xpub =
   const bip44promise = HdAddGen.withSeed(seed, "BTC");
 
   // Generate 3 address pairs starting from index 0,
-  // eslint-disable-next-line no-shadow
+
   bip44promise.generate(3, 0).then((bip44withSeedAddresses) => {
     console.log(`\nBIP 44 ( Legacy '1' ) Key Using Promises`);
 

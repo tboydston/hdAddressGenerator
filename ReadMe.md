@@ -1,5 +1,8 @@
 # HD Address Generator
 
+[![Tests](https://github.com/tboydston/hdAddressGenerator/actions/workflows/test.yml/badge.svg)](https://github.com/tboydston/hdAddressGenerator/actions/workflows/test.yml)
+[![Code Quality](https://github.com/tboydston/hdAddressGenerator/actions/workflows/code-quality.yml/badge.svg)](https://github.com/tboydston/hdAddressGenerator/actions/workflows/code-quality.yml)
+
 Generate hierarchical deterministic(HD) coin specific crypto addresses from single master key pair for over 190 different cryptocurrencies.
 
 # Features 
@@ -14,6 +17,8 @@ Generate hierarchical deterministic(HD) coin specific crypto addresses from sing
 
 # Installation  
 
+Requires Node.js 20 or newer.
+
 ```
 npm install hdaddressgenerator
 ```
@@ -25,23 +30,26 @@ npm install hdaddressgenerator
 ```
 const HdAddGen = require('hdaddressgenerator')
 const mnemonic = "brand improve symbol strike say focus ginger imitate ginger appear wheel brand swear relief zero"
-// OR you can use the HdAddGen.getMnemonic() function to generate a mnemonic and seed. 
+// OR you can use the HdAddGen.generateMnemonic() function to generate a mnemonic and seed. 
 
+(async () => {
 
-// The easiest way to initiate a class is by using an initiation function.  
-let bip44 = HdAddGen.withMnemonic(mnemonic,false,"BTC")
+    // The easiest way to initiate a class is by using an initiation function.  
+    let bip44 = HdAddGen.withMnemonic(mnemonic,false,"BTC")
 
-// Generates 10 addresses from index 0
-let addresses = bip44.generate(10)
+    // Generates 10 addresses from index 0. generate() returns a promise. 
+    let addresses = await bip44.generate(10)
 
-addresses.forEach(address => {
-    console.log(
-        address.path,
-        address.address,
-        address.pubKey,
-        address.privKey,
-    )
-});
+    addresses.forEach(address => {
+        console.log(
+            address.path,
+            address.address,
+            address.pubKey,
+            address.privKey,
+        )
+    });
+
+})()
 
 ```
 
@@ -115,6 +123,24 @@ HdAddGen.withExtPub(extPub,coin,bip=44,account=0,change=0)
 ```
 
 
+### Mnemonic validation
+
+Mnemonics are checked against the BIP39 wordlists and checksum when a generator is created. An invalid mnemonic throws an `Invalid BIP39 mnemonic` error. You can check a mnemonic yourself first:
+
+```
+HdAddGen.validateMnemonic(mnemonic) // true or false
+```
+
+If you need to derive from a phrase that is not a valid BIP39 mnemonic, convert it to a seed yourself and use `withSeed`.
+
+### Untested coin warning
+
+Only some coins have reference tests ( see Tests below ). `HdAddGen.testedCoins` lists them and `HdAddGen.coinHasTest(coin)` checks a single coin. To log a warning whenever a generator is created for a coin without a test:
+
+```
+HdAddGen.warnOnUntestedCoin = true
+```
+
 ## Generating Addresses 
 
 ### Options
@@ -141,15 +167,31 @@ convertAddress(address,format)
 
 # Tests
 
+Tests run with [Jest](https://jestjs.io/).
+
+```
+npm test
+```
+
 Before using this library in production it is important that you verify your coin has a test in the tests/coins folder to insure that addresses are generated accurately. 
 
 If it does not, it is easy to create one. 
 1. Go to [iancoleman.io/bip39/](https://iancoleman.io/bip39/) or a similar site. 
-2. Enter the seed from the tests/settings.js file into the as the mnemonic. 
+2. Enter the mnemonic from the tests/settings.js file as the mnemonic. 
 3. Create a new coin in the tests/coins/ folder using the shortname of your coin. This needs to match the short name used in the coinlist [here](https://github.com/tboydston/coinnetworklist/blob/main/coinNetworkList.js). 
 4. Copy the content of a coin that is similar to yours from the tests/coins/ folder and replace the values you generated. You probably don't want to use bitcoin as this contains some general tests that are not coin specific. If your coin uses bip 49 or 84 address make sure you include those tests as well. 
-5. Replace your coin shortname with the contents of 'testCoin' in the test/settings.js file. 
-6. Test your coin with `mocha tests/coinTests.js`. If all tests pass change 'testCoin' back to 'ALL' im the settings file commit and submit a pull request. If your test fail double check your content. If it still fails open an issue for your coin. 
+5. Add your coin shortname to the `testedCoins` list in hdAddressGenerator.js. 
+6. Replace the contents of 'testCoin' in the tests/settings.js file with your coin shortname. 
+7. Test your coin with `npx jest tests/coins.test.js`. If all tests pass change 'testCoin' back to 'ALL' in the settings file, run `npm test` and `npm run lint`, then commit and submit a pull request. If your tests fail double check your content. If it still fails open an issue for your coin. 
+
+# Development
+
+```
+npm run lint       # ESLint and Prettier checks
+npm run lint:fix   # Fix what can be fixed automatically
+```
+
+Tests, linting and a dependency audit run on every push and pull request through GitHub Actions.
 
 # Credit 
 

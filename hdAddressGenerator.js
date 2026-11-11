@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 // BIP libs
 const bip32 = require("bip32");
 const bip39 = require("bip39");
@@ -79,6 +77,33 @@ class AddressGenerator {
   unsupportedXpub = ["stellar", "nebulas", "nano"];
 
   /**
+   * Coins with reference vectors in tests/coins. Kept in sync with that folder by tests/testedCoins.test.js.
+   */
+  static testedCoins = [
+    "BCH",
+    "BTC",
+    "CESC",
+    "CRW",
+    "CSC",
+    "EOS",
+    "ETC",
+    "ETH",
+    "FIO",
+    "LTC",
+    "NANO",
+    "R-BTC",
+    "SWTC",
+    "TRX",
+    "XLM",
+    "XRP",
+  ];
+
+  /**
+   * Set to true to log a warning when a generator is created for a coin that has no reference test.
+   */
+  static warnOnUntestedCoin = false;
+
+  /**
    * Options may be set directly on initialization but some are incompatible. It is recommended that you use an initialization function.
    * @param {string} mnemonic BIP39 mnemonic with spaces between words.
    * @param {string} passphrase Additional BIP39 passphrase custom passphrase to further secure mnemonic.
@@ -118,7 +143,10 @@ class AddressGenerator {
       throw new Error(`Coin ${coin} exists but has no network details.`);
     }
 
-    if (!AddressGenerator.coinHasTest(coin)) {
+    if (
+      AddressGenerator.warnOnUntestedCoin &&
+      !AddressGenerator.coinHasTest(coin)
+    ) {
       console.warn(
         `${coin} has no test and results may not be accurate. Please see ReadMe.md about how to add a test for this coin.`
       );
@@ -127,6 +155,16 @@ class AddressGenerator {
     // If a BIP 49 'y' or BIP 141 'z' xpub is submitted it is converted to an 'x' pub it can be processed.
     this.extPub = extPub;
     this.xpub = extPub === false ? false : AddressGenerator.pubToXpub(extPub);
+
+    if (
+      seed === false &&
+      this.xpub === false &&
+      !AddressGenerator.validateMnemonic(mnemonic)
+    ) {
+      throw new Error(
+        "Invalid BIP39 mnemonic. Check the words and their order, or supply a seed instead."
+      );
+    }
 
     if (seed !== false) {
       this.seed = Buffer.from(seed, "hex");
@@ -923,17 +961,24 @@ class AddressGenerator {
   }
 
   /**
-   * Checks if a coin has a test in the 'coins' folder.
+   * Checks if a coin has a reference test in the 'tests/coins' folder.
    * @param {string} coinName Short name of the coin.
    */
   static coinHasTest(coinName) {
-    const coinTestList = [];
-    const coins = fs.readdirSync(`${__dirname}/tests/coins/`);
-    coins.forEach((coin) => {
-      coinTestList.push(coin.split(".")[0]);
-    });
+    return AddressGenerator.testedCoins.includes(coinName);
+  }
 
-    return coinTestList.includes(coinName);
+  /**
+   * Checks that a mnemonic is a valid BIP39 mnemonic ( known words and correct checksum ) in any supported wordlist.
+   * @param {string} mnemonic BIP39 mnemonic with spaces between words.
+   * @returns {boolean}
+   */
+  static validateMnemonic(mnemonic) {
+    if (typeof mnemonic !== "string") return false;
+
+    return Object.values(bip39.wordlists).some((wordlist) =>
+      bip39.validateMnemonic(mnemonic, wordlist)
+    );
   }
 
   /**
