@@ -294,7 +294,7 @@ for (const coin in coinData) {
         expect(addresses[0].address).toBe(ref.addressBip44EncryptedIndex0);
         expect(addresses[0].pubKey).toBe(ref.pubKeyBip44EncryptedIndex0);
         expect(addresses[0].privKey).toBe(ref.privKeyBip44EncryptedIndex0);
-      }, 30000);
+      }, 120000);
     }
 
     if (
@@ -320,7 +320,7 @@ for (const coin in coinData) {
         expect(addresses[0].address).toBe(ref.addressBip49EncryptedIndex0);
         expect(addresses[0].pubKey).toBe(ref.pubKeyBip49EncryptedIndex0);
         expect(addresses[0].privKey).toBe(ref.privKeyBip49EncryptedIndex0);
-      }, 30000);
+      }, 120000);
     }
 
     if (

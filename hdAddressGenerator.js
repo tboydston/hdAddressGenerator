@@ -1,26 +1,34 @@
+// Elliptic curve library used by the BIP 32 and key pair libraries.
+const ecc = require("tiny-secp256k1");
+
 // BIP libs
-const bip32 = require("bip32");
+const { BIP32Factory } = require("bip32");
 const bip39 = require("bip39");
 const bip38 = require("bip38");
 
 // Formatting libs
 const edHd = require("ed25519-hd-key");
-const basex = require("base-x");
-const bs58 = require("bs58");
-const bs58check = require("bs58check");
-
-const createHash = require("create-hash");
+const basex = require("base-x").default;
+const bs58 = require("bs58").default;
+const bs58check = require("bs58check").default;
 
 // Coin specific libs
 const bitcoin = require("bitcoinjs-lib");
-const ethreumUtil = require("ethereumjs-util");
-const stellarUtil = require("stellar-base");
+const { ECPairFactory } = require("ecpair");
+const ethreumUtil = require("@ethereumjs/util");
+const stellarUtil = require("@stellar/stellar-base");
 // const nebulasUtil = require('nebulas') // This library has some security issues. Disabled until resolved.
 const nanoUtil = require("nanocurrency-web");
 const bchSlpUtil = require("bchaddrjs-slp");
 const bchaddr = require("bchaddrjs");
 
 const coinList = require("coinnetworklist");
+
+const bip32 = BIP32Factory(ecc);
+const ECPair = ECPairFactory(ecc);
+
+// The key and encoding libraries return byte arrays, keys are output as hex strings.
+const toHex = (bytes) => Buffer.from(bytes).toString("hex");
 
 class AddressGenerator {
   coin = {};
@@ -455,7 +463,7 @@ class AddressGenerator {
     } else if (this.xpub === false) {
       this.bip32RootKeyRaw = bip32.fromSeed(
         this.seed,
-        this.coin.network[this.hashAlgo]
+        AddressGenerator.libraryNetwork(this.coin.network[this.hashAlgo])
       );
     } else {
       this.bip32RootKeyRaw = bip32.fromBase58(this.xpub);
@@ -590,19 +598,20 @@ class AddressGenerator {
     keyPair.network = this.coin.network[this.hashAlgo];
     keyPair.path = this.path(index);
 
+    const libraryNetwork = AddressGenerator.libraryNetwork(keyPair.network);
+
     if (this.xpub === false) {
       keyPair.pairBuffers = this.root.derivePath(keyPair.path);
-      keyPair.rawAddress = bitcoin.ECPair.fromPrivateKey(
+      keyPair.rawAddress = ECPair.fromPrivateKey(
         keyPair.pairBuffers.privateKey,
-        { network: keyPair.network, compressed: compressedKeys }
+        { network: libraryNetwork, compressed: compressedKeys }
       );
-      keyPair.pairBuffers.network = keyPair.network;
 
       if (this.bip38Password === false) {
-        keyPair.privKey = keyPair.pairBuffers.toWIF();
+        keyPair.privKey = keyPair.rawAddress.toWIF();
       } else {
         keyPair.privKey = bip38.encrypt(
-          keyPair.pairBuffers.privateKey,
+          Buffer.from(keyPair.pairBuffers.privateKey),
           false,
           this.bip38Password,
           (p) => {
@@ -629,22 +638,34 @@ class AddressGenerator {
       keyPair.privKey = "";
     }
 
-    keyPair.pubKey = keyPair.rawAddress.publicKey.toString("hex");
+    keyPair.pubKey = toHex(keyPair.rawAddress.publicKey);
+
+    let payment;
+    let version;
 
     if (this.bip === 49 || this.hashAlgo === "p2wpkhInP2sh") {
-      keyPair.address = bitcoin.payments.p2sh({
+      payment = bitcoin.payments.p2sh({
         redeem: bitcoin.payments.p2wpkh({
           pubkey: keyPair.pairBuffers.publicKey,
-          network: keyPair.network,
+          network: libraryNetwork,
         }),
-        network: keyPair.network,
-      }).address;
+        network: libraryNetwork,
+      });
+      version = keyPair.network.scriptHash;
     } else {
-      keyPair.address = bitcoin.payments[this.hashAlgo]({
+      payment = bitcoin.payments[this.hashAlgo]({
         pubkey: keyPair.rawAddress.publicKey,
-        network: this.coin.network[this.hashAlgo],
-      }).address;
+        network: libraryNetwork,
+      });
+      version =
+        this.hashAlgo === "p2pkh" ? keyPair.network.pubKeyHash : undefined;
     }
+
+    // bitcoinjs-lib writes single byte address versions. Zcash style coins use two.
+    keyPair.address =
+      version > 0xff
+        ? AddressGenerator.twoByteVersionAddress(payment.hash, version)
+        : payment.address;
 
     return keyPair;
   }
@@ -668,7 +689,7 @@ class AddressGenerator {
 
     const ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
     const addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
-    const hexAddress = addressBuffer.toString("hex");
+    const hexAddress = toHex(addressBuffer);
     const checksumAddress = ethreumUtil.toChecksumAddress(
       addressPrefix + hexAddress
     );
@@ -676,9 +697,9 @@ class AddressGenerator {
     keyPair.address = ethreumUtil.addHexPrefix(checksumAddress);
     keyPair.privKey =
       this.xpub === false
-        ? addressPrefix + keyPair.rawPair.privateKey.toString("hex")
+        ? addressPrefix + toHex(keyPair.rawPair.privateKey)
         : "";
-    keyPair.pubKey = addressPrefix + keyPair.rawPair.publicKey.toString("hex");
+    keyPair.pubKey = addressPrefix + toHex(keyPair.rawPair.publicKey);
 
     return keyPair;
   }
@@ -691,10 +712,10 @@ class AddressGenerator {
 
     if (this.xpub === false) {
       keyPair.rawPair = this.root.derivePath(keyPair.path);
-      keyPair.ECPair = bitcoin.ECPair.fromPrivateKey(
-        keyPair.rawPair.privateKey,
-        { network: this.coin.network.p2pkh, compressed: false }
-      );
+      keyPair.ECPair = ECPair.fromPrivateKey(keyPair.rawPair.privateKey, {
+        network: AddressGenerator.libraryNetwork(this.coin.network.p2pkh),
+        compressed: false,
+      });
     } else {
       keyPair.rawPair = {};
       keyPair.rawPair.publicKey = bip32
@@ -711,15 +732,15 @@ class AddressGenerator {
       addressPrefix
     );
     keyPair.privKey =
-      this.xpub === false ? keyPair.ECPair.privateKey.toString("hex") : "";
-    keyPair.pubKey = keyPair.rawPair.publicKey.toString("hex");
+      this.xpub === false ? toHex(keyPair.ECPair.privateKey) : "";
+    keyPair.pubKey = toHex(keyPair.rawPair.publicKey);
 
     return keyPair;
   }
 
   generateRSKAddress(index) {
     const { addressPrefix } = this.coin;
-    const chainId = this.coin.chainId !== undefined ? this.coin.chainId : null;
+    const chainId = this.coin.chainId;
 
     const keyPair = {};
     keyPair.path = this.path(index);
@@ -736,7 +757,7 @@ class AddressGenerator {
 
     const ethPubkey = ethreumUtil.importPublic(keyPair.rawPair.publicKey);
     const addressBuffer = ethreumUtil.publicToAddress(ethPubkey);
-    const hexAddress = addressBuffer.toString("hex");
+    const hexAddress = toHex(addressBuffer);
     const checksumAddress = ethreumUtil.toChecksumAddress(
       addressPrefix + hexAddress,
       chainId
@@ -745,9 +766,9 @@ class AddressGenerator {
     keyPair.address = ethreumUtil.addHexPrefix(checksumAddress);
     keyPair.privKey =
       this.xpub === false
-        ? addressPrefix + keyPair.rawPair.privateKey.toString("hex")
+        ? addressPrefix + toHex(keyPair.rawPair.privateKey)
         : "";
-    keyPair.pubKey = addressPrefix + keyPair.rawPair.publicKey.toString("hex");
+    keyPair.pubKey = addressPrefix + toHex(keyPair.rawPair.publicKey);
 
     return keyPair;
   }
@@ -795,10 +816,11 @@ class AddressGenerator {
     );
     keyPair.privKey =
       this.xpub === false
-        ? basex("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
-            .decode(keyPair.privKey)
-            .toString("hex")
-            .slice(2, 66)
+        ? toHex(
+            basex(
+              "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+            ).decode(keyPair.privKey)
+          ).slice(2, 66)
         : "";
 
     return keyPair;
@@ -833,10 +855,11 @@ class AddressGenerator {
     );
     keyPair.privKey =
       this.xpub === false
-        ? basex("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
-            .decode(keyPair.privKey)
-            .toString("hex")
-            .slice(2, 66)
+        ? toHex(
+            basex(
+              "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+            ).decode(keyPair.privKey)
+          ).slice(2, 66)
         : "";
 
     return keyPair;
@@ -854,10 +877,11 @@ class AddressGenerator {
     );
     keyPair.privKey =
       this.xpub === false
-        ? basex("123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz")
-            .decode(keyPair.privKey)
-            .toString("hex")
-            .slice(2, 66)
+        ? toHex(
+            basex(
+              "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
+            ).decode(keyPair.privKey)
+          ).slice(2, 66)
         : "";
 
     return keyPair;
@@ -905,7 +929,7 @@ class AddressGenerator {
       "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
     const b58 = basex(ALPHABET);
 
-    const addrBytes = b58.decode(oldAddress);
+    const addrBytes = Buffer.from(b58.decode(oldAddress));
 
     const hash160 = Buffer.from(new Uint16Array(23));
     hash160[0] = 0x01; // C
@@ -917,7 +941,7 @@ class AddressGenerator {
     const binaryAddr = Buffer.from(new Uint16Array(27));
 
     binaryAddr.set(hash160, 0);
-    checksum.copy(binaryAddr, 23, 0, 4);
+    binaryAddr.set(checksum, 23);
 
     const newAddress = b58.encode(binaryAddr);
     return newAddress;
@@ -925,11 +949,8 @@ class AddressGenerator {
 
   static EOSbufferToPublic(buffer, prefix) {
     const EOS_PUBLIC_PREFIX = prefix;
-    const checksum = createHash("rmd160")
-      .update(buffer)
-      .digest("hex")
-      .slice(0, 8);
-    const pubBuf = Buffer.concat([buffer, Buffer.from(checksum, "hex")]);
+    const checksum = bitcoin.crypto.ripemd160(buffer).subarray(0, 4);
+    const pubBuf = Buffer.concat([buffer, checksum]);
     return EOS_PUBLIC_PREFIX.concat(bs58.encode(pubBuf));
   }
 
@@ -939,10 +960,36 @@ class AddressGenerator {
       Buffer.from(EOS_PRIVATE_PREFIX, "hex"),
       buffer,
     ]);
-    const tmp = createHash("sha256").update(privBuf).digest();
-    const checksum = createHash("sha256").update(tmp).digest("hex").slice(0, 8);
-    privBuf = Buffer.concat([privBuf, Buffer.from(checksum, "hex")]);
+    const checksum = bitcoin.crypto.hash256(privBuf).subarray(0, 4);
+    privBuf = Buffer.concat([privBuf, checksum]);
     return bs58.encode(privBuf);
+  }
+
+  /**
+   * Network details in the form the key and address libraries accept.
+   * They require every field to be present and address versions to fit in one byte.
+   * Two byte versions are not used by the libraries, see twoByteVersionAddress.
+   * @param {object} network Network details from the coin list.
+   */
+  static libraryNetwork(network) {
+    return {
+      messagePrefix: "",
+      bech32: "",
+      ...network,
+      pubKeyHash: network.pubKeyHash > 0xff ? 0 : network.pubKeyHash,
+      scriptHash: network.scriptHash > 0xff ? 0 : network.scriptHash,
+    };
+  }
+
+  /**
+   * Base58Check address with a two byte version, as used by Zcash and the coins derived from it.
+   * @param {Uint8Array} hash Public key hash or script hash.
+   * @param {int} version Two byte address version.
+   */
+  static twoByteVersionAddress(hash, version) {
+    return bs58check.encode(
+      Buffer.concat([Buffer.from([version >> 8, version & 0xff]), hash])
+    );
   }
 
   path(index) {

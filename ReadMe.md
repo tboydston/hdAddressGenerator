@@ -173,9 +173,35 @@ Tests run with [Jest](https://jestjs.io/).
 npm test
 ```
 
-Before using this library in production it is important that you verify your coin has a test in the tests/coins folder to insure that addresses are generated accurately. 
+There are two sets of reference tests. Both compare this library with the reference tool at [iancoleman.io/bip39/](https://iancoleman.io/bip39/), and they exist for different reasons. 
 
-If it does not, it is easy to create one. 
+### Detailed coin tests ( tests/coins )
+
+One file per coin, created by hand by entering the mnemonic from tests/settings.js into the reference tool. 
+
+- Why they exist: to check every way of generating addresses for a coin. Root keys, extended keys, BIP 44, 49, 84, 32 and 141 addresses, hardened addresses, generation from a seed or an extended public key, and BIP 38 encrypted keys. 
+- What they cover: 16 coins, in depth. 
+- `HdAddGen.testedCoins` and `HdAddGen.coinHasTest(coin)` report these coins only. 
+
+### Reference tool vectors ( tests/fixtures/referenceVectors.json )
+
+The first address, public key and private key for 182 networks, copied from the [reference tool's own test suite](https://github.com/iancoleman/bip39/blob/master/tests/spec/tests.js) ( MIT license ). They are checked by tests/referenceVectors.test.js. 
+
+- Why they exist: writing a detailed test for every coin by hand is not practical, so most coins had no test at all. These vectors confirm that the network details and address format of almost every coin produce the same result as the reference tool. 
+- What they cover: 182 networks, but only the first BIP 44 address ( m/44'/coin'/0'/0/0 ). They do not check BIP 49, 84, 32 or 141 addresses, passphrases, extended public keys or encrypted keys. 
+- They use the phrase "abandon abandon ability". It is shorter than a standard mnemonic, so the test converts it to a seed first. 
+- A few coins are known to differ from the reference tool. They are listed with the reason at the top of tests/referenceVectors.test.js. 
+
+### Which one covers my coin?
+
+Before using this library in production, check how your coin is covered. 
+
+- In tests/coins: every generation method is checked. 
+- Only in the reference vectors: standard BIP 44 addresses are checked. If you use segwit ( BIP 49 or 84 ), custom paths or encrypted keys, add a detailed coin test first. 
+- In neither, or listed as a known difference: treat the output as unverified. 
+
+### Adding a detailed coin test
+
 1. Go to [iancoleman.io/bip39/](https://iancoleman.io/bip39/) or a similar site. 
 2. Enter the mnemonic from the tests/settings.js file as the mnemonic. 
 3. Create a new coin in the tests/coins/ folder using the shortname of your coin. This needs to match the short name used in the coinlist [here](https://github.com/tboydston/coinnetworklist/blob/main/coinNetworkList.js). 

@@ -20,6 +20,11 @@ module.exports = [
       ...jest.configs["flat/recommended"].rules,
       // Coin reference files only define the vectors a coin supports, so tests are registered conditionally.
       "jest/no-conditional-in-test": "off",
+      // expectMatch is a shared assertion helper in the reference vector tests.
+      "jest/expect-expect": [
+        "warn",
+        { assertFunctionNames: ["expect", "expectMatch"] },
+      ],
     },
   },
   prettier,
