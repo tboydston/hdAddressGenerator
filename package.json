@@ -1,6 +1,6 @@
 {
   "name": "hdaddressgenerator",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Generate hierarchical deterministic(HD) coin specific crypto addresses ( legacy, segwit, bech32 ) from single master key pair for over 190 different cryptocurrencies.",
   "main": "hdAddressGenerator.js",
   "files": [

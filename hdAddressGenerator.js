@@ -74,7 +74,7 @@ class AddressGenerator {
 
   bip38Password = false;
 
-  unsupported = ["GRS", "ELA", "NAS"]; // Coins there is network info for but that are currently not supported.
+  unsupported = ["GRS", "GRSt", "ELA", "NAS"]; // Coins there is network info for but that are currently not supported.
 
   showEncryptProgress = false;
 
