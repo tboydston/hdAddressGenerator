@@ -53,7 +53,7 @@
     "bitcoinjs-lib": "^7.0.5",
     "bs58": "^6.0.0",
     "bs58check": "^4.0.0",
-    "coinnetworklist": "^1.0.1",
+    "coinnetworklist": "^1.0.2",
     "ecpair": "^3.0.2",
     "ed25519-hd-key": "^1.1.2",
     "nanocurrency-web": "^1.4.3",

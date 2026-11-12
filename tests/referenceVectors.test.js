@@ -13,7 +13,6 @@ const seed = bip39.mnemonicToSeedSync(reference.phrase).toString("hex");
 
 // Coins where this library is known to differ from the reference tool.
 const knownDifferences = {
-  NMC: "The private key version in the coin list differs from the reference tool. The address and public key match.",
   XWC: "Whitecoin's own address and key format is not implemented.",
   GRS: "Groestlcoin is not supported.",
   GRSt: "Groestlcoin is not supported.",
